@@ -355,9 +355,7 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  font-weight: 850;
-  letter-spacing: 0;
+  gap: 10px;
   animation: logoEntrance 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -366,6 +364,12 @@ img {
   height: 56px;
   border-radius: 8px;
   filter: drop-shadow(0 0 16px rgba(38, 221, 255, 0.22));
+}
+
+.brand-wordmark {
+  width: clamp(132px, 18vw, 176px);
+  height: auto;
+  filter: drop-shadow(0 0 14px rgba(38, 221, 255, 0.12));
 }
 
 .nav-links {
@@ -393,19 +397,6 @@ img {
   color: var(--text);
   background: rgba(38, 221, 255, 0.1);
   box-shadow: inset 0 0 0 1px rgba(38, 221, 255, 0.12);
-}
-
-.nav-links .nav-sandbox {
-  color: #031018;
-  background: linear-gradient(135deg, var(--cyan), #74a2ff 58%, #c18aff);
-  box-shadow: 0 10px 28px rgba(38, 221, 255, 0.2);
-}
-
-.nav-links .nav-sandbox:hover,
-.nav-links .nav-sandbox:focus-visible {
-  color: #031018;
-  background: linear-gradient(135deg, #70ecff, #8eb4ff 58%, #d2a6ff);
-  box-shadow: 0 14px 34px rgba(38, 221, 255, 0.28);
 }
 
 .nav-toggle {
@@ -445,6 +436,8 @@ img {
   position: relative;
   padding: 108px 0;
   scroll-margin-top: calc(var(--header-height) + 18px);
+  content-visibility: auto;
+  contain-intrinsic-size: 720px;
 }
 
 .section::before {
@@ -642,27 +635,7 @@ h3 {
   min-height: clamp(330px, 42vw, 520px);
   display: grid;
   place-items: center;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background:
-    radial-gradient(circle at 50% 45%, rgba(38, 221, 255, 0.16), transparent 30%),
-    linear-gradient(145deg, rgba(10, 18, 32, 0.78), rgba(11, 16, 30, 0.35));
-  box-shadow: var(--shadow);
-  overflow: hidden;
   transform-style: preserve-3d;
-}
-
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(148, 208, 255, 0.12);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(rgba(148, 208, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 208, 255, 0.07) 1px, transparent 1px);
-  background-size: 30px 30px;
-  opacity: 0.7;
 }
 
 .hero-logo {
@@ -671,6 +644,14 @@ h3 {
   width: min(58%, 300px);
   filter: drop-shadow(0 0 28px rgba(38, 221, 255, 0.22));
   animation: logoFloat 5s ease-in-out infinite;
+}
+
+.hero-wordmark {
+  display: block;
+  width: min(92%, 520px);
+  height: auto;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 18px rgba(38, 221, 255, 0.14));
 }
 
 .logo-orbit {
@@ -700,38 +681,6 @@ h3 {
   bottom: 20%;
   background: var(--violet);
   box-shadow: 0 0 24px rgba(166, 108, 255, 0.9);
-}
-
-.hero-cube {
-  position: absolute;
-  border: 1px solid rgba(38, 221, 255, 0.32);
-  border-radius: var(--radius);
-  background: linear-gradient(145deg, rgba(38, 221, 255, 0.18), rgba(166, 108, 255, 0.1));
-  transform: rotateX(58deg) rotateZ(-35deg);
-  animation: floatShape 8s ease-in-out infinite;
-}
-
-.cube-a {
-  width: 86px;
-  height: 86px;
-  left: 12%;
-  top: 18%;
-}
-
-.cube-b {
-  width: 58px;
-  height: 58px;
-  right: 13%;
-  top: 24%;
-  animation-delay: -2s;
-}
-
-.cube-c {
-  width: 48px;
-  height: 48px;
-  right: 20%;
-  bottom: 18%;
-  animation-delay: -4s;
 }
 
 .eyebrow {
@@ -1019,9 +968,9 @@ h3 {
 }
 
 .game-card .badge {
-  border-color: var(--game-badge-border, rgba(38, 221, 255, 0.3));
-  color: var(--game-badge, var(--cyan));
-  background: var(--game-badge-bg, rgba(38, 221, 255, 0.08));
+  border-color: rgba(38, 221, 255, 0.3);
+  color: var(--cyan);
+  background: rgba(38, 221, 255, 0.08);
 }
 
 .game-card .platform-tag,
@@ -1258,31 +1207,38 @@ h3 {
   box-shadow: 0 0 14px currentColor;
 }
 
-.status-inactive {
-  border-color: rgba(255, 209, 102, 0.32);
+.game-card .badge.status-inactive {
+  border-color: rgba(0, 0, 0, 0.32);
+  color: #000000;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.game-card .badge.status-development {
+  border-color: rgba(255, 209, 102, 0.34);
   color: var(--warning);
-  background: rgba(255, 209, 102, 0.08);
+  background: rgba(255, 209, 102, 0.1);
 }
 
-.status-development {
-  border-color: rgba(101, 255, 189, 0.3);
+.game-card .badge.status-future {
+  border-color: rgba(168, 184, 204, 0.24);
+  color: var(--muted);
+  background: rgba(168, 184, 204, 0.08);
+}
+
+.game-card .badge.status-published {
+  border-color: rgba(101, 255, 189, 0.34);
   color: var(--green);
-  background: rgba(101, 255, 189, 0.08);
+  background: rgba(101, 255, 189, 0.1);
 }
 
-.status-development::before,
-.status-inactive::before {
+.game-card .badge.status-development::before,
+.game-card .badge.status-inactive::before,
+.game-card .badge.status-published::before {
   animation: statusPulse 1.8s ease-in-out infinite;
 }
 
 .badge-pulse::before {
   animation: statusPulse 1.8s ease-in-out infinite;
-}
-
-.muted-badge {
-  border-color: rgba(168, 184, 204, 0.24);
-  color: var(--muted);
-  background: rgba(168, 184, 204, 0.06);
 }
 
 .platform-line {
@@ -1894,9 +1850,18 @@ h3 {
 }
 
 @media (max-width: 820px) {
+  :root {
+    --shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
+  }
+
   .nav,
   .section-inner {
     width: min(100% - 28px, 1160px);
+  }
+
+  .site-header {
+    background: rgba(4, 7, 14, 0.92);
+    backdrop-filter: none;
   }
 
   .nav-toggle {
@@ -1931,6 +1896,11 @@ h3 {
 
   .section {
     padding: 80px 0;
+    contain-intrinsic-size: 620px;
+  }
+
+  .section::before {
+    display: none;
   }
 
   .hero {
@@ -1940,6 +1910,42 @@ h3 {
 
   .hero-visual {
     min-height: 340px;
+  }
+
+  .background-grid {
+    opacity: 0.62;
+    background-size: 56px 56px, 56px 56px, 168px 168px, 168px 168px;
+    animation: none;
+  }
+
+  .background-aurora {
+    opacity: 0.56;
+    filter: none;
+    animation: none;
+  }
+
+  .background-scan,
+  .background-data,
+  .noise-overlay,
+  .parallax-layer {
+    display: none;
+  }
+
+  .game-card,
+  .asset-card,
+  .contact-card,
+  .sandbox-collapsible {
+    backdrop-filter: none;
+  }
+
+  .game-card::after,
+  .featured-asset::before {
+    animation: none;
+  }
+
+  .hero-logo,
+  .logo-orbit {
+    animation-duration: 8s;
   }
 
   .game-grid {
@@ -1998,19 +2004,6 @@ h3 {
     min-height: 220px;
   }
 
-  .background-scan {
-    opacity: 0.14;
-  }
-
-  .background-data {
-    opacity: 0.16;
-  }
-
-  .shape-six,
-  .shape-seven {
-    display: none;
-  }
-
 }
 
 @media (max-width: 520px) {
@@ -2027,19 +2020,58 @@ h3 {
     padding: 0 16px;
   }
 
-  .brand span {
-    font-size: 0.98rem;
-  }
-
   .brand-logo {
     width: 48px;
     height: 48px;
+  }
+
+  .brand-wordmark {
+    width: 124px;
   }
 
   .hero-visual {
     min-height: 300px;
   }
 
+}
+
+@media (hover: none), (pointer: coarse) {
+  .float-shape,
+  .particle,
+  .logo-orbit,
+  .hero-logo,
+  .status-dot,
+  .badge::before {
+    animation: none;
+  }
+
+  .button:hover,
+  .button:focus-visible,
+  .filter-button:hover,
+  .filter-button:focus-visible,
+  .card-link:hover,
+  .card-link:focus-visible,
+  .contact-card a:hover,
+  .contact-card a:focus-visible,
+  .game-card:hover,
+  .game-card:focus-within,
+  .asset-card:hover {
+    transform: none;
+  }
+
+  .game-card:hover .game-media > img,
+  .game-card:focus-within .game-media > img,
+  .game-card:hover .game-media.image-contain > img,
+  .game-card:focus-within .game-media.image-contain > img {
+    transform: none;
+    filter: none;
+  }
+
+  .ripple.is-rippling::after,
+  .asset-card:hover::after,
+  .contact-card a:hover::after {
+    animation: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2063,9 +2095,7 @@ h3 {
   .background-scan,
   .background-data,
   .hero-logo,
-  .logo-orbit,
-  .hero-cube {
+  .logo-orbit {
     transform: none !important;
   }
 }
-

@@ -68,6 +68,7 @@ p {
 }
 
 .background-grid,
+.background-aurora,
 .noise-overlay {
   position: fixed;
   inset: 0;
@@ -82,6 +83,17 @@ p {
   background-size: 48px 48px;
   mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.72) 58%, transparent 100%);
   animation: gridDrift 26s linear infinite;
+}
+
+.background-aurora {
+  z-index: -3;
+  opacity: 0.7;
+  background:
+    radial-gradient(circle at 22% 16%, rgba(38, 221, 255, 0.2), transparent 26rem),
+    radial-gradient(circle at 78% 34%, rgba(166, 108, 255, 0.18), transparent 30rem),
+    radial-gradient(circle at 48% 82%, rgba(255, 111, 216, 0.1), transparent 28rem);
+  filter: blur(4px) saturate(1.1);
+  animation: auroraDrift 18s ease-in-out infinite alternate;
 }
 
 .noise-overlay {
@@ -124,7 +136,7 @@ p {
 
 .brand {
   gap: 11px;
-  font-weight: 850;
+  align-items: center;
 }
 
 .brand-logo {
@@ -132,6 +144,12 @@ p {
   height: 42px;
   border-radius: 8px;
   filter: drop-shadow(0 0 16px rgba(38, 221, 255, 0.22));
+}
+
+.brand-wordmark {
+  width: clamp(132px, 18vw, 176px);
+  height: auto;
+  filter: drop-shadow(0 0 14px rgba(38, 221, 255, 0.12));
 }
 
 .nav-links {
@@ -149,7 +167,8 @@ p {
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.nav-links a.active {
   color: var(--text);
   background: rgba(38, 221, 255, 0.1);
   box-shadow: inset 0 0 0 1px rgba(38, 221, 255, 0.12);
@@ -449,6 +468,23 @@ h1 {
   to { background-position: 48px 48px, 48px 48px; }
 }
 
+@keyframes auroraDrift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+    filter: blur(4px) saturate(1.06);
+  }
+
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+    filter: blur(6px) saturate(1.18);
+  }
+
+  100% {
+    transform: translate3d(1%, -2%, 0) scale(1.02);
+    filter: blur(5px) saturate(1.1);
+  }
+}
+
 @media (max-width: 960px) {
   .minigame-grid {
     grid-template-columns: 1fr;
@@ -471,6 +507,10 @@ h1 {
 
   .nav-links {
     flex-wrap: wrap;
+  }
+
+  .brand-wordmark {
+    width: 124px;
   }
 
   .sandbox-page {

@@ -1,6 +1,8 @@
 document.documentElement.classList.add("js");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const supportsPreciseHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const useDecorativeMotion = !prefersReducedMotion && supportsPreciseHover;
 
 const platformIcons = {
   mobile:
@@ -71,7 +73,7 @@ const games = [
   {
     title: "Recovery Unit",
     status: "Future",
-    statusClass: "muted-badge",
+    statusClass: "status-future",
     platforms: ["Steam", "PC", "Multiplayer"],
     genre: "Multiplayer First-Person Infection Shooter",
     theme: "recovery-unit",
@@ -86,7 +88,7 @@ const games = [
   {
     title: "Brawlbots",
     status: "Future",
-    statusClass: "muted-badge",
+    statusClass: "status-future",
     platforms: ["Steam", "PC", "Multiplayer"],
     genre: "Third-Person Multiplayer Puzzle Brawler",
     theme: "brawlbots",
@@ -101,7 +103,7 @@ const games = [
   {
     title: "Gun Pop",
     status: "Future",
-    statusClass: "muted-badge",
+    statusClass: "status-future",
     platforms: ["Mobile"],
     genre: "Mobile Flick-Shooting Arcade",
     theme: "gun-pop",
@@ -124,6 +126,8 @@ const gameGrid = document.querySelector("#game-grid");
 const filterButtons = document.querySelectorAll(".filter-button");
 const backToTop = document.querySelector(".back-to-top");
 const parallaxItems = document.querySelectorAll("[data-depth]");
+let gameCards = [];
+let scrollProgress = null;
 const hideTimers = new WeakMap();
 
 year.textContent = new Date().getFullYear();
@@ -133,16 +137,7 @@ function setupDynamicShell() {
   progress.className = "scroll-progress";
   progress.setAttribute("aria-hidden", "true");
   document.body.prepend(progress);
-
-  const updateProgress = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    const amount = max > 0 ? window.scrollY / max : 0;
-    progress.style.transform = `scaleX(${amount})`;
-  };
-
-  updateProgress();
-  window.addEventListener("scroll", updateProgress, { passive: true });
-  window.addEventListener("resize", updateProgress);
+  scrollProgress = progress;
 }
 
 function tagMarkup(items, className = "") {
@@ -172,7 +167,7 @@ function renderGames() {
         : "";
 
       return `
-        <article class="game-card game-tab game-theme-${game.theme} reveal" data-filters="${game.filters.join(" ")}" style="transition-delay: ${index * 70}ms">
+        <article class="game-card game-tab game-theme-${game.theme} reveal" data-filters=" ${game.filters.join(" ")} " style="transition-delay: ${index * 70}ms">
           <div class="game-tab-visual">
             <div class="${mediaClass}">
               ${imageMarkup}
@@ -204,6 +199,7 @@ function renderGames() {
       `;
     })
     .join("");
+  gameCards = [...gameGrid.querySelectorAll(".game-card")];
 }
 
 function closeMobileNav() {
@@ -237,8 +233,9 @@ function setupReveal() {
 }
 
 function filterGames(filter) {
-  document.querySelectorAll(".game-card").forEach((card) => {
-    const matches = filter === "all" || card.dataset.filters.split(" ").includes(filter);
+  for (let i = 0; i < gameCards.length; i += 1) {
+    const card = gameCards[i];
+    const matches = filter === "all" || card.dataset.filters.includes(` ${filter} `);
     window.clearTimeout(hideTimers.get(card));
 
     if (matches) {
@@ -253,12 +250,12 @@ function filterGames(filter) {
       }, 210);
       hideTimers.set(card, timer);
     }
-  });
+  }
 }
 
 // Lightweight pointer tilt for cards and the hero logo panel.
 function setupTilt() {
-  if (prefersReducedMotion) return;
+  if (!useDecorativeMotion) return;
 
   document.querySelectorAll("[data-tilt]").forEach((card) => {
     card.addEventListener("pointermove", (event) => {
@@ -295,7 +292,7 @@ function setupActiveNav() {
 
 // Moves background shapes gently with the pointer.
 function setupParallax() {
-  if (prefersReducedMotion) return;
+  if (!useDecorativeMotion) return;
 
   let frame = null;
   window.addEventListener("pointermove", (event) => {
@@ -315,6 +312,8 @@ function setupParallax() {
 }
 
 function setupRipples() {
+  if (!useDecorativeMotion) return;
+
   document.querySelectorAll(".ripple").forEach((element) => {
     element.addEventListener("pointerdown", (event) => {
       const rect = element.getBoundingClientRect();
@@ -330,14 +329,33 @@ function setupRipples() {
 }
 
 function setupGameTabEffects() {
-  if (prefersReducedMotion) return;
+  if (!useDecorativeMotion) return;
 
-  document.querySelectorAll(".game-card").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty("--spot-x", `${event.clientX - rect.left}px`);
-      card.style.setProperty("--spot-y", `${event.clientY - rect.top}px`);
-    });
+  let activeCard = null;
+  let frame = null;
+  let lastX = 0;
+  let lastY = 0;
+
+  const updateSpot = () => {
+    frame = null;
+    if (!activeCard) return;
+    const rect = activeCard.getBoundingClientRect();
+    activeCard.style.setProperty("--spot-x", `${lastX - rect.left}px`);
+    activeCard.style.setProperty("--spot-y", `${lastY - rect.top}px`);
+  };
+
+  gameGrid.addEventListener("pointermove", (event) => {
+    const card = event.target.closest(".game-card");
+    if (!card) return;
+    activeCard = card;
+    lastX = event.clientX;
+    lastY = event.clientY;
+    if (frame) return;
+    frame = requestAnimationFrame(updateSpot);
+  });
+
+  gameGrid.addEventListener("pointerleave", () => {
+    activeCard = null;
   });
 }
 
@@ -391,9 +409,30 @@ filterButtons.forEach((button) => {
   });
 });
 
-window.addEventListener("scroll", () => {
-  backToTop.classList.toggle("is-visible", window.scrollY > 640);
+let scrollFrame = null;
+const updateScrollState = () => {
+  const scrollY = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const amount = max > 0 ? scrollY / max : 0;
+  if (scrollProgress) scrollProgress.style.transform = `scaleX(${amount})`;
+  backToTop.classList.toggle("is-visible", scrollY > 640);
+  scrollFrame = null;
+};
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (scrollFrame) return;
+    scrollFrame = requestAnimationFrame(updateScrollState);
+  },
+  { passive: true }
+);
+window.addEventListener("resize", () => {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(updateScrollState);
 });
+
+updateScrollState();
 
 backToTop.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });

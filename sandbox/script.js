@@ -23,7 +23,9 @@ const assets = {};
   ["mirror", "images/mirror.png"],
   ["crate", "images/crate.png"],
   ["revolver", "images/revolver.png"],
-  ["cube", "images/qubicodeCube.png"]
+  ["cube", "images/qubicodeCube.png"],
+  ["boostPickup", "images/boostIcon.png"],
+  ["boostFlame", "images/boost.png"]
 ].forEach(([key, src]) => {
   assets[key] = new Image();
   assets[key].src = src;
@@ -85,6 +87,11 @@ function drawImageFit(ctx, image, x, y, w, h, rotation = 0) {
     ctx.fillRect(-w / 2, -h / 2, w, h);
   }
   ctx.restore();
+}
+
+function pickLane(available) {
+  if (!available.length) return (Math.random() * 3) | 0;
+  return available[(Math.random() * available.length) | 0];
 }
 
 class MiniGame {
@@ -182,7 +189,8 @@ class MiniGame {
   }
 
   drawParticles() {
-    this.particles.forEach((p) => {
+    for (let i = 0; i < this.particles.length; i += 1) {
+      const p = this.particles[i];
       this.ctx.save();
       this.ctx.globalAlpha = clamp(p.life / p.max, 0, 1);
       this.ctx.fillStyle = p.color;
@@ -192,7 +200,7 @@ class MiniGame {
       this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
       this.ctx.fill();
       this.ctx.restore();
-    });
+    }
   }
 
   drawPreview() {}
@@ -232,9 +240,11 @@ class DriverDashGame extends MiniGame {
     this.score = 0;
     this.speed = 245;
     this.spawnTimer = 0.55;
-    this.roadOffset = 0;
+    this.boostSpawnTimer = 2.4;
+    this.boostTimer = 0;
     this.gameOver = false;
     this.obstacles = [];
+    this.boosts = [];
     this.particles = [];
     setText(ui.score.driver, 0);
     setText(ui.status.driver, "Arrows / A D / Swipe");
@@ -256,29 +266,82 @@ class DriverDashGame extends MiniGame {
 
   update(dt) {
     this.updateParticles(dt);
+    this.boostTimer = Math.max(0, this.boostTimer - dt);
     if (this.gameOver) {
       if (!this.particles.length) this.stop(true);
       return;
     }
+    const speedMultiplier = this.boostTimer > 0 ? 2 : 1;
+    const effectiveSpeed = this.speed * speedMultiplier;
     this.speed += dt * 14;
-    this.score += dt * (12 + this.speed / 42);
-    this.roadOffset = (this.roadOffset + this.speed * dt) % 72;
+    this.score += dt * (12 + effectiveSpeed / 42);
     this.lane += (this.targetLane - this.lane) * Math.min(1, dt * 13);
     this.spawnTimer -= dt;
     if (this.spawnTimer <= 0) {
-      const blocked = this.obstacles.slice(-2).map((car) => car.lane);
-      const choices = [0, 1, 2].filter((lane) => !blocked.includes(lane) || Math.random() < 0.45);
-      this.obstacles.push({ lane: choices[Math.floor(Math.random() * choices.length)] ?? Math.floor(Math.random() * 3), y: -82, wobble: rand(-4, 4) });
+      const blocked = [false, false, false];
+      for (let i = Math.max(0, this.obstacles.length - 2); i < this.obstacles.length; i += 1) {
+        blocked[this.obstacles[i].lane] = true;
+      }
+      const choices = [];
+      for (let lane = 0; lane < 3; lane += 1) {
+        if (!blocked[lane] || Math.random() < 0.45) choices.push(lane);
+      }
+      this.obstacles.push({ lane: pickLane(choices), y: -82, wobble: rand(-4, 4) });
       this.spawnTimer = Math.max(0.42, 1.05 - this.score / 1400);
     }
+    this.boostSpawnTimer -= dt;
+    if (this.boostSpawnTimer <= 0) {
+      const occupied = [false, false, false];
+      for (let i = Math.max(0, this.obstacles.length - 2); i < this.obstacles.length; i += 1) {
+        occupied[this.obstacles[i].lane] = true;
+      }
+      for (let i = Math.max(0, this.boosts.length - 2); i < this.boosts.length; i += 1) {
+        occupied[this.boosts[i].lane] = true;
+      }
+      const choices = [];
+      for (let lane = 0; lane < 3; lane += 1) {
+        if (!occupied[lane] || Math.random() < 0.4) choices.push(lane);
+      }
+      this.boosts.push({
+        lane: pickLane(choices),
+        y: -74,
+        wobble: rand(-3, 3),
+        spin: rand(-0.9, 0.9),
+        pulse: rand(0, Math.PI * 2)
+      });
+      this.boostSpawnTimer = rand(4.5, 7.5);
+    }
     const player = this.carRect(this.lane, this.h - 82, 56, 56);
-    this.obstacles.forEach((car) => {
-      car.y += this.speed * dt;
+    for (let i = this.obstacles.length - 1; i >= 0; i -= 1) {
+      const car = this.obstacles[i];
+      car.y += effectiveSpeed * dt;
       const npc = this.carRect(car.lane, car.y, 54, 54);
-      if (hitRect(player, npc)) this.crash(player);
-    });
-    this.obstacles = this.obstacles.filter((car) => car.y < this.h + 120);
+      if (hitRect(player, npc)) {
+        if (this.boostTimer > 0) {
+          this.obstacles.splice(i, 1);
+          this.burst(player.x + player.w / 2, player.y + player.h / 2, ["#ffffff", "#ffcf4a", "#ff7a00"], 14, 220);
+          sound("driver-lane");
+        } else {
+          this.crash(player);
+          return;
+        }
+      }
+      if (car.y >= this.h + 120) this.obstacles.splice(i, 1);
+    }
+    for (let i = this.boosts.length - 1; i >= 0; i -= 1) {
+      const boost = this.boosts[i];
+      boost.y += effectiveSpeed * dt * 0.94;
+      const pickup = this.carRect(boost.lane, boost.y, 48, 48);
+      if (hitRect(player, pickup)) {
+        this.boostTimer = 4;
+        this.boosts.splice(i, 1);
+        this.burst(player.x + player.w / 2, player.y + player.h / 2, ["#c7ff2b", "#70ecff", "#ffffff"], 16, 260);
+        sound("driver-lane");
+      }
+      if (boost.y >= this.h + 120) this.boosts.splice(i, 1);
+    }
     setText(ui.score.driver, Math.floor(this.score));
+    setText(ui.status.driver, this.boostTimer > 0 ? `BOOST ${this.boostTimer.toFixed(1)}s 2X SPEED` : "Arrows / A D / Swipe");
   }
 
   crash(player) {
@@ -300,23 +363,48 @@ class DriverDashGame extends MiniGame {
     ctx.fillStyle = "#ffb703";
     ctx.fillRect(roadX - 8, 0, 5, this.h);
     ctx.fillRect(roadX + roadW + 3, 0, 5, this.h);
-    ctx.fillStyle = "rgba(255,255,255,.82)";
+    ctx.fillStyle = "rgba(255,255,255,.16)";
     [this.w * 0.39, this.w * 0.61].forEach((x) => {
-      for (let y = -72 + this.roadOffset; y < this.h + 72; y += 72) {
-        ctx.fillRect(x - 2, y, 4, 34);
-      }
+      ctx.fillRect(x - 1, 0, 2, this.h);
     });
-    ctx.fillStyle = "rgba(38,221,255,.12)";
-    for (let y = -this.roadOffset * 1.4; y < this.h; y += 92) {
-      ctx.fillRect(roadX + 12, y, roadW - 24, 2);
-    }
+    ctx.fillStyle = "rgba(38,221,255,.08)";
+    ctx.fillRect(roadX + 12, 0, roadW - 24, 2);
+    ctx.fillRect(roadX + 12, this.h - 2, roadW - 24, 2);
   }
 
   draw() {
     const ctx = this.ctx;
+    const boostActive = this.boostTimer > 0;
+    const flameAlpha = clamp(this.boostTimer / 2, 0.35, 1);
     ctx.clearRect(0, 0, this.w, this.h);
     this.drawRoad();
+    this.boosts.forEach((boost) => {
+      const x = this.laneX(boost.lane) - 24 + boost.wobble;
+      const y = boost.y + Math.sin((this.score * 0.014) + boost.pulse) * 5;
+      ctx.save();
+      ctx.globalAlpha = 0.95;
+      ctx.shadowColor = "#c7ff2b";
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = "rgba(199,255,43,.12)";
+      ctx.beginPath();
+      ctx.ellipse(x + 24, y + 24, 28, 28, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      drawImageFit(ctx, assets.boostPickup, x, y, 48, 48, boost.spin + Math.sin(this.score * 0.012) * 0.1);
+    });
     this.obstacles.forEach((car) => drawImageFit(ctx, assets.npcCar, this.laneX(car.lane) - 30 + car.wobble, car.y, 60, 60));
+    if (boostActive) {
+      const flameX = this.laneX(this.lane) - 28;
+      const flameY = this.h - 46;
+      const flameW = 56;
+      const flameH = 64;
+      ctx.save();
+      ctx.globalAlpha = flameAlpha;
+      ctx.shadowColor = "#ff7a00";
+      ctx.shadowBlur = 18;
+      drawImageFit(ctx, assets.boostFlame, flameX, flameY, flameW, flameH);
+      ctx.restore();
+    }
     drawImageFit(ctx, assets.playerCar, this.laneX(this.lane) - 34, this.h - 86, 68, 68);
     this.drawParticles();
     if (this.gameOver) {
@@ -330,9 +418,9 @@ class DriverDashGame extends MiniGame {
   }
 
   drawPreview() {
-    this.roadOffset = 20;
     this.drawRoad();
     drawImageFit(this.ctx, assets.npcCar, this.laneX(0) - 30, this.h * 0.24, 60, 60);
+    drawImageFit(this.ctx, assets.boostPickup, this.laneX(2) - 24, this.h * 0.42, 48, 48);
     drawImageFit(this.ctx, assets.playerCar, this.laneX(1) - 36, this.h * 0.6, 72, 72);
     setText(ui.status.driver, "Play to dodge traffic");
   }
@@ -682,7 +770,7 @@ class GunPopGame extends MiniGame {
     ];
     this.bullets.forEach((bullet) => {
       bullet.trail.unshift({ x: bullet.x, y: bullet.y });
-      bullet.trail = bullet.trail.slice(0, 8);
+      if (bullet.trail.length > 8) bullet.trail.length = 8;
       bullet.x += bullet.vx * dt;
       bullet.y += bullet.vy * dt;
       panels.forEach((panel) => {
@@ -872,8 +960,11 @@ class QubicodePongGame extends MiniGame {
       this.powerups.push({ x: rand(this.w * 0.28, this.w * 0.72), y: rand(76, this.h - 76), type: types[Math.floor(Math.random() * types.length)], life: 9 });
       this.spawnPower = rand(7, 12);
     }
-    this.powerups.forEach((p) => { p.life -= dt; });
-    this.powerups = this.powerups.filter((p) => p.life > 0);
+    for (let i = this.powerups.length - 1; i >= 0; i -= 1) {
+      const p = this.powerups[i];
+      p.life -= dt;
+      if (p.life <= 0) this.powerups.splice(i, 1);
+    }
     if (this.powerTimer > 0) {
       this.powerTimer -= dt;
       if (this.powerTimer <= 0) {
@@ -888,7 +979,8 @@ class QubicodePongGame extends MiniGame {
       ball.x += ball.vx * dt;
       ball.y += ball.vy * dt;
       ball.trail.unshift({ x: ball.x, y: ball.y });
-      ball.trail = ball.trail.slice(0, this.power === "shader" ? 18 : 9);
+      const trailLimit = this.power === "shader" ? 18 : 9;
+      if (ball.trail.length > trailLimit) ball.trail.length = trailLimit;
       if (ball.y < ball.r || ball.y > this.h - ball.r) ball.vy *= -1;
       [this.left, this.right].forEach((paddle, index) => {
         if (hitRect({ x: ball.x - ball.r, y: ball.y - ball.r, w: ball.r * 2, h: ball.r * 2 }, paddle)) {
@@ -897,12 +989,13 @@ class QubicodePongGame extends MiniGame {
           this.burst(ball.x, ball.y, ["#26ddff", "#a66cff", "#ffffff"], 8, 120);
         }
       });
-      this.powerups.forEach((p, i) => {
+      for (let i = this.powerups.length - 1; i >= 0; i -= 1) {
+        const p = this.powerups[i];
         if (Math.hypot(ball.x - p.x, ball.y - p.y) < ball.r + 18) {
           this.activate(p.type);
           this.powerups.splice(i, 1);
         }
-      });
+      }
     });
     this.bullets.forEach((bullet) => { bullet.x += bullet.vx * dt; });
     this.bullets.forEach((bullet) => {
