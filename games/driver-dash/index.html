@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff7a00">
+  <meta name="description" content="Driver Dash - dodge traffic, defeat bosses, collect wild rides, and build your road empire.">
+  <title>Driver Dash | Own the Road</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-noise" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Driver Dash home">
+      <img src="images/driverdashlogo.png" alt="Driver Dash">
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="site-link" href="../../index.html#home">Qubicode</a>
+      <a class="site-link" href="../../index.html#games">All Games</a>
+      <a href="#about">Game</a>
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#rides">Rides</a>
+      <a class="nav-play" href="#play">Play now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-road" aria-hidden="true"></div>
+      <div class="speed-lines" aria-hidden="true"></div>
+      <img class="hero-sprite sprite-wheel" src="images/wheelnew.png" alt="">
+      <img class="hero-sprite sprite-coin" src="images/coinbig.png" alt="">
+      <img class="hero-sprite sprite-diamond" src="images/dijamantbig.png" alt="">
+
+      <div class="hero-content reveal">
+        <span class="eyebrow"><span class="live-dot"></span> High-speed arcade mayhem</span>
+        <img class="hero-logo" src="images/driverdashlogo.png" alt="Driver Dash">
+        <h1>Dodge. Dash.<br><em>Dominate.</em></h1>
+        <p>Blast down wild roads, outsmart ridiculous bosses, unlock outrageous rides, and build an empire one close call at a time.</p>
+        <div class="hero-actions">
+          <a class="game-button game-button--primary" href="#play"><span>Play now</span><b>Go!</b></a>
+          <a class="game-button game-button--ghost" href="#gallery"><span>See gameplay</span></a>
+        </div>
+        <div class="hero-stats" aria-label="Game highlights">
+          <div><strong>50+</strong><span>Wild rides</span></div>
+          <div><strong>6</strong><span>Boss battles</span></div>
+          <div><strong>∞</strong><span>Road chaos</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art reveal reveal--right" data-parallax="0.025">
+        <div class="hero-art-burst"></div>
+        <img class="hero-tank" src="images/driverdash1.png" alt="Driver Dash racer and tank">
+        <div class="impact-word">VROOOM!</div>
+      </div>
+      <a class="scroll-cue" href="#about"><span>Scroll to race</span><i></i></a>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="section-shell about-grid">
+        <div class="about-visual reveal">
+          <div class="phone-stage">
+            <span class="phone-shadow" aria-hidden="true"></span>
+            <div class="phone-frame">
+              <span class="phone-speaker" aria-hidden="true"></span>
+              <span class="phone-camera" aria-hidden="true"></span>
+              <span class="phone-button phone-button--top" aria-hidden="true"></span>
+              <span class="phone-button phone-button--bottom" aria-hidden="true"></span>
+              <div class="phone-screen">
+                <video autoplay muted loop playsinline controls preload="metadata" poster="images/ScreenShot7.PNG" aria-label="Driver Dash gameplay trailer">
+                  <source src="PromoMaterial/driverdashtrailer.mp4" type="video/mp4">
+                  Your browser does not support the Driver Dash gameplay trailer.
+                </video>
+              </div>
+            </div>
+            <span class="comic-sticker">Official trailer!</span>
+          </div>
+          <img class="floating-driver" src="images/DdPlayer.png" alt="Driver Dash racer">
+        </div>
+        <div class="about-copy reveal reveal--right">
+          <span class="kicker">Welcome, driver</span>
+          <h2>Every road is a <span>playground.</span></h2>
+          <p class="lead">Driver Dash is an action-packed arcade racer where quick reflexes, clever upgrades, and a little bit of chaos turn every run into a story.</p>
+          <div class="mini-panels">
+            <article>
+              <img src="images/steeringwheelfire.png" alt="">
+              <div><strong>Easy to start</strong><span>Hard to stop</span></div>
+            </article>
+            <article>
+              <img src="images/trofje.png" alt="">
+              <div><strong>Chase glory</strong><span>Top every score</span></div>
+            </article>
+            <article>
+              <img src="images/SprayCan.png" alt="">
+              <div><strong>Make it yours</strong><span>Style every ride</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features section" id="features">
+      <div class="section-shell">
+        <div class="section-heading reveal">
+          <span class="kicker">Your island. Your empire.</span>
+          <h2>Race it. Buy it. <span>Build it.</span></h2>
+          <p>Turn every great run into a bigger island. Buy properties, upgrade businesses, and unlock new roads across your growing map.</p>
+        </div>
+        <div class="island-showcase">
+          <div class="island-map reveal">
+            <img src="images/ScreenShot4.png" alt="Driver Dash island property map">
+            <div class="map-badge map-badge--owned"><span>✓</span> Car wash owned</div>
+            <div class="map-badge map-badge--locked"><img src="images/locked.png" alt=""> New plot</div>
+            <div class="map-income"><img src="images/coin.png" alt=""><span>Income</span><strong>+2,450</strong></div>
+          </div>
+          <div class="property-panel reveal reveal--right">
+            <div class="property-panel__top">
+              <span>Island progress</span>
+              <strong>3 / 12 properties</strong>
+              <div class="property-progress"><i></i></div>
+            </div>
+            <article class="property-card property-card--orange">
+              <img src="images/carfactory.png" alt="Car factory">
+              <div>
+                <small>Available property</small>
+                <h3>Car Factory</h3>
+                <p>Produce bigger rewards after every run.</p>
+              </div>
+              <span class="property-price"><img src="images/coin.png" alt="">25K</span>
+            </article>
+            <article class="property-card property-card--blue">
+              <img src="images/tireshop.png" alt="Tire shop">
+              <div>
+                <small>Level 2 business</small>
+                <h3>Tire Shop</h3>
+                <p>Upgrade it to boost passive income.</p>
+              </div>
+              <span class="property-price">Upgrade</span>
+            </article>
+            <article class="property-card property-card--pink">
+              <img src="images/storageunit.png" alt="Storage unit">
+              <div>
+                <small>New district</small>
+                <h3>Storage Unit</h3>
+                <p>Expand the map and store valuable rewards.</p>
+              </div>
+              <span class="property-price"><img src="images/dijamant.png" alt="">12</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="boss-strip" aria-label="Boss warning">
+      <div class="warning-track">
+        <span>Boss incoming</span><img src="images/bossskull.png" alt=""><span>Boss incoming</span><img src="images/bossskull.png" alt=""><span>Boss incoming</span><img src="images/bossskull.png" alt="">
+      </div>
+    </section>
+
+    <section class="gallery section" id="gallery">
+      <div class="section-shell">
+        <div class="section-heading section-heading--light reveal">
+          <span class="kicker">Road report</span>
+          <h2>See the <span>chaos.</span></h2>
+          <p>A world of high-speed escapes, shiny new rides, booming businesses, and big rewards.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-card gallery-card--wide reveal"><img src="images/ScreenShot7.PNG" alt="Boosting down a highway"><figcaption><b>01</b><span>Hit the boost</span></figcaption></figure>
+          <figure class="gallery-card reveal"><img src="images/ScreenShot4.png" alt="Driver Dash island map"><figcaption><b>02</b><span>Own the island</span></figcaption></figure>
+          <figure class="gallery-card reveal"><img src="images/ScreenShot5.png" alt="Loot boxes"><figcaption><b>03</b><span>Open the loot</span></figcaption></figure>
+          <figure class="gallery-card reveal"><img src="images/ScreenShot8.png" alt="New car unlocked"><figcaption><b>04</b><span>Collect rides</span></figcaption></figure>
+          <figure class="gallery-card gallery-card--wide reveal"><img src="images/ScreenShot1.png" alt="Driver Dash main menu"><figcaption><b>05</b><span>Start your run</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="rides section" id="rides">
+      <div class="section-shell">
+        <div class="section-heading reveal">
+          <span class="kicker">Choose your chaos</span>
+          <h2>Meet the <span>garage.</span></h2>
+          <p>Sports cars are nice. Hovercrafts, tanks, and UFOs are nicer.</p>
+        </div>
+        <div class="ride-stage reveal">
+          <button class="ride-arrow ride-arrow--prev" type="button" aria-label="Previous ride">‹</button>
+          <div class="ride-glow"></div>
+          <img class="ride-image" src="images/agani.png" alt="Agani">
+          <div class="ride-copy">
+            <span class="ride-class">Legendary ride</span>
+            <h3 class="ride-name">Agani</h3>
+            <p class="ride-tagline">Built for speed. Allergic to brakes.</p>
+          </div>
+          <button class="ride-arrow ride-arrow--next" type="button" aria-label="Next ride">›</button>
+        </div>
+        <div class="ride-dots" aria-label="Select a ride"></div>
+      </div>
+    </section>
+
+    <section class="cta section" id="play">
+      <div class="cta-ray" aria-hidden="true"></div>
+      <img class="cta-car cta-car--left" src="images/airboat.png" alt="">
+      <img class="cta-car cta-car--right" src="images/fire.png" alt="">
+      <div class="cta-content reveal">
+        <img src="images/driverdashlogo.png" alt="Driver Dash">
+        <span class="kicker">Your ride is waiting</span>
+        <h2>Ready to own<br>the road?</h2>
+        <p>Jump in, hit the gas, and see how far your reflexes can take you.</p>
+        <a class="game-button game-button--dark" href="#top"><span>Play Driver Dash</span><b>Go!</b></a>
+        <small>Available on mobile</small>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="footer-brand" href="#top" aria-label="Driver Dash top">
+      <img src="images/driverdashlogo.png" alt="Driver Dash">
+    </a>
+    <p>&copy; <span id="year"></span> Driver Dash. A Qubicode game.</p>
+    <nav aria-label="Footer navigation">
+      <a href="../../index.html#home">Qubicode</a>
+      <a href="../../index.html#games">All Games</a>
+      <a href="../../index.html#contact">Contact</a>
+      <a href="#top">Back to top</a>
+    </nav>
+  </footer>
+</body>
+</html>

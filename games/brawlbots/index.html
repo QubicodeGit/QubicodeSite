@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BrawlBots is a cooperative third-person puzzle brawler where up to four defective robots fight to stop a corrupted central AI.">
+  <title>BrawlBots | Defective by Design</title>
+  <script>document.documentElement.classList.add("startup");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <div class="scroll-fx" aria-hidden="true">
+    <div class="scroll-orb orb-left"></div>
+    <div class="scroll-orb orb-right"></div>
+    <div class="scroll-rail rail-left"><i></i><i></i><i></i></div>
+    <div class="scroll-rail rail-right"><i></i><i></i><i></i></div>
+  </div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="BrawlBots home">
+      <img src="images/BrawlbotsIcon.png" alt="">
+      <span>BRAWL<span>BOTS</span></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a class="site-link" href="../../index.html#home">Qubicode</a>
+      <a class="site-link" href="../../index.html#games">All Games</a>
+      <a href="#about">The Game</a>
+      <a href="#features">Features</a>
+      <a href="#bots">Bots</a>
+      <a href="#arenas">Facilities</a>
+      <a class="nav-cta" href="#play">Play Now</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-sky" aria-hidden="true"></div>
+      <div class="sun-orb" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="cloud cloud-one" aria-hidden="true"></div>
+      <div class="cloud cloud-two" aria-hidden="true"></div>
+      <div class="cloud cloud-three" aria-hidden="true"></div>
+      <div class="energy-particles" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="hero-gear gear-one" aria-hidden="true">⚙</div>
+      <div class="hero-gear gear-two" aria-hidden="true">⚙</div>
+      <div class="speed-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-mountains mountains-left" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="hero-mountains mountains-right" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="spark spark-a" aria-hidden="true">+</div>
+      <div class="spark spark-b" aria-hidden="true">✦</div>
+      <div class="spark spark-c" aria-hidden="true">+</div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> Central AI corruption detected</div>
+        <h1><span>BRAWL</span><strong>BOTS</strong></h1>
+        <p>Team up as defective robots, solve dangerous machine-built puzzles, and brawl through a corrupted world before total system failure.</p>
+        <div class="hero-actions">
+          <a href="#play" class="button button-primary">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+            Play Now
+          </a>
+          <button class="button button-secondary trailer-button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 9 5 3-5 3V9Z"/></svg>
+            Watch Trailer
+          </button>
+        </div>
+        <div class="hero-meta">
+          <div><strong>4</strong><span>Players</span></div>
+          <div><strong>1</strong><span>Co-op Mission</span></div>
+          <div><strong>4</strong><span>Heroes</span></div>
+        </div>
+      </div>
+      <div class="hero-visual parallax-zone">
+        <div class="hero-burst" aria-hidden="true"></div>
+        <div class="hero-frame" data-depth="1.4">
+          <div class="frame-top"><span><i></i> Facility breach</span><b>4P</b></div>
+          <img class="hero-bot" src="images/img7.PNG" alt="Four colorful BrawlBots entering a dangerous scrapyard facility">
+          <div class="frame-bottom"><strong>Scrapyard Facility</strong><span>Sector 01</span></div>
+        </div>
+        <div class="floating-chip chip-blue" data-depth="2">
+          <span>4P</span><small>Team synced</small>
+        </div>
+        <div class="floating-chip chip-orange" data-depth="1.7">
+          <span>AI!</span><small>Corrupted</small>
+        </div>
+        <div class="floating-chip chip-lime" data-depth="2.2">
+          <span>!</span><small>Puzzle found</small>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span>Begin mission</div>
+    </section>
+
+    <section class="marquee-strip" aria-label="Game highlights">
+      <div class="marquee-track">
+        <span>Cooperative Puzzles <b>✦</b></span><span>Physics-Based Chaos <b>✦</b></span><span>Robot Combat <b>✦</b></span><span>Powerful Bosses <b>✦</b></span>
+        <span>Cooperative Puzzles <b>✦</b></span><span>Physics-Based Chaos <b>✦</b></span><span>Robot Combat <b>✦</b></span><span>Powerful Bosses <b>✦</b></span>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-heading reveal">
+        <span class="kicker">The machines have malfunctioned</span>
+        <h2>Defective bots.<br><em>Last hope.</em></h2>
+        <p>When the central governing AI becomes corrupted, nearly every machine turns hostile. Only four defective humanoid robots remain unaffected, and saving the world means working together.</p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="image-panel panel-main">
+          <img src="images/img7.PNG" alt="Four colorful BrawlBots beginning their cooperative mission">
+          <div class="image-tag"><b>4</b> bots unite</div>
+        </div>
+        <div class="stat-card stat-card-top">
+          <span class="stat-icon">⚡</span>
+          <strong data-count="4">0</strong>
+          <small>co-op heroes</small>
+        </div>
+        <div class="stat-card stat-card-bottom">
+          <span class="stat-icon">★</span>
+          <strong data-count="1">0</strong>
+          <small>corrupted AI</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section features-section" id="features">
+      <div class="section-title reveal">
+        <span class="kicker">Survive the system failure</span>
+        <h2>Think together. <em>Brawl together.</em></h2>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card blue reveal">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <span class="card-number">01</span>
+          <h3>Four-Player Co-op</h3>
+          <p>Coordinate with up to four players because every surviving bot is on the same side.</p>
+        </article>
+        <article class="feature-card lime reveal">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 3h6v4M8 12h.01M16 12h.01M8 16h8"/></svg></div>
+          <span class="card-number">02</span>
+          <h3>Defective Heroes</h3>
+          <p>Take control of the only humanoid robots unaffected by the corrupted central AI.</p>
+        </article>
+        <article class="feature-card orange reveal">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="m13 2-9 12h8l-1 8 9-12h-8l1-8Z"/></svg></div>
+          <span class="card-number">03</span>
+          <h3>Cooperative Puzzles</h3>
+          <p>Combine abilities, move machinery, and solve environmental puzzles as a team.</p>
+        </article>
+        <article class="feature-card pink reveal">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 15 2-2 2 2 4-5"/></svg></div>
+          <span class="card-number">04</span>
+          <h3>Dangerous Facilities</h3>
+          <p>Navigate malfunctioning industrial spaces packed with hazards and physics-based interactions.</p>
+        </article>
+        <article class="feature-card purple reveal">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="m14 6-8.5 8.5a2.12 2.12 0 0 0 3 3L17 9M16 3l5 5M5 19l-2 2"/></svg></div>
+          <span class="card-number">05</span>
+          <h3>Chaotic Robot Combat</h3>
+          <p>Dodge, shove, strike, and improvise against waves of hostile robotic enemies.</p>
+        </article>
+        <article class="feature-card yellow reveal">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="m12 2 3 6 6.5 1-4.75 4.6L18 20l-6-3-6 3 1.25-6.4L2.5 9 9 8l3-6Z"/></svg></div>
+          <span class="card-number">06</span>
+          <h3>Powerful Bosses</h3>
+          <p>Adapt your teamwork to overcome massive machines guarding the path to the central tower.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section bots-section" id="bots">
+      <div class="bots-copy reveal">
+        <span class="kicker">Defective in all the right ways</span>
+        <h2>Meet the <em>survivors</em></h2>
+        <p>These four bots were built wrong. That defect is exactly what keeps them free from the corrupted AI.</p>
+        <div class="bot-selector" role="tablist" aria-label="Select bot color">
+          <button class="bot-dot green active" data-bot="green" aria-label="Green bot"></button>
+          <button class="bot-dot blue" data-bot="blue" aria-label="Blue bot"></button>
+          <button class="bot-dot yellow" data-bot="yellow" aria-label="Yellow bot"></button>
+          <button class="bot-dot orange" data-bot="orange" aria-label="Orange bot"></button>
+        </div>
+      </div>
+      <div class="bot-showcase reveal">
+        <div class="bot-rings" aria-hidden="true"></div>
+        <img id="bot-image" src="images/BrawlbotsIcon.png" alt="Green BrawlBots character">
+        <div class="bot-name">
+          <span>All-rounder</span>
+          <strong id="bot-name">Bolt</strong>
+        </div>
+        <div class="bot-power">
+          <span>Power</span>
+          <div><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="bot-mini-grid reveal">
+        <article><img src="images/img6.PNG" alt="A bot activating a facility cannon"><span>Physics-based</span><strong>Use the world</strong></article>
+        <article><img src="images/img5.PNG" alt="A bot exploring a dangerous facility"><span>Cooperative</span><strong>Move together</strong></article>
+      </div>
+    </section>
+
+    <section class="section arenas-section" id="arenas">
+      <div class="section-title reveal">
+        <span class="kicker">The path to the central tower</span>
+        <h2>Enter the <em>facilities</em></h2>
+      </div>
+      <div class="arena-grid">
+        <article class="arena-card arena-wide reveal">
+          <img src="images/img7.PNG" alt="Scrapyard facility">
+          <div class="arena-overlay"><span>01</span><h3>Scrapyard Facility</h3><p>Coordinate through cranes, crates, and corrupted machines.</p><button aria-label="View Scrapyard Facility">↗</button></div>
+        </article>
+        <article class="arena-card reveal">
+          <img src="images/img5.PNG" alt="Industrial hazard yard">
+          <div class="arena-overlay"><span>02</span><h3>Hazard Yard</h3><p>Use the environment before the environment uses you.</p><button aria-label="View Hazard Yard">↗</button></div>
+        </article>
+        <article class="arena-card laser-card reveal">
+          <img src="images/img8.PNG" alt="Scrapyard control block with a green bot and interactive buttons">
+          <div class="arena-overlay"><span>03</span><h3>Control Block</h3><p>Activate mechanisms together to unlock the way forward.</p><button aria-label="View Control Block">↗</button></div>
+        </article>
+        <article class="arena-card arena-wide reveal">
+          <img src="images/img4.PNG" alt="Four colorful bots choosing a character">
+          <div class="arena-overlay"><span>04</span><h3>Assembly Point</h3><p>Four unaffected bots. One impossible mission.</p><button aria-label="View Assembly Point">↗</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section game-loop">
+      <div class="loop-card reveal">
+        <span class="loop-number">01</span>
+        <div class="loop-icon">⌁</div>
+        <h3>Work together</h3><p>Coordinate four defective bots as one unlikely team.</p>
+      </div>
+      <div class="loop-line" aria-hidden="true"></div>
+      <div class="loop-card reveal">
+        <span class="loop-number">02</span>
+        <div class="loop-icon">⚡</div>
+        <h3>Solve and survive</h3><p>Master physics, machinery, hazards, and hostile robots.</p>
+      </div>
+      <div class="loop-line" aria-hidden="true"></div>
+      <div class="loop-card reveal">
+        <span class="loop-number">03</span>
+        <div class="loop-icon">★</div>
+        <h3>Reach the tower</h3><p>Defeat powerful bosses and stop complete system failure.</p>
+      </div>
+    </section>
+
+    <section class="cta-section" id="play">
+      <div class="cta-noise" aria-hidden="true"></div>
+      <div class="cta-content reveal">
+        <span class="kicker">The world needs its defective heroes</span>
+        <h2>Team up.<br><em>Save the system.</em></h2>
+        <p>Gather up to four players, fight through the machine uprising, and reach the central AI tower before it is too late.</p>
+        <a href="#" class="button button-dark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
+          Begin The Mission
+        </a>
+      </div>
+      <img class="cta-bot" src="images/BrawlbotsIcon.png" alt="" aria-hidden="true">
+      <div class="cta-badge" aria-hidden="true"><span>System</span><strong>FAILURE!</strong></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#home">
+      <img src="images/BrawlbotsIcon.png" alt="">
+      <span>BRAWL<span>BOTS</span></span>
+    </a>
+    <p>Four defective robots. One corrupted world. No bot left behind.</p>
+    <nav aria-label="Footer navigation">
+      <a href="../../index.html#home">Qubicode</a><a href="../../index.html#games">All Games</a><a href="#features">Features</a><a href="#arenas">Facilities</a>
+    </nav>
+    <div class="socials">
+      <a href="https://www.youtube.com/@Qubicode" target="_blank" rel="noopener" aria-label="YouTube">YT</a><a href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener" aria-label="Discord">DC</a><a href="https://www.instagram.com/qubicode" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+    </div>
+    <small>© 2026 Qubicode Dev Team. All bots reserved.</small>
+  </footer>
+
+  <div class="trailer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="BrawlBots trailer">
+    <button class="modal-close" aria-label="Close trailer">×</button>
+    <div class="modal-frame">
+      <img src="images/img3.PNG" alt="BrawlBots game studio scene">
+      <div><span>Transmission incoming</span><strong>Central AI signal detected.</strong></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Qubicode Sandbox is a collection of small playable browser minigames inspired by Qubicode projects.">
+  <title>Qubicode Sandbox | Minigames</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="../index.html#home" aria-label="Qubicode home">
+        <img src="../Images/qubicodeLogo.svg" alt="" class="brand-logo">
+        <span>Qubicode</span>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#games">Games</a>
+        <a href="../index.html#assets">Assets</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="sandbox-page">
+    <section class="hero section-inner">
+      <p class="eyebrow">Qubicode Sandbox</p>
+      <h1>QUBICODE SANDBOX</h1>
+      <p>Small experiments inspired by our projects.</p>
+    </section>
+
+    <section class="section-inner minigame-grid" aria-label="Playable minigames">
+      <article class="minigame-card driver-card" data-game-card="driver">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Driver Dash</p>
+            <h2>Highway Dodge</h2>
+          </div>
+          <button class="game-button" type="button" data-action="restart" data-game="driver">Restart</button>
+        </div>
+        <canvas id="driver-canvas" width="720" height="430" aria-label="Driver Dash Highway Dodge game"></canvas>
+        <div class="play-overlay" data-overlay="driver">
+          <div>
+            <strong>Highway Dodge</strong>
+            <span>3 lanes, traffic, speed, survival.</span>
+          </div>
+          <button class="play-button" type="button" data-action="play" data-game="driver">Play</button>
+        </div>
+        <div class="game-hud">
+          <span>Score <b data-score="driver">0</b></span>
+          <span>High <b data-high="driver">0</b></span>
+          <span class="status" data-status="driver">Arrows / A D / Swipe</span>
+        </div>
+      </article>
+
+      <article class="minigame-card bots-card" data-game-card="bots">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Brawlbots</p>
+            <h2>Crate &amp; Laser</h2>
+          </div>
+          <div class="button-row">
+            <button class="game-button" type="button" data-action="level" data-game="bots">Next Level</button>
+            <button class="game-button" type="button" data-action="restart" data-game="bots">Reset</button>
+          </div>
+        </div>
+        <canvas id="bots-canvas" width="720" height="430" aria-label="Brawlbots Crate and Laser puzzle"></canvas>
+        <div class="play-overlay" data-overlay="bots">
+          <div>
+            <strong>Crate &amp; Laser</strong>
+            <span>Drag crates, rotate mirrors, power the gate.</span>
+          </div>
+          <button class="play-button" type="button" data-action="play" data-game="bots">Play</button>
+        </div>
+        <div class="game-hud">
+          <span>Level <b data-score="bots">1</b></span>
+          <span>Solved <b data-high="bots">0</b></span>
+          <span class="status" data-status="bots">Play to start the puzzle</span>
+        </div>
+      </article>
+
+      <article class="minigame-card gun-card" data-game-card="gun">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Gun Pop</p>
+            <h2>Quick Shot</h2>
+          </div>
+          <button class="game-button" type="button" data-action="restart" data-game="gun">Restart</button>
+        </div>
+        <canvas id="gun-canvas" width="720" height="430" aria-label="Gun Pop Quick Shot game"></canvas>
+        <div class="play-overlay" data-overlay="gun">
+          <div>
+            <strong>Quick Shot</strong>
+            <span>Spin, shoot, ricochet, combo.</span>
+          </div>
+          <button class="play-button" type="button" data-action="play" data-game="gun">Play</button>
+        </div>
+        <div class="game-hud">
+          <span>Score <b data-score="gun">0</b></span>
+          <span>High <b data-high="gun">0</b></span>
+          <span class="status" data-status="gun">Play to start a 30 second round</span>
+        </div>
+      </article>
+
+      <article class="minigame-card pong-card" data-game-card="pong">
+        <div class="card-head">
+          <div>
+            <p class="eyebrow">Qubicode</p>
+            <h2>Qubicode Pong</h2>
+          </div>
+          <button class="game-button" type="button" data-action="restart" data-game="pong">Restart</button>
+        </div>
+        <canvas id="pong-canvas" width="720" height="430" aria-label="Qubicode Pong game"></canvas>
+        <div class="play-overlay" data-overlay="pong">
+          <div>
+            <strong>Qubicode Pong</strong>
+            <span>Bracket paddles, cube ball, powerups.</span>
+          </div>
+          <button class="play-button" type="button" data-action="play" data-game="pong">Play</button>
+        </div>
+        <div class="game-hud">
+          <span>Wins <b data-score="pong">0</b></span>
+          <span>Best Streak <b data-high="pong">0</b></span>
+          <span class="status" data-status="pong">Move mouse or touch to control {</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="section-inner footer-inner">
+      <div>
+        <strong>Qubicode</strong>
+        <p>Playable prototypes &bull; Tiny systems &bull; Browser experiments</p>
+      </div>
+      <p>
+        <a href="../index.html#home">Home</a> &bull;
+        <a href="../index.html#games">Games</a> &bull;
+        <a href="../index.html#contact">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

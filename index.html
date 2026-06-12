@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Qubicode is an indie team building games, tools, assets, and interactive projects.">
+  <title>Qubicode | Games, Tools, Assets, Experiments</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-grid" aria-hidden="true"></div>
+  <div class="background-aurora" aria-hidden="true"></div>
+  <div class="background-scan" aria-hidden="true"></div>
+  <div class="background-data" aria-hidden="true">
+    <span>0101<br>PLAY<br>1100<br>BUILD</span>
+    <span>SHIP<br>0011<br>GAME<br>1010</span>
+    <span>LOOP<br>0110<br>CODE<br>1001</span>
+    <span>PIXEL<br>1110<br>SYNC<br>0100</span>
+    <span>LEVEL<br>1011<br>INPUT<br>0010</span>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+  <div class="parallax-layer" aria-hidden="true">
+    <span class="float-shape shape-one" data-depth="0.18"></span>
+    <span class="float-shape shape-two" data-depth="0.28"></span>
+    <span class="float-shape shape-three" data-depth="0.12"></span>
+    <span class="float-shape shape-four" data-depth="0.22"></span>
+    <span class="float-shape shape-five" data-depth="0.2"></span>
+    <span class="float-shape shape-six" data-depth="0.16"></span>
+    <span class="float-shape shape-seven" data-depth="0.3"></span>
+    <span class="particle particle-one" data-depth="0.35"></span>
+    <span class="particle particle-two" data-depth="0.25"></span>
+    <span class="particle particle-three" data-depth="0.4"></span>
+    <span class="particle particle-four" data-depth="0.3"></span>
+    <span class="particle particle-five" data-depth="0.42"></span>
+    <span class="particle particle-six" data-depth="0.2"></span>
+  </div>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Qubicode home">
+        <img src="Images/qubicodeLogo.svg" alt="" class="brand-logo">
+        <span>Qubicode</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#assets">Assets</a></li>
+        <li><a href="sandbox/index.html" class="nav-sandbox">Sandbox</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="section-inner hero-grid">
+        <div class="hero-copy">
+          <p class="status-banner reveal stagger-1">
+            <span class="status-dot" aria-hidden="true"></span>
+            Currently building multiplayer games, mobile experiments, and Unity tools.
+          </p>
+          <h1 class="reveal stagger-2">Qubicode</h1>
+          <p class="headline reveal stagger-3">Games, tools, and digital worlds.</p>
+          <p class="intro reveal stagger-4">We&rsquo;re an indie team building games, tools, assets, and interactive projects.</p>
+          <div class="hero-actions reveal stagger-5" aria-label="Main actions">
+            <a class="button button-primary ripple" href="#games">View Games</a>
+            <a class="button button-secondary ripple" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal stagger-3" data-tilt>
+          <div class="logo-orbit" aria-hidden="true">
+            <span></span>
+            <span></span>
+          </div>
+          <img src="Images/qubicodeLogoCube.png" alt="Qubicode logo" class="hero-logo">
+          <div class="hero-cube cube-a" aria-hidden="true"></div>
+          <div class="hero-cube cube-b" aria-hidden="true"></div>
+          <div class="hero-cube cube-c" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="games">
+      <div class="section-inner">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow">Games</p>
+          <h2>Projects with momentum, texture, and a little voltage.</h2>
+        </div>
+
+        <div class="filter-bar reveal" role="group" aria-label="Filter games">
+          <button class="filter-button active ripple" type="button" data-filter="all">All</button>
+          <button class="filter-button ripple" type="button" data-filter="mobile">Mobile</button>
+          <button class="filter-button ripple" type="button" data-filter="steam">Steam</button>
+          <button class="filter-button ripple" type="button" data-filter="multiplayer">Multiplayer</button>
+          <button class="filter-button ripple" type="button" data-filter="horror">Horror</button>
+          <button class="filter-button ripple" type="button" data-filter="singleplayer">Singleplayer</button>
+        </div>
+
+        <div class="game-grid" id="game-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section" id="assets">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Assets &amp; Tools</p>
+          <h2>Developer tech from the same workshop as the games.</h2>
+        </div>
+
+        <div class="asset-grid">
+          <article class="asset-card featured-asset reveal" data-tilt>
+            <div class="asset-media shader-visual" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="asset-content">
+              <span class="badge badge-pulse">Coming Soon</span>
+              <p class="platform-line">Unity 6 URP</p>
+              <h3>Advanced Surface Shaders</h3>
+              <p>
+                A Unity 6 URP shader package featuring tessellation displacement and parallax occlusion mapping for
+                high-detail materials. Built for rocks, bricks, bark, lava, terrain surfaces, and other PBR materials
+                that need convincing depth and detail.
+              </p>
+              <div class="tag-list" aria-label="Advanced Surface Shaders tags">
+                <span>Unity</span>
+                <span>URP</span>
+                <span>Tessellation</span>
+                <span>POM</span>
+                <span>Shaders</span>
+                <span>Materials</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="asset-card reveal" data-tilt>
+            <div class="asset-media tool-visual" aria-hidden="true"></div>
+            <div class="asset-content">
+              <span class="badge muted-badge">Future</span>
+              <h3>Developer Tools</h3>
+              <p>Small utilities, editor helpers, and production shortcuts planned around real development needs.</p>
+            </div>
+          </article>
+
+          <article class="asset-card reveal" data-tilt>
+            <div class="asset-media systems-visual" aria-hidden="true"></div>
+            <div class="asset-content">
+              <span class="badge muted-badge">Future</span>
+              <h3>Gameplay Systems</h3>
+              <p>Reusable systems for progression, interaction, arcade loops, and multiplayer prototypes.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="section-inner contact-grid">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Questions, publishing opportunities, support, or a good idea?</h2>
+          <p class="section-copy">
+            For questions, collaborations, publishing opportunities, support, or anything else, reach out to us.
+          </p>
+        </div>
+
+        <div class="contact-card reveal">
+          <a href="mailto:contact@example.com">
+            <span>Email</span>
+            <strong>contact@example.com</strong>
+          </a>
+          <a href="mailto:support@example.com">
+            <span>Support</span>
+            <strong>support@example.com</strong>
+          </a>
+          <a href="https://github.com/QubicodeGit" target="_blank" rel="noopener" aria-label="Qubicode GitHub">
+            <span>GitHub</span>
+            <strong>QubicodeGit</strong>
+          </a>
+          <a href="https://www.youtube.com/@Qubicode" target="_blank" rel="noopener" aria-label="Qubicode YouTube">
+            <span>YouTube</span>
+            <strong>@Qubicode</strong>
+          </a>
+          <a href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener" aria-label="Qubicode Discord">
+            <span>Discord</span>
+            <strong>Join Discord</strong>
+          </a>
+          <a href="https://www.instagram.com/qubicode" target="_blank" rel="noopener" aria-label="Qubicode Instagram">
+            <span>Instagram</span>
+            <strong>@qubicode</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section section-muted sandbox-section" id="lab">
+      <div class="section-inner">
+        <div class="sandbox-collapsible reveal">
+          <a class="sandbox-toggle ripple" href="sandbox/index.html">
+            <span>QUBICODE SANDBOX</span>
+            <strong>Open Lab</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="section-inner footer-inner">
+      <div>
+        <strong>Qubicode</strong>
+        <p>Games &bull; Tools &bull; Assets &bull; Experiments</p>
+      </div>
+      <p>
+        <a href="https://www.youtube.com/@Qubicode" target="_blank" rel="noopener">YouTube</a> &bull;
+        <a href="https://www.instagram.com/qubicode" target="_blank" rel="noopener">Instagram</a> &bull;
+        <a href="https://github.com/QubicodeGit" target="_blank" rel="noopener">GitHub</a> &bull;
+        <a href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener">Discord</a>
+      </p>
+      <p>&copy; <span id="year">2026</span> Qubicode. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

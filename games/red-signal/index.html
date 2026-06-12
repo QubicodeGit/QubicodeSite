@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070403">
+  <meta name="description" content="Red Signal is a short sci-fi horror game set on Mars. Follow the signal. Survive what answers.">
+  <title>Red Signal | Mars Horror</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Red Signal home">
+      <span class="brand-mark"></span>
+      <span>RED//SIGNAL</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span>
+      <span class="sr-only">Toggle navigation</span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      <a class="site-link" href="../../index.html#home">Qubicode</a>
+      <a class="site-link" href="../../index.html#games">All Games</a>
+      <a href="#briefing">Briefing</a>
+      <a href="#systems">Systems</a>
+      <a href="#evidence">Evidence</a>
+      <a class="nav-cta" href="#transmission">Open Channel</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg parallax" data-speed="0.12" aria-hidden="true"></div>
+      <div class="storm" aria-hidden="true"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-status status-top">
+        <span><i class="pulse"></i> Distress relay active</span>
+        <span>SOL 0197 // 03:17:42</span>
+      </div>
+
+      <div class="hero-copy">
+        <p class="eyebrow load-in">A short-form Mars horror experience</p>
+        <h1 id="hero-title" class="glitch load-in" data-text="RED SIGNAL">RED <span>SIGNAL</span></h1>
+        <p class="hero-tagline load-in">The signal came from Mars.<br>It should have stayed buried.</p>
+        <div class="hero-actions load-in">
+          <a class="button button-primary" href="#transmission"><span>Enter the signal</span></a>
+          <a class="button button-ghost" href="#evidence">View evidence</a>
+        </div>
+      </div>
+
+      <aside class="telemetry load-in" aria-label="Mission telemetry">
+        <div class="telemetry-head"><span>Suit telemetry</span><b>UNSTABLE</b></div>
+        <div class="metric"><span>O₂ reserve</span><strong>42%</strong></div>
+        <div class="meter"><i style="--level:42%"></i></div>
+        <div class="metric"><span>Signal integrity</span><strong>91%</strong></div>
+        <div class="meter danger"><i style="--level:91%"></i></div>
+        <div class="metric-grid">
+          <span>LAT<b>18.65° N</b></span>
+          <span>LONG<b>226.2° E</b></span>
+        </div>
+      </aside>
+
+      <div class="hero-footer">
+        <span class="scroll-cue">Scroll to descend</span>
+        <span>ARES OUTPOST // CREW STATUS: <b>UNKNOWN</b></span>
+      </div>
+    </section>
+
+    <section id="briefing" class="section briefing">
+      <div class="section-marker reveal"><span>01</span> Mission briefing</div>
+      <div class="briefing-layout">
+        <div class="briefing-copy reveal">
+          <p class="eyebrow">A signal with no sender</p>
+          <h2>You came to investigate.<br><em>Something noticed.</em></h2>
+          <p class="lead">A buried relay wakes beneath a Martian research station. The crew is gone. The doors are opening by themselves. And across every channel, one impossible signal keeps getting closer.</p>
+          <div class="log-line">
+            <span>Last recovered log</span>
+            <p>“Do not follow the red light. It knows when you are looking.”</p>
+          </div>
+        </div>
+        <figure class="briefing-visual reveal">
+          <div class="image-frame">
+            <img src="images/Snimka zaslona 2026-06-11 214908.jpg" alt="A missing astronaut suspended in a dark Mars station corridor">
+            <span class="frame-id">CAM_04 // HAB-RING</span>
+            <span class="target-box" aria-hidden="true"></span>
+          </div>
+          <figcaption><i></i> Movement anomaly detected</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="systems" class="section features">
+      <div class="section-marker reveal"><span>02</span> Survival protocol</div>
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">No rescue is coming</p>
+          <h2>Fear is a system.</h2>
+        </div>
+        <p>Every corridor is a decision. Every sound is information. Keep breathing.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20"/><path d="M8 32h48M32 12c8 8 8 32 0 40M32 12c-8 8-8 32 0 40"/><circle cx="43" cy="23" r="3"/></svg>
+          <span>SYS.01</span><h3>Mars Horror</h3><p>Cross a hostile world where the storm erases every trace behind you.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 48h42M32 48V25M26 25h12M19 39a18 18 0 0 1 0-25M45 39a18 18 0 0 0 0-25M25 33a10 10 0 0 1 0-14M39 33a10 10 0 0 0 0-14"/></svg>
+          <span>SYS.02</span><h3>Unknown Signal</h3><p>Track a transmission that changes whenever you listen to it.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 49V30a14 14 0 0 1 28 0v19M23 49h18M22 31h20v12H22z"/><path d="M27 36h10M14 49h36"/></svg>
+          <span>SYS.03</span><h3>Alien Isolation</h3><p>You are not the first thing to wake up inside the station.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 42l18-31 18 31z"/><path d="M32 23v9M32 37v2"/><path d="M10 51h44"/></svg>
+          <span>SYS.04</span><h3>Survival Tension</h3><p>Manage air, light, and distance. None of them last forever.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 32s9-15 23-15 23 15 23 15-9 15-23 15S9 32 9 32z"/><circle cx="32" cy="32" r="7"/><path d="M32 13V8M51 18l4-4M13 18l-4-4"/></svg>
+          <span>SYS.05</span><h3>Dark Exploration</h3><p>Search sealed rooms and forgotten tunnels beneath the red dust.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 12h30v40H17zM24 20h16M24 28h16M24 36h10"/><path d="M12 18h5M47 45h5"/></svg>
+          <span>SYS.06</span><h3>Hidden Lore</h3><p>Piece together the final hours of a mission that never existed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="evidence" class="section gallery-section">
+      <div class="section-marker reveal"><span>03</span> Recovered evidence</div>
+      <div class="section-heading reveal">
+        <div><p class="eyebrow">Classified visual archive</p><h2>Nothing here is empty.</h2></div>
+        <p>Click a file to inspect. Some frames have been partially corrupted.</p>
+      </div>
+      <div class="gallery">
+        <button class="gallery-item wide reveal" data-full="images/RedSignalScreenshot.jpg" aria-label="Open evidence file: Whiteout">
+          <img src="images/RedSignalScreenshot.jpg" alt="Astronaut silhouette standing in a violent orange Martian dust storm">
+          <span><b>FILE 01</b> WHITEOUT // EXTERIOR</span>
+        </button>
+        <button class="gallery-item reveal" data-full="images/Snimka zaslona 2026-06-11 214730.jpg" aria-label="Open evidence file: Contact">
+          <img src="images/Snimka zaslona 2026-06-11 214730.jpg" alt="Tall red-lit humanoid approaching through a station corridor">
+          <span><b>FILE 02</b> CONTACT // UNKNOWN</span>
+        </button>
+        <button class="gallery-item reveal" data-full="images/Snimka zaslona 2026-06-11 214745.jpg" aria-label="Open evidence file: Proximity">
+          <img src="images/Snimka zaslona 2026-06-11 214745.jpg" alt="Close view of a dark humanoid creature with a glowing red head">
+          <span><b>FILE 03</b> PROXIMITY // CRITICAL</span>
+        </button>
+        <button class="gallery-item reveal" data-full="images/Snimka zaslona 2026-06-11 214815.jpg" aria-label="Open evidence file: Bulkhead">
+          <img src="images/Snimka zaslona 2026-06-11 214815.jpg" alt="Sealed metal bulkhead door in the Mars station">
+          <span><b>FILE 04</b> BULKHEAD // LOCKED</span>
+        </button>
+        <button class="gallery-item reveal" data-full="images/Snimka zaslona 2026-06-11 214852.jpg" aria-label="Open evidence file: Breach">
+          <img src="images/Snimka zaslona 2026-06-11 214852.jpg" alt="Gloved astronaut hand opening a stained station door">
+          <span><b>FILE 05</b> BREACH // LAB-02</span>
+        </button>
+        <button class="gallery-item wide reveal" data-full="images/Snimka zaslona 2026-06-11 215107.jpg" aria-label="Open evidence file: Fire">
+          <img src="images/Snimka zaslona 2026-06-11 215107.jpg" alt="Dark industrial station corridor lit by fire and emergency lights">
+          <span><b>FILE 06</b> FIRE // LOWER DECK</span>
+        </button>
+        <button class="gallery-item reveal" data-full="images/Snimka zaslona 2026-06-11 215252.jpg" aria-label="Open evidence file: Surface">
+          <img src="images/Snimka zaslona 2026-06-11 215252.jpg" alt="Featureless orange Martian storm viewed from an astronaut helmet">
+          <span><b>FILE 07</b> SURFACE // SIGNAL LOST</span>
+        </button>
+        <button class="gallery-item reveal" data-full="images/Snimka zaslona 2026-06-11 214652.jpg" aria-label="Open evidence file: Orbit">
+          <img src="images/Snimka zaslona 2026-06-11 214652.jpg" alt="Red Signal game menu beside the crescent of Mars">
+          <span><b>FILE 08</b> ORBIT // ORIGIN</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="signal-section" aria-labelledby="signal-title">
+      <div class="signal-image parallax" data-speed="0.08" aria-hidden="true"></div>
+      <div class="signal-content reveal">
+        <p class="eyebrow"><i class="pulse"></i> Incoming transmission</p>
+        <h2 id="signal-title" class="glitch" data-text="SIGNAL DETECTED">SIGNAL DETECTED</h2>
+        <p class="signal-message">SOURCE UNKNOWN <span>//</span> MOVEMENT CONFIRMED</p>
+        <div class="waveform" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <p class="signal-coords">TRANSMISSION ID: RS-091 // DEPTH: 2.41 KM // STATUS: APPROACHING</p>
+      </div>
+    </section>
+
+    <section id="transmission" class="final-cta">
+      <img class="mars" src="images/RedSignalIcon.jpg" alt="" aria-hidden="true">
+      <div class="final-copy reveal">
+        <p class="eyebrow">The channel is still open</p>
+        <h2>Will you answer?</h2>
+        <p>Descend into the buried station. Find the source. Do not let it follow you home.</p>
+        <a class="button button-primary button-large" href="#top"><span>Begin transmission</span></a>
+      </div>
+      <div class="final-meta"><span>RED SIGNAL</span><span>SHORT-FORM SCI-FI HORROR</span><span>PC // STATUS TBA</span></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-mark"></span><span>RED//SIGNAL</span></a>
+    <p>Follow the signal. Survive what answers.</p>
+    <nav aria-label="Footer navigation">
+      <a href="../../index.html#home">Qubicode</a>
+      <a href="../../index.html#games">All Games</a>
+      <a href="../../index.html#contact">Contact</a>
+    </nav>
+    <span>&copy; 2026 Red Signal. A Qubicode game.</span>
+  </footer>
+
+  <dialog class="lightbox" aria-label="Evidence image viewer">
+    <button class="lightbox-close" type="button" aria-label="Close image viewer">×</button>
+    <img alt="">
+    <p></p>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
