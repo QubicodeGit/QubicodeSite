@@ -367,7 +367,9 @@ img {
 }
 
 .brand-wordmark {
-  width: clamp(132px, 18vw, 176px);
+  display: block;
+  width: clamp(96px, 12vw, 132px);
+  max-height: 26px;
   height: auto;
   filter: drop-shadow(0 0 14px rgba(38, 221, 255, 0.12));
 }
@@ -1009,9 +1011,6 @@ h3 {
   --game-title: #ffffff;
   --game-copy: #ffffff;
   --game-accent: #ffffff;
-  --game-badge: #10131b;
-  --game-badge-border: #10131b;
-  --game-badge-bg: #ffc400;
   --game-chip: #10131b;
   --game-chip-border: rgba(16,19,27,.38);
   --game-chip-bg: rgba(255,255,255,.52);
@@ -1048,9 +1047,6 @@ h3 {
   --game-title: #dfeeee;
   --game-copy: #9aa4a2;
   --game-accent: #dfeeee;
-  --game-badge: #dfeeee;
-  --game-badge-border: rgba(223,238,238,.24);
-  --game-badge-bg: rgba(223,238,238,.06);
   --game-chip: #9aa4a2;
   --game-chip-border: rgba(223,238,238,.14);
   --game-chip-bg: rgba(2,3,3,.4);
@@ -1082,9 +1078,6 @@ h3 {
   --game-title: #f1e7dc;
   --game-copy: #b7aaa0;
   --game-accent: #ff4b20;
-  --game-badge: #ff4b20;
-  --game-badge-border: rgba(226,38,25,.42);
-  --game-badge-bg: rgba(226,38,25,.12);
   --game-chip: #d2b9a7;
   --game-chip-border: rgba(226,38,25,.24);
   --game-chip-bg: rgba(12,8,7,.52);
@@ -1118,9 +1111,6 @@ h3 {
   --game-title: #ffffff;
   --game-copy: #dbe9ff;
   --game-accent: #79f20d;
-  --game-badge: #081329;
-  --game-badge-border: #081329;
-  --game-badge-bg: #79f20d;
   --game-chip: #f8fbff;
   --game-chip-border: rgba(255,255,255,.22);
   --game-chip-bg: rgba(8,19,41,.45);
@@ -1150,9 +1140,6 @@ h3 {
   --game-shadow: 0 26px 82px rgba(0,0,0,.48), 0 0 32px rgba(101,255,189,.08);
   --game-pattern: linear-gradient(90deg, transparent, rgba(101,255,189,.06), transparent);
   --game-accent: #65ffbd;
-  --game-badge: #65ffbd;
-  --game-badge-border: rgba(101,255,189,.24);
-  --game-badge-bg: rgba(101,255,189,.08);
 }
 
 .game-theme-gun-pop {
@@ -1164,9 +1151,6 @@ h3 {
   --game-shadow: 0 26px 82px rgba(0,0,0,.48), 0 0 34px rgba(255,111,216,.12);
   --game-pattern: repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 2px, transparent 2px 18px);
   --game-accent: #ff6fd8;
-  --game-badge: #ffd166;
-  --game-badge-border: rgba(255,209,102,.28);
-  --game-badge-bg: rgba(255,209,102,.08);
 }
 
 .card-topline {
@@ -2026,7 +2010,8 @@ h3 {
   }
 
   .brand-wordmark {
-    width: 124px;
+    width: 96px;
+    max-height: 22px;
   }
 
   .hero-visual {

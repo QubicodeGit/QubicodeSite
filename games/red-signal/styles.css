@@ -1,12 +1,9 @@
 :root {
   --black: #050303;
-  --panel: #0c0807;
-  --panel-2: #15100e;
   --bone: #e7ded2;
   --muted: #9b8d80;
   --red: #e22619;
   --red-hot: #ff4b20;
-  --orange: #c05220;
   --cyan: #b5f8f3;
   --line: rgba(226, 38, 25, .28);
   --max: 1240px;
