@@ -59,6 +59,7 @@ canvas:focus-visible {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -239,7 +240,7 @@ h1 {
 
 .card-head,
 .game-hud,
-.minigame-card canvas {
+.game-stage {
   position: relative;
   z-index: 1;
 }
@@ -287,11 +288,19 @@ h1 {
   border-color: var(--border-strong);
 }
 
+.game-stage {
+  isolation: isolate;
+}
+
+.game-stage,
 .minigame-card canvas {
-  display: block;
   width: 100%;
   aspect-ratio: 16 / 9.55;
   min-height: 300px;
+}
+
+.minigame-card canvas {
+  display: block;
   border-block: 1px solid var(--canvas-border, rgba(148, 208, 255, 0.13));
   background: #050711;
   touch-action: none;
@@ -299,7 +308,7 @@ h1 {
 
 .play-overlay {
   position: absolute;
-  inset: 96px 0 60px;
+  inset: 0;
   z-index: 3;
   display: grid;
   place-items: center;
@@ -524,6 +533,42 @@ h1 {
     justify-content: flex-start;
   }
 
+  .background-grid,
+  .background-aurora {
+    animation: none;
+  }
+
+  .background-grid {
+    background-size: 64px 64px;
+  }
+
+  .background-aurora {
+    opacity: 0.55;
+    filter: none;
+  }
+
+  .site-header,
+  .minigame-card,
+  .play-overlay {
+    backdrop-filter: none;
+  }
+
+  .minigame-card {
+    transition: border-color 160ms ease;
+  }
+
+  .minigame-card:hover {
+    transform: none;
+  }
+
+  .game-button:hover,
+  .game-button:focus-visible,
+  .play-button:hover,
+  .play-button:focus-visible {
+    transform: none;
+  }
+
+  .game-stage,
   .minigame-card canvas {
     min-height: 260px;
   }
@@ -548,8 +593,17 @@ h1 {
     width: 100%;
   }
 
+  .game-stage,
   .minigame-card canvas {
     min-height: 240px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .minigame-card:hover,
+  .game-button:hover,
+  .play-button:hover {
+    transform: none;
   }
 }
 

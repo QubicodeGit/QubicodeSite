@@ -2,6 +2,9 @@ const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav-links");
 const modal = document.querySelector(".trailer-modal");
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1001px)").matches;
+const mobileLayout = matchMedia("(max-width: 760px)").matches;
 
 requestAnimationFrame(() => {
   requestAnimationFrame(() => document.documentElement.classList.add("startup-ready"));
@@ -9,11 +12,13 @@ requestAnimationFrame(() => {
 
 let scrollTicking = false;
 const updateScrollEffects = () => {
-  const maxScroll = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
-  const progress = Math.min(scrollY / maxScroll, 1);
-  document.documentElement.style.setProperty("--scroll-y", scrollY.toFixed(1));
-  document.documentElement.style.setProperty("--scroll-progress", progress.toFixed(3));
-  header.classList.toggle("scrolled", scrollY > 30);
+  if (!mobileLayout) {
+    const maxScroll = Math.max(document.documentElement.scrollHeight - innerHeight, 1);
+    const progress = Math.min(scrollY / maxScroll, 1);
+    document.documentElement.style.setProperty("--scroll-y", scrollY.toFixed(1));
+    document.documentElement.style.setProperty("--scroll-progress", progress.toFixed(3));
+  }
+  header?.classList.toggle("scrolled", scrollY > 30);
   scrollTicking = false;
 };
 window.addEventListener("scroll", () => {
@@ -24,47 +29,62 @@ window.addEventListener("scroll", () => {
 }, { passive: true });
 updateScrollEffects();
 
-menuButton.addEventListener("click", () => {
-  const open = menuButton.classList.toggle("active");
-  nav.classList.toggle("open", open);
-  menuButton.setAttribute("aria-expanded", open);
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => link.addEventListener("click", () => {
-  menuButton.classList.remove("active");
-  nav.classList.remove("open");
-  menuButton.setAttribute("aria-expanded", "false");
-}));
-
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      revealObserver.unobserve(entry.target);
-    }
+if (menuButton && nav) {
+  menuButton.addEventListener("click", () => {
+    const open = menuButton.classList.toggle("active");
+    nav.classList.toggle("open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
   });
-}, { threshold: 0.14 });
 
-document.querySelectorAll(".reveal").forEach((element, index) => {
+  nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+    menuButton.classList.remove("active");
+    nav.classList.remove("open");
+    menuButton.setAttribute("aria-expanded", "false");
+  }));
+}
+
+const revealItems = document.querySelectorAll(".reveal");
+revealItems.forEach((element, index) => {
   element.style.transitionDelay = `${(index % 4) * 70}ms`;
-  revealObserver.observe(element);
 });
 
-const countObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const target = Number(entry.target.dataset.count);
-    const start = performance.now();
-    const tick = now => {
-      const progress = Math.min((now - start) / 900, 1);
-      entry.target.textContent = Math.floor(progress * target);
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-    countObserver.unobserve(entry.target);
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -7%" });
+
+  revealItems.forEach(element => revealObserver.observe(element));
+
+  const countObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const target = Number(entry.target.dataset.count);
+      const start = performance.now();
+      const tick = now => {
+        const progress = Math.min((now - start) / 900, 1);
+        entry.target.textContent = Math.floor(progress * target);
+        if (progress < 1 && !reducedMotion) requestAnimationFrame(tick);
+      };
+      if (reducedMotion) {
+        entry.target.textContent = target;
+      } else {
+        requestAnimationFrame(tick);
+      }
+      countObserver.unobserve(entry.target);
+    });
+  }, { threshold: .8 });
+  document.querySelectorAll("[data-count]").forEach(count => countObserver.observe(count));
+} else {
+  revealItems.forEach(element => element.classList.add("visible"));
+  document.querySelectorAll("[data-count]").forEach(count => {
+    count.textContent = count.dataset.count;
   });
-}, { threshold: .8 });
-document.querySelectorAll("[data-count]").forEach(count => countObserver.observe(count));
+}
 
 const botDetails = {
   green: { name: "Bolt", label: "Green BrawlBots character" },
@@ -74,28 +94,33 @@ const botDetails = {
 };
 
 document.querySelectorAll(".bot-dot").forEach(button => button.addEventListener("click", () => {
-  document.querySelector(".bot-dot.active").classList.remove("active");
+  document.querySelector(".bot-dot.active")?.classList.remove("active");
   button.classList.add("active");
   const color = button.dataset.bot;
   const showcase = document.querySelector(".bot-showcase");
-  showcase.className = `bot-showcase reveal visible bot-${color}`;
-  document.querySelector("#bot-name").textContent = botDetails[color].name;
-  document.querySelector("#bot-image").alt = botDetails[color].label;
+  if (showcase) showcase.className = `bot-showcase reveal visible bot-${color}`;
+  const botName = document.querySelector("#bot-name");
+  const botImage = document.querySelector("#bot-image");
+  if (botName) botName.textContent = botDetails[color].name;
+  if (botImage) botImage.alt = botDetails[color].label;
 }));
 
-document.querySelector(".trailer-button").addEventListener("click", () => {
-  modal.classList.add("open");
-  modal.setAttribute("aria-hidden", "false");
+document.querySelector(".trailer-button")?.addEventListener("click", () => {
+  modal?.classList.add("open");
+  modal?.setAttribute("aria-hidden", "false");
 });
 const closeModal = () => {
-  modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
+  modal?.classList.remove("open");
+  modal?.setAttribute("aria-hidden", "true");
 };
-document.querySelector(".modal-close").addEventListener("click", closeModal);
-modal.addEventListener("click", event => { if (event.target === modal) closeModal(); });
+document.querySelector(".modal-close")?.addEventListener("click", closeModal);
+modal?.addEventListener("click", event => { if (event.target === modal) closeModal(); });
 document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
 
-if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (finePointer && !reducedMotion) {
+  const cursorGlow = document.querySelector(".cursor-glow");
+  const depthItems = document.querySelectorAll("[data-depth]");
+
   document.querySelectorAll(".feature-card").forEach(card => {
     card.addEventListener("pointermove", event => {
       const rect = card.getBoundingClientRect();
@@ -119,10 +144,10 @@ if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motio
   });
 
   document.addEventListener("pointermove", event => {
-    document.querySelector(".cursor-glow").style.cssText = `left:${event.clientX}px;top:${event.clientY}px`;
+    if (cursorGlow) cursorGlow.style.cssText = `left:${event.clientX}px;top:${event.clientY}px`;
     const x = (event.clientX / innerWidth - .5);
     const y = (event.clientY / innerHeight - .5);
-    document.querySelectorAll("[data-depth]").forEach(item => {
+    depthItems.forEach(item => {
       const depth = Number(item.dataset.depth);
       item.style.translate = `${x * depth * 8}px ${y * depth * 8}px`;
     });

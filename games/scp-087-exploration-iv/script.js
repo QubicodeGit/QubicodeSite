@@ -6,6 +6,7 @@ const navLinks = document.querySelector("#nav-links");
 const year = document.querySelector("#year");
 const flashlight = document.querySelector(".flashlight");
 const dustLayer = document.querySelector(".scp-dust");
+const depthMeter = document.querySelector(".depth-meter");
 const revealItems = document.querySelectorAll(".reveal");
 const track = document.querySelector(".gallery-track");
 const viewport = document.querySelector(".gallery-viewport");
@@ -18,6 +19,8 @@ const lightboxImage = document.querySelector(".lightbox img");
 const lightboxClose = document.querySelector(".lightbox-close");
 const slideCount = document.querySelector(".slide-count");
 const mobileGalleryQuery = window.matchMedia("(max-width: 820px)");
+const smallScreenQuery = window.matchMedia("(max-width: 560px)");
+const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 let currentSlide = 0;
 let touchStartX = 0;
 let glitchTimer = 0;
@@ -57,7 +60,7 @@ function setupReveal() {
 }
 
 function setupDust() {
-  if (prefersReducedMotion || !dustLayer || document.hidden) return;
+  if (prefersReducedMotion || !dustLayer || document.hidden || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
 
   for (let index = 0; index < 38; index += 1) {
     const particle = document.createElement("span");
@@ -71,7 +74,7 @@ function setupDust() {
 }
 
 function setupFlashlight() {
-  if (prefersReducedMotion || !flashlight) return;
+  if (prefersReducedMotion || !flashlight || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
 
   window.addEventListener("pointermove", (event) => {
     if (event.pointerType !== "mouse") return;
@@ -98,7 +101,9 @@ function makeDots() {
 
 function markActiveDot() {
   (dots?.querySelectorAll("button") || []).forEach((dot, index) => {
-    dot.classList.toggle("is-active", index === currentSlide);
+    const isActive = index === currentSlide;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-current", isActive ? "true" : "false");
   });
   slides.forEach((slide, index) => {
     slide.classList.toggle("is-active", index === currentSlide);
@@ -223,6 +228,7 @@ window.addEventListener("resize", () => {
 });
 
 function updateDepthMeter() {
+  if (!depthMeter || smallScreenQuery.matches) return;
   const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
   const depth = Math.min(1, Math.max(0, window.scrollY / maxScroll));
   document.documentElement.style.setProperty("--depth", depth.toFixed(3));

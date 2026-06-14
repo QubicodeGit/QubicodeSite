@@ -23,7 +23,7 @@ body {
 }
 button, a { font: inherit; }
 a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 button { color: inherit; }
 ::selection { color: #fff; background: var(--red); }
 :focus-visible { outline: 2px solid var(--red-hot); outline-offset: 5px; }
@@ -235,6 +235,37 @@ footer nav a:hover { color: var(--red-hot); }
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 250px; }
   .section-heading { align-items: start; flex-direction: column; }
+  .cursor-glow { display: none; }
+  .hero::after,
+  .storm,
+  .glitch::before,
+  .glitch::after,
+  .pulse,
+  .scroll-cue::before,
+  .meter.danger i,
+  .target-box,
+  .signal-section::after,
+  .waveform i,
+  .mars {
+    animation: none;
+  }
+  .load-in {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .reveal {
+    transition-duration: .22s;
+  }
+  .button:hover,
+  .feature-card:hover,
+  .feature-card:hover svg,
+  .gallery-item:hover img {
+    transform: none;
+  }
+  .gallery-item img {
+    transition-duration: .22s;
+  }
 }
 
 @media (max-width: 600px) {

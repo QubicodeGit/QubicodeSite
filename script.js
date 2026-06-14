@@ -1,7 +1,7 @@
 document.documentElement.classList.add("js");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const supportsPreciseHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+const supportsPreciseHover = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 821px)").matches;
 const useDecorativeMotion = !prefersReducedMotion && supportsPreciseHover;
 
 const platformIcons = {
@@ -35,7 +35,11 @@ const games = [
     filters: ["mobile"],
     page: "games/driver-dash/index.html",
     image: "Images/driverdashHero.png",
+    imageWidth: 1024,
+    imageHeight: 500,
     logo: "Images/driverdashIcon.png",
+    logoWidth: 950,
+    logoHeight: 950,
     description:
       "A finished mobile endless driving game inspired by fast lane-based arcade runners. Dodge obstacles across three lanes, use boost powerups, unlock cars, customize colors, spin the lucky wheel, open lootboxes, expand tycoon-style map properties, and take on boss fights.",
     tags: ["Endless Driving", "Mobile", "Arcade", "Customization", "Boss Fights"]
@@ -50,7 +54,11 @@ const games = [
     filters: ["steam", "horror", "singleplayer"],
     page: "games/scp-087-exploration-iv/index.html",
     image: "games/scp-087-exploration-iv/images/scp087screenshot.jpg",
+    imageWidth: 1579,
+    imageHeight: 888,
     logo: "games/scp-087-exploration-iv/images/scp087icon.png",
+    logoWidth: 1254,
+    logoHeight: 1254,
     description:
       "A short first-person horror experience based on SCP-087. A D-Class personnel is ordered to descend into the infamous infinite staircase and document its depths.",
     tags: ["Horror", "SCP", "First Person", "Singleplayer", "Psychological Horror"]
@@ -65,7 +73,11 @@ const games = [
     filters: ["steam", "horror", "singleplayer"],
     page: "games/red-signal/index.html",
     image: "Images/RedSignalScreenshot.jpg",
+    imageWidth: 1511,
+    imageHeight: 850,
     logo: "Images/RedSignalIcon.jpg",
+    logoWidth: 878,
+    logoHeight: 878,
     description:
       "A first-person horror game set on Mars.",
     tags: ["Horror", "Mars", "Sci-Fi", "First Person", "Singleplayer", "Survival"]
@@ -80,7 +92,11 @@ const games = [
     filters: ["steam", "multiplayer"],
     page: "",
     image: "Images/recoveryunitScreenshot.png",
+    imageWidth: 1672,
+    imageHeight: 941,
     logo: "Images/recoveryunitLogo.png",
+    logoWidth: 1254,
+    logoHeight: 1254,
     description:
       "A multiplayer first-person infection shooter where up to four players enter dangerous contaminated areas filled with weak and extremely powerful mutated creatures. Survive hostile environments together.",
     tags: ["FPS", "Multiplayer", "Co-op", "Infection", "Survival"]
@@ -95,7 +111,11 @@ const games = [
     filters: ["steam", "multiplayer"],
     page: "games/brawlbots/index.html",
     image: "Images/brawlbotsScreenshot.jpg",
+    imageWidth: 1582,
+    imageHeight: 890,
     logo: "Images/BrawlbotsIcon.png",
+    logoWidth: 676,
+    logoHeight: 676,
     description:
       "A third-person multiplayer puzzle brawler where up to four malfunctioning humanoid bots fight through a corrupted robot world.",
     tags: ["Third Person", "Co-op", "Puzzle", "Brawler", "Robots"]
@@ -110,7 +130,11 @@ const games = [
     filters: ["mobile"],
     page: "",
     image: "Images/gunpopIcon.png",
+    imageWidth: 1254,
+    imageHeight: 1254,
     logo: "Images/gunpopIcon.png",
+    logoWidth: 1254,
+    logoHeight: 1254,
     mediaMode: "contain",
     description:
       "A mobile flick-shooting game where a gun is thrown into the air and players time shots while it flips to hit targets, gifts, and ricochet panels.",
@@ -130,7 +154,9 @@ let gameCards = [];
 let scrollProgress = null;
 const hideTimers = new WeakMap();
 
-year.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
 function setupDynamicShell() {
   const progress = document.createElement("div");
@@ -160,10 +186,10 @@ function renderGames() {
     .map((game, index) => {
       const mediaClass = game.mediaMode === "contain" ? "game-media image-contain" : "game-media";
       const imageMarkup = game.image
-        ? `<img src="${game.image}" alt="${game.title} screenshot" loading="lazy">`
+        ? `<img src="${game.image}" width="${game.imageWidth}" height="${game.imageHeight}" alt="${game.title} screenshot" loading="lazy" decoding="async">`
         : `<div class="placeholder-media"><span>${game.title} visual coming soon</span></div>`;
       const logoMarkup = game.logo
-        ? `<div class="game-logo"><img src="${game.logo}" alt="${game.title} logo" loading="lazy"></div>`
+        ? `<div class="game-logo"><img src="${game.logo}" width="${game.logoWidth}" height="${game.logoHeight}" alt="${game.title} logo" loading="lazy" decoding="async"></div>`
         : "";
 
       return `
@@ -203,6 +229,7 @@ function renderGames() {
 }
 
 function closeMobileNav() {
+  if (!navToggle || !navLinks) return;
   navToggle.setAttribute("aria-expanded", "false");
   navLinks.classList.remove("is-open");
   document.body.classList.remove("nav-open");
@@ -329,7 +356,7 @@ function setupRipples() {
 }
 
 function setupGameTabEffects() {
-  if (!useDecorativeMotion) return;
+  if (!useDecorativeMotion || !gameGrid) return;
 
   let activeCard = null;
   let frame = null;
@@ -368,10 +395,10 @@ setupParallax();
 setupRipples();
 setupGameTabEffects();
 
-navToggle.addEventListener("click", () => {
+navToggle?.addEventListener("click", () => {
   const isOpen = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", String(!isOpen));
-  navLinks.classList.toggle("is-open", !isOpen);
+  navLinks?.classList.toggle("is-open", !isOpen);
   document.body.classList.toggle("nav-open", !isOpen);
 });
 
@@ -415,7 +442,7 @@ const updateScrollState = () => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const amount = max > 0 ? scrollY / max : 0;
   if (scrollProgress) scrollProgress.style.transform = `scaleX(${amount})`;
-  backToTop.classList.toggle("is-visible", scrollY > 640);
+  backToTop?.classList.toggle("is-visible", scrollY > 640);
   scrollFrame = null;
 };
 
@@ -434,7 +461,7 @@ window.addEventListener("resize", () => {
 
 updateScrollState();
 
-backToTop.addEventListener("click", () => {
+backToTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
 });
 

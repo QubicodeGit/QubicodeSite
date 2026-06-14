@@ -79,6 +79,7 @@ a:focus-visible {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 .background-grid,
@@ -645,7 +646,8 @@ h3 {
   z-index: 2;
   width: min(58%, 300px);
   filter: drop-shadow(0 0 28px rgba(38, 221, 255, 0.22));
-  animation: logoFloat 5s ease-in-out infinite;
+  animation: logoFloat 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .hero-wordmark {
@@ -658,10 +660,15 @@ h3 {
 
 .logo-orbit {
   position: absolute;
-  inset: 13%;
+  left: 50%;
+  top: 50%;
+  width: min(76%, 430px);
+  aspect-ratio: 1;
   border: 1px solid rgba(38, 221, 255, 0.22);
   border-radius: 50%;
-  animation: orbitSpin 15s linear infinite;
+  transform: translate(-50%, -50%);
+  animation: orbitSpin 18s linear infinite;
+  will-change: transform;
 }
 
 .logo-orbit span {
@@ -1782,17 +1789,17 @@ h3 {
 @keyframes logoFloat {
   0%,
   100% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translate3d(0, -10px, 0);
   }
 }
 
 @keyframes orbitSpin {
   to {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -1922,14 +1929,28 @@ h3 {
     backdrop-filter: none;
   }
 
+  .background-grid,
+  .background-aurora,
+  .background-scan,
+  .background-data span,
+  .float-shape,
+  .particle,
+  .brand,
+  .section::before,
+  .status-dot,
+  .hero-logo,
   .game-card::after,
-  .featured-asset::before {
+  .featured-asset::before,
+  .badge::before,
+  .ripple.is-rippling::after,
+  .asset-card:hover::after,
+  .contact-card a:hover::after {
     animation: none;
   }
 
-  .hero-logo,
   .logo-orbit {
-    animation-duration: 8s;
+    animation: orbitSpin 18s linear infinite;
+    will-change: transform;
   }
 
   .game-grid {
@@ -2023,7 +2044,6 @@ h3 {
 @media (hover: none), (pointer: coarse) {
   .float-shape,
   .particle,
-  .logo-orbit,
   .hero-logo,
   .status-dot,
   .badge::before {
@@ -2079,8 +2099,11 @@ h3 {
   .background-aurora,
   .background-scan,
   .background-data,
-  .hero-logo,
-  .logo-orbit {
+  .hero-logo {
     transform: none !important;
+  }
+
+  .logo-orbit {
+    transform: translate(-50%, -50%) !important;
   }
 }

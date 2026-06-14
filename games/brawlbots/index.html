@@ -10,6 +10,7 @@
   <script>document.documentElement.classList.add("startup");</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="images/img7.PNG" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -23,7 +24,7 @@
   </div>
   <header class="site-header">
     <a class="brand" href="#home" aria-label="BrawlBots home">
-      <img src="images/BrawlbotsIcon.png" alt="">
+      <img src="images/BrawlbotsIcon.png" width="676" height="676" alt="" decoding="async">
       <span>BRAWL<span>BOTS</span></span>
     </a>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">
@@ -83,7 +84,7 @@
         <div class="hero-burst" aria-hidden="true"></div>
         <div class="hero-frame" data-depth="1.4">
           <div class="frame-top"><span><i></i> Facility breach</span><b>4P</b></div>
-          <img class="hero-bot" src="images/img7.PNG" alt="Four colorful BrawlBots entering a dangerous scrapyard facility">
+          <img class="hero-bot" src="images/img7.PNG" width="1589" height="886" alt="Four colorful BrawlBots entering a dangerous scrapyard facility" fetchpriority="high" decoding="async">
           <div class="frame-bottom"><strong>Scrapyard Facility</strong><span>Sector 01</span></div>
         </div>
         <div class="floating-chip chip-blue" data-depth="2">
@@ -114,7 +115,7 @@
       </div>
       <div class="about-visual reveal">
         <div class="image-panel panel-main">
-          <img src="images/img7.PNG" alt="Four colorful BrawlBots beginning their cooperative mission">
+          <img src="images/img7.PNG" width="1589" height="886" alt="Four colorful BrawlBots beginning their cooperative mission" loading="lazy" decoding="async">
           <div class="image-tag"><b>4</b> bots unite</div>
         </div>
         <div class="stat-card stat-card-top">
@@ -189,7 +190,7 @@
       </div>
       <div class="bot-showcase reveal">
         <div class="bot-rings" aria-hidden="true"></div>
-        <img id="bot-image" src="images/BrawlbotsIcon.png" alt="Green BrawlBots character">
+        <img id="bot-image" src="images/BrawlbotsIcon.png" width="676" height="676" alt="Green BrawlBots character" loading="lazy" decoding="async">
         <div class="bot-name">
           <span>All-rounder</span>
           <strong id="bot-name">Bolt</strong>
@@ -200,8 +201,8 @@
         </div>
       </div>
       <div class="bot-mini-grid reveal">
-        <article><img src="images/img6.PNG" alt="A bot activating a facility cannon"><span>Physics-based</span><strong>Use the world</strong></article>
-        <article><img src="images/img5.PNG" alt="A bot exploring a dangerous facility"><span>Cooperative</span><strong>Move together</strong></article>
+        <article><img src="images/img6.PNG" width="275" height="326" alt="A bot activating a facility cannon" loading="lazy" decoding="async"><span>Physics-based</span><strong>Use the world</strong></article>
+        <article><img src="images/img5.PNG" width="545" height="354" alt="A bot exploring a dangerous facility" loading="lazy" decoding="async"><span>Cooperative</span><strong>Move together</strong></article>
       </div>
     </section>
 
@@ -212,19 +213,19 @@
       </div>
       <div class="arena-grid">
         <article class="arena-card arena-wide reveal">
-          <img src="images/img7.PNG" alt="Scrapyard facility">
+          <img src="images/img7.PNG" width="1589" height="886" alt="Scrapyard facility" loading="lazy" decoding="async">
           <div class="arena-overlay"><span>01</span><h3>Scrapyard Facility</h3><p>Coordinate through cranes, crates, and corrupted machines.</p><button aria-label="View Scrapyard Facility">↗</button></div>
         </article>
         <article class="arena-card reveal">
-          <img src="images/img5.PNG" alt="Industrial hazard yard">
+          <img src="images/img5.PNG" width="545" height="354" alt="Industrial hazard yard" loading="lazy" decoding="async">
           <div class="arena-overlay"><span>02</span><h3>Hazard Yard</h3><p>Use the environment before the environment uses you.</p><button aria-label="View Hazard Yard">↗</button></div>
         </article>
         <article class="arena-card laser-card reveal">
-          <img src="images/img8.PNG" alt="Scrapyard control block with a green bot and interactive buttons">
+          <img src="images/img8.PNG" width="1283" height="718" alt="Scrapyard control block with a green bot and interactive buttons" loading="lazy" decoding="async">
           <div class="arena-overlay"><span>03</span><h3>Control Block</h3><p>Activate mechanisms together to unlock the way forward.</p><button aria-label="View Control Block">↗</button></div>
         </article>
         <article class="arena-card arena-wide reveal">
-          <img src="images/img4.PNG" alt="Four colorful bots choosing a character">
+          <img src="images/img4.PNG" width="974" height="542" alt="Four colorful bots choosing a character" loading="lazy" decoding="async">
           <div class="arena-overlay"><span>04</span><h3>Assembly Point</h3><p>Four unaffected bots. One impossible mission.</p><button aria-label="View Assembly Point">↗</button></div>
         </article>
       </div>
@@ -261,14 +262,14 @@
           Begin The Mission
         </a>
       </div>
-      <img class="cta-bot" src="images/BrawlbotsIcon.png" alt="" aria-hidden="true">
+      <img class="cta-bot" src="images/BrawlbotsIcon.png" width="676" height="676" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="cta-badge" aria-hidden="true"><span>System</span><strong>FAILURE!</strong></div>
     </section>
   </main>
 
   <footer>
     <a class="brand footer-brand" href="#home">
-      <img src="images/BrawlbotsIcon.png" alt="">
+      <img src="images/BrawlbotsIcon.png" width="676" height="676" alt="" loading="lazy" decoding="async">
       <span>BRAWL<span>BOTS</span></span>
     </a>
     <p>Four defective robots. One corrupted world. No bot left behind.</p>
@@ -284,7 +285,7 @@
   <div class="trailer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="BrawlBots trailer">
     <button class="modal-close" aria-label="Close trailer">×</button>
     <div class="modal-frame">
-      <img src="images/img3.PNG" alt="BrawlBots game studio scene">
+      <img src="images/img3.PNG" width="1589" height="817" alt="BrawlBots game studio scene" loading="lazy" decoding="async">
       <div><span>Transmission incoming</span><strong>Central AI signal detected.</strong></div>
     </div>
   </div>

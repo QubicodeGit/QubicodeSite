@@ -17,8 +17,8 @@
   <header class="site-header">
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="../index.html#home" aria-label="Qubicode home">
-        <img src="../Images/qubicodeLogo.svg" alt="" class="brand-logo">
-        <img src="../Images/QubicodeLogoText.svg" alt="Qubicode" class="brand-wordmark">
+        <img src="../Images/qubicodeLogo.svg" alt="" class="brand-logo" width="3870" height="3870">
+        <img src="../Images/QubicodeLogoText.svg" alt="Qubicode" class="brand-wordmark" width="2048" height="347">
       </a>
       <div class="nav-links">
         <a href="../index.html#games">Games</a>
@@ -45,13 +45,15 @@
           </div>
           <button class="game-button" type="button" data-action="restart" data-game="driver">Restart</button>
         </div>
-        <canvas id="driver-canvas" width="720" height="430" aria-label="Driver Dash Highway Dodge game"></canvas>
-        <div class="play-overlay" data-overlay="driver">
-          <div>
-            <strong>Highway Dodge</strong>
-            <span>3 lanes, traffic, speed, survival.</span>
+        <div class="game-stage">
+          <canvas id="driver-canvas" width="720" height="430" aria-label="Driver Dash Highway Dodge game"></canvas>
+          <div class="play-overlay" data-overlay="driver">
+            <div>
+              <strong>Highway Dodge</strong>
+              <span>3 lanes, traffic, speed, survival.</span>
+            </div>
+            <button class="play-button" type="button" data-action="play" data-game="driver">Play</button>
           </div>
-          <button class="play-button" type="button" data-action="play" data-game="driver">Play</button>
         </div>
         <div class="game-hud">
           <span>Score <b data-score="driver">0</b></span>
@@ -71,13 +73,15 @@
             <button class="game-button" type="button" data-action="restart" data-game="bots">Reset</button>
           </div>
         </div>
-        <canvas id="bots-canvas" width="720" height="430" aria-label="Brawlbots Crate and Laser puzzle"></canvas>
-        <div class="play-overlay" data-overlay="bots">
-          <div>
-            <strong>Crate &amp; Laser</strong>
-            <span>Drag crates, rotate mirrors, power the gate.</span>
+        <div class="game-stage">
+          <canvas id="bots-canvas" width="720" height="430" aria-label="Brawlbots Crate and Laser puzzle"></canvas>
+          <div class="play-overlay" data-overlay="bots">
+            <div>
+              <strong>Crate &amp; Laser</strong>
+              <span>Drag crates, rotate mirrors, power the gate.</span>
+            </div>
+            <button class="play-button" type="button" data-action="play" data-game="bots">Play</button>
           </div>
-          <button class="play-button" type="button" data-action="play" data-game="bots">Play</button>
         </div>
         <div class="game-hud">
           <span>Level <b data-score="bots">1</b></span>
@@ -94,13 +98,15 @@
           </div>
           <button class="game-button" type="button" data-action="restart" data-game="gun">Restart</button>
         </div>
-        <canvas id="gun-canvas" width="720" height="430" aria-label="Gun Pop Quick Shot game"></canvas>
-        <div class="play-overlay" data-overlay="gun">
-          <div>
-            <strong>Quick Shot</strong>
-            <span>Spin, shoot, ricochet, combo.</span>
+        <div class="game-stage">
+          <canvas id="gun-canvas" width="720" height="430" aria-label="Gun Pop Quick Shot game"></canvas>
+          <div class="play-overlay" data-overlay="gun">
+            <div>
+              <strong>Quick Shot</strong>
+              <span>Spin, shoot, ricochet, combo.</span>
+            </div>
+            <button class="play-button" type="button" data-action="play" data-game="gun">Play</button>
           </div>
-          <button class="play-button" type="button" data-action="play" data-game="gun">Play</button>
         </div>
         <div class="game-hud">
           <span>Score <b data-score="gun">0</b></span>
@@ -117,18 +123,20 @@
           </div>
           <button class="game-button" type="button" data-action="restart" data-game="pong">Restart</button>
         </div>
-        <canvas id="pong-canvas" width="720" height="430" aria-label="Qubicode Pong game"></canvas>
-        <div class="play-overlay" data-overlay="pong">
-          <div>
-            <strong>Qubicode Pong</strong>
-            <span>Bracket paddles, cube ball, powerups.</span>
+        <div class="game-stage">
+          <canvas id="pong-canvas" width="720" height="430" aria-label="Qubicode Pong game"></canvas>
+          <div class="play-overlay" data-overlay="pong">
+            <div>
+              <strong>Qubicode Pong</strong>
+              <span>Bracket paddles, cube ball, powerups.</span>
+            </div>
+            <button class="play-button" type="button" data-action="play" data-game="pong">Play</button>
           </div>
-          <button class="play-button" type="button" data-action="play" data-game="pong">Play</button>
         </div>
         <div class="game-hud">
           <span>Wins <b data-score="pong">0</b></span>
           <span>Best Streak <b data-high="pong">0</b></span>
-          <span class="status" data-status="pong">Move mouse or touch to control {</span>
+          <span class="status" data-status="pong">Move mouse or touch to control</span>
         </div>
       </article>
     </section>

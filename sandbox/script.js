@@ -1,6 +1,7 @@
 document.documentElement.classList.add("js");
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const mobileCanvas = window.matchMedia("(max-width: 720px)");
 const storagePrefix = "qubicode-sandbox:";
 
 if (!CanvasRenderingContext2D.prototype.roundRect) {
@@ -28,6 +29,7 @@ const assets = {};
   ["boostFlame", "images/boost.png"]
 ].forEach(([key, src]) => {
   assets[key] = new Image();
+  assets[key].decoding = "async";
   assets[key].src = src;
 });
 
@@ -76,6 +78,10 @@ function pointerPoint(canvas, event) {
   return { x: event.clientX - rect.left, y: event.clientY - rect.top };
 }
 
+function canvasScale() {
+  return Math.min(window.devicePixelRatio || 1, mobileCanvas.matches ? 1.35 : 2);
+}
+
 function drawImageFit(ctx, image, x, y, w, h, rotation = 0) {
   ctx.save();
   ctx.translate(x + w / 2, y + h / 2);
@@ -114,7 +120,7 @@ class MiniGame {
 
   resize() {
     const rect = this.canvas.getBoundingClientRect();
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = canvasScale();
     this.w = Math.max(300, rect.width);
     this.h = Math.max(230, rect.height);
     this.canvas.width = Math.round(this.w * dpr);
@@ -925,7 +931,7 @@ class QubicodePongGame extends MiniGame {
     this.particles = [];
     setText(ui.score.pong, this.winStreak);
     setText(ui.high.pong, this.high);
-    setText(ui.status.pong, "Move mouse or touch to control {");
+    setText(ui.status.pong, "Move mouse or touch to control");
   }
 
   fire() {
@@ -972,7 +978,7 @@ class QubicodePongGame extends MiniGame {
         this.left.h = 104;
         this.right.h = 104;
         if (this.balls.length > 1) this.balls = this.balls.slice(0, 1);
-        setText(ui.status.pong, "Move mouse or touch to control {");
+        setText(ui.status.pong, "Move mouse or touch to control");
       }
     }
     this.balls.forEach((ball) => {
@@ -1122,7 +1128,7 @@ function previewCanvas(key) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");
   const rect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const dpr = canvasScale();
   const w = Math.max(300, rect.width);
   const h = Math.max(230, rect.height);
   canvas.width = Math.round(w * dpr);
@@ -1193,8 +1199,18 @@ function drawAllPreviews() {
   });
 }
 
-Object.values(assets).forEach((image) => image.addEventListener("load", drawAllPreviews));
-window.addEventListener("resize", drawAllPreviews);
+let previewFrame = 0;
+
+function scheduleDrawAllPreviews() {
+  if (previewFrame) return;
+  previewFrame = requestAnimationFrame(() => {
+    previewFrame = 0;
+    drawAllPreviews();
+  });
+}
+
+Object.values(assets).forEach((image) => image.addEventListener("load", scheduleDrawAllPreviews, { once: true }));
+window.addEventListener("resize", scheduleDrawAllPreviews);
 drawAllPreviews();
 
 document.querySelectorAll("[data-action]").forEach((button) => {

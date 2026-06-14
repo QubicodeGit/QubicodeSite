@@ -57,6 +57,7 @@ a:focus-visible {
 img {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 h1,
@@ -1582,6 +1583,70 @@ body.has-pointer .flashlight {
   .footer-inner {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .scp-grain,
+  .scp-flicker,
+  .scp-dust,
+  .hero-background,
+  .hero-light,
+  .hero-readout span,
+  .descent-cue span,
+  .glitch::before,
+  .glitch::after,
+  .glitch-soft::before,
+  .glitch-soft::after {
+    animation: none;
+  }
+
+  .scp-grain,
+  .scp-flicker,
+  .scp-dust,
+  .flashlight {
+    display: none;
+  }
+
+  .tape-track {
+    animation-duration: 44s;
+    animation-name: tapeCrawlMobile;
+    will-change: transform;
+  }
+
+  .tape-strip-b .tape-track {
+    animation-duration: 56s;
+  }
+
+  .js .reveal {
+    filter: none;
+    transform: translateY(12px);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .gallery-slide img,
+  .atmos-card img,
+  .entity-panel img {
+    transition-duration: 180ms;
+  }
+
+  .button:hover,
+  .button:focus-visible,
+  .gallery-arrow:hover,
+  .gallery-arrow:focus-visible,
+  .lore-panel:hover,
+  .atmos-card:hover,
+  .atmos-card:hover img,
+  .entity-panel:hover img {
+    transform: none;
+  }
+}
+
+@keyframes tapeCrawlMobile {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 

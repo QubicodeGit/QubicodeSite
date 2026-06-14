@@ -5,17 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ff7a00">
   <meta name="description" content="Driver Dash - dodge traffic, defeat bosses, collect wild rides, and build your road empire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="icon" href="../../Images/qubicodeLogo.svg" type="image/svg+xml">
   <link rel="icon" href="../../Images/qubicodeLogo.ico" sizes="any">
   <title>Driver Dash</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script src="script.js" defer></script>
 </head>
 <body>
   <div class="page-noise" aria-hidden="true"></div>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Driver Dash home">
-      <img src="images/driverdashlogo.png" alt="Driver Dash">
+      <img src="images/driverdashlogo.png" width="1000" height="1000" alt="Driver Dash" fetchpriority="high" decoding="async">
     </a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -35,13 +37,13 @@
     <section class="hero" id="top">
       <div class="hero-road" aria-hidden="true"></div>
       <div class="speed-lines" aria-hidden="true"></div>
-      <img class="hero-sprite sprite-wheel" src="images/wheelnew.png" alt="">
-      <img class="hero-sprite sprite-coin" src="images/coinbig.png" alt="">
-      <img class="hero-sprite sprite-diamond" src="images/dijamantbig.png" alt="">
+      <img class="hero-sprite sprite-wheel" src="images/wheelnew.png" width="1920" height="1080" alt="" decoding="async">
+      <img class="hero-sprite sprite-coin" src="images/coinbig.png" width="1285" height="1080" alt="" decoding="async">
+      <img class="hero-sprite sprite-diamond" src="images/dijamantbig.png" width="1134" height="1080" alt="" decoding="async">
 
       <div class="hero-content reveal">
         <span class="eyebrow"><span class="live-dot"></span> High-speed arcade mayhem</span>
-        <img class="hero-logo" src="images/driverdashlogo.png" alt="Driver Dash">
+        <img class="hero-logo" src="images/driverdashlogo.png" width="1000" height="1000" alt="Driver Dash" decoding="async">
         <h1>Dodge. Dash.<br><em>Dominate.</em></h1>
         <p>Blast down wild roads, outsmart ridiculous bosses, unlock outrageous rides, and build an empire one close call at a time.</p>
         <div class="hero-actions">
@@ -57,7 +59,7 @@
 
       <div class="hero-art reveal reveal--right" data-parallax="0.025">
         <div class="hero-art-burst"></div>
-        <img class="hero-tank" src="images/driverdash1.png" alt="Driver Dash racer and tank">
+        <img class="hero-tank" src="images/driverdash1.png" width="950" height="950" alt="Driver Dash racer and tank" fetchpriority="high" decoding="async">
         <div class="impact-word">VROOOM!</div>
       </div>
       <a class="scroll-cue" href="#about"><span>Scroll to race</span><i></i></a>
@@ -82,7 +84,7 @@
             </div>
             <span class="comic-sticker">Official trailer!</span>
           </div>
-          <img class="floating-driver" src="images/DdPlayer.png" alt="Driver Dash racer">
+          <img class="floating-driver" src="images/DdPlayer.png" width="620" height="1004" alt="Driver Dash racer" loading="lazy" decoding="async">
         </div>
         <div class="about-copy reveal reveal--right">
           <span class="kicker">Welcome, driver</span>
@@ -90,15 +92,15 @@
           <p class="lead">Driver Dash is an action-packed arcade racer where quick reflexes, clever upgrades, and a little bit of chaos turn every run into a story.</p>
           <div class="mini-panels">
             <article>
-              <img src="images/steeringwheelfire.png" alt="">
+              <img src="images/steeringwheelfire.png" width="500" height="500" alt="" loading="lazy" decoding="async">
               <div><strong>Easy to start</strong><span>Hard to stop</span></div>
             </article>
             <article>
-              <img src="images/trofje.png" alt="">
+              <img src="images/trofje.png" width="500" height="500" alt="" loading="lazy" decoding="async">
               <div><strong>Chase glory</strong><span>Top every score</span></div>
             </article>
             <article>
-              <img src="images/SprayCan.png" alt="">
+              <img src="images/SprayCan.png" width="500" height="500" alt="" loading="lazy" decoding="async">
               <div><strong>Make it yours</strong><span>Style every ride</span></div>
             </article>
           </div>
@@ -115,10 +117,10 @@
         </div>
         <div class="island-showcase">
           <div class="island-map reveal">
-            <img src="images/ScreenShot4.png" alt="Driver Dash island property map">
+            <img src="images/ScreenShot4.png" width="1152" height="2048" alt="Driver Dash island property map" loading="lazy" decoding="async">
             <div class="map-badge map-badge--owned"><span>✓</span> Car wash owned</div>
-            <div class="map-badge map-badge--locked"><img src="images/locked.png" alt=""> New plot</div>
-            <div class="map-income"><img src="images/coin.png" alt=""><span>Income</span><strong>+2,450</strong></div>
+            <div class="map-badge map-badge--locked"><img src="images/locked.png" width="220" height="220" alt=""> New plot</div>
+            <div class="map-income"><img src="images/coin.png" width="874" height="874" alt=""><span>Income</span><strong>+2,450</strong></div>
           </div>
           <div class="property-panel reveal reveal--right">
             <div class="property-panel__top">
@@ -127,16 +129,16 @@
               <div class="property-progress"><i></i></div>
             </div>
             <article class="property-card property-card--orange">
-              <img src="images/carfactory.png" alt="Car factory">
+              <img src="images/carfactory.png" width="915" height="915" alt="Car factory" loading="lazy" decoding="async">
               <div>
                 <small>Available property</small>
                 <h3>Car Factory</h3>
                 <p>Produce bigger rewards after every run.</p>
               </div>
-              <span class="property-price"><img src="images/coin.png" alt="">25K</span>
+              <span class="property-price"><img src="images/coin.png" width="874" height="874" alt="">25K</span>
             </article>
             <article class="property-card property-card--blue">
-              <img src="images/tireshop.png" alt="Tire shop">
+              <img src="images/tireshop.png" width="918" height="918" alt="Tire shop" loading="lazy" decoding="async">
               <div>
                 <small>Level 2 business</small>
                 <h3>Tire Shop</h3>
@@ -145,13 +147,13 @@
               <span class="property-price">Upgrade</span>
             </article>
             <article class="property-card property-card--pink">
-              <img src="images/storageunit.png" alt="Storage unit">
+              <img src="images/storageunit.png" width="857" height="857" alt="Storage unit" loading="lazy" decoding="async">
               <div>
                 <small>New district</small>
                 <h3>Storage Unit</h3>
                 <p>Expand the map and store valuable rewards.</p>
               </div>
-              <span class="property-price"><img src="images/dijamant.png" alt="">12</span>
+              <span class="property-price"><img src="images/dijamant.png" width="1080" height="1080" alt="">12</span>
             </article>
           </div>
         </div>
@@ -160,7 +162,7 @@
 
     <section class="boss-strip" aria-label="Boss warning">
       <div class="warning-track">
-        <span>Boss incoming</span><img src="images/bossskull.png" alt=""><span>Boss incoming</span><img src="images/bossskull.png" alt=""><span>Boss incoming</span><img src="images/bossskull.png" alt="">
+        <span>Boss incoming</span><img src="images/bossskull.png" width="988" height="988" alt=""><span>Boss incoming</span><img src="images/bossskull.png" width="988" height="988" alt=""><span>Boss incoming</span><img src="images/bossskull.png" width="988" height="988" alt="">
       </div>
     </section>
 
@@ -172,11 +174,11 @@
           <p>A world of high-speed escapes, shiny new rides, booming businesses, and big rewards.</p>
         </div>
         <div class="gallery-grid">
-          <figure class="gallery-card gallery-card--wide reveal"><img src="images/ScreenShot7.PNG" alt="Boosting down a highway"><figcaption><b>01</b><span>Hit the boost</span></figcaption></figure>
-          <figure class="gallery-card reveal"><img src="images/ScreenShot4.png" alt="Driver Dash island map"><figcaption><b>02</b><span>Own the island</span></figcaption></figure>
-          <figure class="gallery-card reveal"><img src="images/ScreenShot5.png" alt="Loot boxes"><figcaption><b>03</b><span>Open the loot</span></figcaption></figure>
-          <figure class="gallery-card reveal"><img src="images/ScreenShot8.png" alt="New car unlocked"><figcaption><b>04</b><span>Collect rides</span></figcaption></figure>
-          <figure class="gallery-card gallery-card--wide reveal"><img src="images/ScreenShot1.png" alt="Driver Dash main menu"><figcaption><b>05</b><span>Start your run</span></figcaption></figure>
+          <figure class="gallery-card gallery-card--wide reveal"><img src="images/ScreenShot7.PNG" width="1753" height="3115" alt="Boosting down a highway" loading="lazy" decoding="async"><figcaption><b>01</b><span>Hit the boost</span></figcaption></figure>
+          <figure class="gallery-card reveal"><img src="images/ScreenShot4.png" width="1152" height="2048" alt="Driver Dash island map" loading="lazy" decoding="async"><figcaption><b>02</b><span>Own the island</span></figcaption></figure>
+          <figure class="gallery-card reveal"><img src="images/ScreenShot5.png" width="1152" height="2048" alt="Loot boxes" loading="lazy" decoding="async"><figcaption><b>03</b><span>Open the loot</span></figcaption></figure>
+          <figure class="gallery-card reveal"><img src="images/ScreenShot8.png" width="1756" height="3121" alt="New car unlocked" loading="lazy" decoding="async"><figcaption><b>04</b><span>Collect rides</span></figcaption></figure>
+          <figure class="gallery-card gallery-card--wide reveal"><img src="images/ScreenShot1.png" width="1757" height="3124" alt="Driver Dash main menu" loading="lazy" decoding="async"><figcaption><b>05</b><span>Start your run</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -191,7 +193,7 @@
         <div class="ride-stage reveal">
           <button class="ride-arrow ride-arrow--prev" type="button" aria-label="Previous ride">‹</button>
           <div class="ride-glow"></div>
-          <img class="ride-image" src="images/agani.png" alt="Agani">
+          <img class="ride-image" src="images/agani.png" width="1388" height="926" alt="Agani" loading="lazy" decoding="async">
           <div class="ride-copy">
             <span class="ride-class">Legendary ride</span>
             <h3 class="ride-name">Agani</h3>
@@ -205,10 +207,10 @@
 
     <section class="cta section" id="play">
       <div class="cta-ray" aria-hidden="true"></div>
-      <img class="cta-car cta-car--left" src="images/airboat.png" alt="">
-      <img class="cta-car cta-car--right" src="images/fire.png" alt="">
+      <img class="cta-car cta-car--left" src="images/airboat.png" width="1320" height="881" alt="" loading="lazy" decoding="async">
+      <img class="cta-car cta-car--right" src="images/fire.png" width="1159" height="773" alt="" loading="lazy" decoding="async">
       <div class="cta-content reveal">
-        <img src="images/driverdashlogo.png" alt="Driver Dash">
+        <img src="images/driverdashlogo.png" width="1000" height="1000" alt="Driver Dash" loading="lazy" decoding="async">
         <span class="kicker">Your ride is waiting</span>
         <h2>Ready to own<br>the road?</h2>
         <p>Jump in, hit the gas, and see how far your reflexes can take you.</p>
@@ -220,7 +222,7 @@
 
   <footer>
     <a class="footer-brand" href="#top" aria-label="Driver Dash top">
-      <img src="images/driverdashlogo.png" alt="Driver Dash">
+      <img src="images/driverdashlogo.png" width="1000" height="1000" alt="Driver Dash" loading="lazy" decoding="async">
     </a>
     <p>&copy; <span id="year"></span> Driver Dash. A Qubicode game.</p>
     <nav aria-label="Footer navigation">
