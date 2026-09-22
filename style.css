@@ -1149,15 +1149,228 @@ h3 {
   --game-accent: #65ffbd;
 }
 
+@font-face {
+  font-family: "GunPopDisplay";
+  src: url("games/gun-pop/fonts/LilitaOne-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* A miniature version of Gun Pop's wooden shooting booth. */
 .game-theme-gun-pop {
-  --game-bg:
-    radial-gradient(circle at 76% 18%, rgba(255,111,216,.32), transparent 28%),
-    radial-gradient(circle at 20% 20%, rgba(255,209,102,.28), transparent 25%),
-    linear-gradient(145deg, rgba(11,18,32,.96), rgba(54,18,72,.88));
-  --game-border: rgba(255,111,216,.32);
-  --game-shadow: 0 26px 82px rgba(0,0,0,.48), 0 0 34px rgba(255,111,216,.12);
-  --game-pattern: repeating-linear-gradient(135deg, rgba(255,255,255,.06) 0 2px, transparent 2px 18px);
-  --game-accent: #ff6fd8;
+  --game-bg: #54270e;
+  --game-border: #b97b36;
+  --game-hover-border: #f6c66d;
+  --game-shadow: 0 6px 0 #321909, 0 20px 48px #0006, inset 0 0 0 3px #efb65c;
+  --game-media-overlay: none;
+  --game-title: #ffdc55;
+  --game-copy: #ffedcd;
+  --game-accent: #ffd344;
+  --game-chip: #fff2cf;
+  --game-chip-border: #be8347;
+  --game-chip-bg: #46210e;
+  --game-link: #fff9d7;
+  --game-link-border: #224411;
+  --game-link-hover-border: #224411;
+  --game-link-bg: linear-gradient(#89ee39, #39bd10 55%, #199202);
+  --game-link-hover-bg: linear-gradient(#a0ff50, #48d21a 55%, #20aa05);
+  --game-link-shadow: inset 0 0 0 2px #b2fb72, inset 0 -5px 0 #147800, 0 5px 0 #1e340e, 0 9px 12px #24110466;
+  border-width: 4px;
+  border-radius: 12px;
+  background-image: linear-gradient(#3d1d0edb, #592a0eeb), url("games/gun-pop/images/screenshot%20(3).jpg");
+  background-size: 100% 100%, 1400px auto;
+  background-position: center, center bottom;
+}
+
+.game-theme-gun-pop::before,
+.game-theme-gun-pop::after {
+  display: none;
+}
+
+.game-theme-gun-pop .game-tab-visual {
+  border: 0;
+  box-shadow: 4px 0 0 #351b0e, 7px 0 0 #c58942;
+}
+
+.game-theme-gun-pop .game-media.image-contain {
+  min-height: 320px;
+  padding: 32px 20px 55px;
+  background-color: #df8e18;
+  background-image: radial-gradient(ellipse at 50% 35%, #ffd84a00 25%, #6b300875 100%), url("games/gun-pop/images/screenshot%20(3).jpg");
+  background-size: 100% 100%, 1100px auto;
+  background-position: center, center bottom;
+  box-shadow: inset 12px 0 #93501c, inset 16px 0 #e2aa57, inset -12px 0 #93501c, inset -16px 0 #e2aa57;
+}
+
+.game-theme-gun-pop .game-media.image-contain > img {
+  position: relative;
+  z-index: 3;
+  width: min(85%, 310px);
+  height: auto;
+  min-height: 0;
+  filter: drop-shadow(0 10px 0 #54260755) drop-shadow(0 15px 16px #53260566);
+  transform: rotate(-5deg);
+}
+
+.game-theme-gun-pop:hover .game-media.image-contain > img,
+.game-theme-gun-pop:focus-within .game-media.image-contain > img {
+  transform: translateY(-5px) rotate(0deg) scale(1.035);
+  filter: drop-shadow(0 13px 0 #54260744) drop-shadow(0 19px 16px #53260566);
+}
+
+.game-theme-gun-pop .gun-pop-card-scenery {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.game-theme-gun-pop .gun-pop-card-awning {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  border-bottom: 4px solid #712c13;
+  border-radius: 0 0 9px 9px;
+  background: linear-gradient(#ffffff38, #3d0b001a), repeating-linear-gradient(90deg, #cf3930 0 38px, #ffebc5 38px 76px);
+  box-shadow: inset 0 -7px #64250c24, 0 7px 0 #77350738, 0 12px 15px #5b280b4d;
+}
+
+.game-theme-gun-pop .gun-pop-card-target {
+  --target-color: #e7413d;
+  position: absolute;
+  z-index: 2;
+  left: 10%;
+  bottom: 35px;
+  width: 74px;
+  height: 74px;
+  border: 4px solid #643110;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--target-color) 0 19%, #fff1c9 20% 36%, var(--target-color) 37% 55%, #fff1c9 56% 67%, var(--target-color) 68%);
+  box-shadow: inset 0 3px 0 #fff7, 4px 5px 0 #813806, 7px 10px 10px #682c0655;
+  transform: rotate(-14deg);
+  transform-origin: center calc(100% + 24px);
+  transition: transform 350ms cubic-bezier(.2, .8, .3, 1.4);
+}
+
+.game-theme-gun-pop .gun-pop-card-target::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 4px);
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 35px;
+  background: linear-gradient(90deg, #935323 40%, #edbd77 40%);
+  box-shadow: 3px 0 #632d0c;
+}
+
+.game-theme-gun-pop .target-purple {
+  --target-color: #ad43df;
+  left: auto;
+  right: 9%;
+  bottom: 42px;
+  width: 64px;
+  height: 64px;
+  transform: rotate(17deg);
+}
+
+.game-theme-gun-pop:hover .target-red,
+.game-theme-gun-pop:focus-within .target-red {
+  transform: rotate(6deg);
+}
+
+.game-theme-gun-pop:hover .target-purple,
+.game-theme-gun-pop:focus-within .target-purple {
+  transform: rotate(-7deg);
+}
+
+.game-theme-gun-pop .gun-pop-card-shelf {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 27px;
+  border-top: 5px solid #ffcf7e;
+  background: linear-gradient(#bf7b2b 0 7px, #6d350d 7px 11px, #9b551a 11px);
+  box-shadow: 0 -3px #87471b, 0 -9px 15px #77370730;
+}
+
+.game-theme-gun-pop .game-content {
+  padding: clamp(24px, 3vw, 34px);
+}
+
+.game-theme-gun-pop h3 {
+  font-family: "GunPopDisplay", "Arial Black", sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 3.4rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  -webkit-text-stroke: 4px #472009;
+  paint-order: stroke fill;
+  text-shadow: 0 4px #28170c;
+}
+
+.game-theme-gun-pop .genre-line {
+  margin-top: 9px;
+  margin-bottom: 6px;
+  color: #9bdbff;
+  text-shadow: 0 2px #241608;
+}
+
+.game-card.game-theme-gun-pop .badge.status-future {
+  border: 2px solid #113d68;
+  border-radius: 6px;
+  color: #fff5d4;
+  background: linear-gradient(#209cef, #0563b5);
+  box-shadow: inset 0 1px #8bddff, 0 3px #162b41;
+}
+
+.game-theme-gun-pop .badge.status-future::before {
+  background: #ffe063;
+  box-shadow: none;
+}
+
+.game-theme-gun-pop .platform-tag,
+.game-theme-gun-pop .tag-list span {
+  border-radius: 6px;
+  box-shadow: inset 0 1px #ffd48b26, 0 2px #25150c66;
+}
+
+.game-theme-gun-pop .platform-tag {
+  color: #ffdd79;
+}
+
+.game-theme-gun-pop .card-link {
+  min-height: 49px;
+  padding: 3px 24px 7px;
+  border-width: 3px;
+  border-radius: 9px;
+  font: 400 1.35rem "GunPopDisplay", "Arial Black", sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0 2px #216d0c;
+}
+
+.game-theme-gun-pop .card-link:focus-visible {
+  outline: 3px solid #fff29b;
+  outline-offset: 5px;
+}
+
+@media (max-width: 820px) {
+  .game-theme-gun-pop .game-tab-visual {
+    box-shadow: 0 4px 0 #351b0e, 0 7px 0 #c58942;
+  }
+
+  .game-theme-gun-pop .game-media.image-contain {
+    min-height: 310px;
+    height: 310px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-theme-gun-pop .gun-pop-card-target {
+    transition: none;
+  }
 }
 
 .card-topline {
@@ -1431,80 +1644,6 @@ h3 {
 
 .asset-content {
   padding: 22px;
-}
-
-.sandbox-section {
-  overflow: hidden;
-}
-
-.sandbox-collapsible {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 14% 18%, rgba(38, 221, 255, 0.12), transparent 24%),
-    radial-gradient(circle at 84% 70%, rgba(166, 108, 255, 0.12), transparent 26%),
-    rgba(10, 18, 32, 0.56);
-  box-shadow: var(--shadow), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-}
-
-.sandbox-toggle {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  width: 100%;
-  min-height: 82px;
-  padding: 0 22px;
-  border: 0;
-  color: var(--text);
-  background: transparent;
-  cursor: pointer;
-}
-
-.sandbox-toggle::before {
-  content: "";
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(38, 221, 255, 0.12);
-  border-radius: 14px;
-  background:
-    linear-gradient(rgba(148, 208, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 208, 255, 0.045) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mask-image: linear-gradient(90deg, black, transparent 85%);
-}
-
-.sandbox-toggle span,
-.sandbox-toggle strong {
-  position: relative;
-  z-index: 1;
-}
-
-.sandbox-toggle span {
-  color: var(--cyan);
-  font-size: clamp(1.1rem, 3vw, 1.8rem);
-  font-weight: 900;
-  letter-spacing: 0.08em;
-}
-
-.sandbox-toggle strong {
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--soft);
-  background: rgba(5, 7, 17, 0.42);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.sandbox-toggle:hover strong,
-.sandbox-toggle:focus-visible strong {
-  border-color: var(--border-strong);
-  color: var(--text);
 }
 
 .contact-section {
@@ -1924,8 +2063,7 @@ h3 {
 
   .game-card,
   .asset-card,
-  .contact-card,
-  .sandbox-collapsible {
+  .contact-card {
     backdrop-filter: none;
   }
 

@@ -11,11 +11,10 @@ A static Qubicode portfolio built with plain HTML, CSS, and JavaScript. It is Gi
 |-- script.js
 |-- Images/
 |-- games/
-|-- sandbox/
 `-- README.md
 ```
 
-The home page uses the root `style.css` and `script.js`. Game pages keep their own local assets, styles, and scripts in their folders, and the sandbox lives in its own `sandbox/` directory.
+The home page uses the root `style.css` and `script.js`. Game pages keep their own local assets, styles, and scripts in their folders.
 
 ## Home Page Game Cards
 
@@ -79,4 +78,4 @@ No build step is required.
 
 ## Final Check
 
-Before uploading, make sure file names and folder names match the references in the HTML exactly. GitHub Pages is case-sensitive, so `Images/`, `games/`, and `sandbox/` all need to stay spelled the same way everywhere.
+Before uploading, make sure file names and folder names match the references in the HTML exactly. GitHub Pages is case-sensitive, so `Images/` and `games/` need to stay spelled the same way everywhere.

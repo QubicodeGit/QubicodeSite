@@ -128,13 +128,11 @@ const games = [
     genre: "Mobile Flick-Shooting Arcade",
     theme: "gun-pop",
     filters: ["mobile"],
-    page: "",
-    image: "Images/gunpopIcon.png",
-    imageWidth: 1254,
-    imageHeight: 1254,
-    logo: "Images/gunpopIcon.png",
-    logoWidth: 1254,
-    logoHeight: 1254,
+    page: "games/gun-pop/index.html",
+    image: "games/gun-pop/images/GunPopLogo.png",
+    imageWidth: 1448,
+    imageHeight: 1086,
+    imageAlt: "Gun Pop logo",
     mediaMode: "contain",
     description:
       "A mobile flick-shooting game where a gun is thrown into the air and players time shots while it flips to hit targets, gifts, and ricochet panels.",
@@ -186,10 +184,18 @@ function renderGames() {
     .map((game, index) => {
       const mediaClass = game.mediaMode === "contain" ? "game-media image-contain" : "game-media";
       const imageMarkup = game.image
-        ? `<img src="${game.image}" width="${game.imageWidth}" height="${game.imageHeight}" alt="${game.title} screenshot" loading="lazy" decoding="async">`
+        ? `<img src="${game.image}" width="${game.imageWidth}" height="${game.imageHeight}" alt="${game.imageAlt || `${game.title} screenshot`}" loading="lazy" decoding="async">`
         : `<div class="placeholder-media"><span>${game.title} visual coming soon</span></div>`;
       const logoMarkup = game.logo
         ? `<div class="game-logo"><img src="${game.logo}" width="${game.logoWidth}" height="${game.logoHeight}" alt="${game.title} logo" loading="lazy" decoding="async"></div>`
+        : "";
+      const boothMarkup = game.theme === "gun-pop"
+        ? `<div class="gun-pop-card-scenery" aria-hidden="true">
+            <span class="gun-pop-card-awning"></span>
+            <span class="gun-pop-card-target target-red"></span>
+            <span class="gun-pop-card-target target-purple"></span>
+            <span class="gun-pop-card-shelf"></span>
+          </div>`
         : "";
 
       return `
@@ -199,6 +205,7 @@ function renderGames() {
               ${imageMarkup}
             </div>
             ${logoMarkup}
+            ${boothMarkup}
           </div>
           <div class="game-content">
             <div class="card-topline">
@@ -464,4 +471,3 @@ updateScrollState();
 backToTop?.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
 });
-
