@@ -1,7 +1,6 @@
 const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav-links");
-const modal = document.querySelector(".trailer-modal");
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const finePointer = matchMedia("(hover: hover) and (pointer: fine) and (min-width: 1001px)").matches;
 const mobileLayout = matchMedia("(max-width: 760px)").matches;
@@ -105,20 +104,7 @@ document.querySelectorAll(".bot-dot").forEach(button => button.addEventListener(
   if (botImage) botImage.alt = botDetails[color].label;
 }));
 
-document.querySelector(".trailer-button")?.addEventListener("click", () => {
-  modal?.classList.add("open");
-  modal?.setAttribute("aria-hidden", "false");
-});
-const closeModal = () => {
-  modal?.classList.remove("open");
-  modal?.setAttribute("aria-hidden", "true");
-};
-document.querySelector(".modal-close")?.addEventListener("click", closeModal);
-modal?.addEventListener("click", event => { if (event.target === modal) closeModal(); });
-document.addEventListener("keydown", event => { if (event.key === "Escape") closeModal(); });
-
 if (finePointer && !reducedMotion) {
-  const cursorGlow = document.querySelector(".cursor-glow");
   const depthItems = document.querySelectorAll("[data-depth]");
 
   document.querySelectorAll(".feature-card").forEach(card => {
@@ -128,8 +114,6 @@ if (finePointer && !reducedMotion) {
       const y = event.clientY - rect.top;
       const rotateY = ((x / rect.width) - .5) * 8;
       const rotateX = (.5 - (y / rect.height)) * 8;
-      card.style.setProperty("--mouse-x", `${x}px`);
-      card.style.setProperty("--mouse-y", `${y}px`);
       card.style.setProperty("--rotate-x", `${rotateX.toFixed(2)}deg`);
       card.style.setProperty("--rotate-y", `${rotateY.toFixed(2)}deg`);
       card.style.setProperty("--shadow-x", `${(-rotateY * 1.2).toFixed(1)}px`);
@@ -144,7 +128,6 @@ if (finePointer && !reducedMotion) {
   });
 
   document.addEventListener("pointermove", event => {
-    if (cursorGlow) cursorGlow.style.cssText = `left:${event.clientX}px;top:${event.clientY}px`;
     const x = (event.clientX / innerWidth - .5);
     const y = (event.clientY / innerHeight - .5);
     depthItems.forEach(item => {

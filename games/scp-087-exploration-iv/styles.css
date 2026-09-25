@@ -71,10 +71,16 @@ h1 {
   max-width: 930px;
   margin-bottom: 14px;
   color: var(--scp-cold-white);
-  font-size: clamp(3rem, 8vw, 7.6rem);
-  line-height: 0.9;
+  font-size: clamp(1.85rem, 6.7vw, 6rem);
+  line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;
+}
+
+.hero-title-line {
+  display: block;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 h2 {
@@ -113,9 +119,7 @@ h3 {
 .scp-grain,
 .scp-scanlines,
 .scp-vignette,
-.scp-flicker,
-.scp-dust,
-.flashlight {
+.scp-dust {
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -146,28 +150,9 @@ h3 {
     linear-gradient(90deg, rgba(0, 0, 0, 0.58), transparent 23% 79%, rgba(0, 0, 0, 0.64));
 }
 
-.scp-flicker {
-  z-index: 51;
-  opacity: 0;
-  background: rgba(226, 245, 245, 0.12);
-  animation: screenFlicker 9s infinite;
-}
-
 .scp-dust {
   z-index: 12;
   overflow: hidden;
-}
-
-.flashlight {
-  z-index: 49;
-  opacity: 0;
-  background: radial-gradient(circle 240px at var(--mx, 50%) var(--my, 50%), rgba(216, 237, 237, 0.25), rgba(116, 132, 132, 0.08) 34%, transparent 70%);
-  mix-blend-mode: screen;
-  transition: opacity 220ms ease;
-}
-
-body.has-pointer .flashlight {
-  opacity: 1;
 }
 
 .dust-particle {
@@ -337,7 +322,7 @@ body.has-pointer .flashlight {
   inset: -10vh 0 -12vh;
   z-index: -4;
   opacity: 0.94;
-  animation: stairDrift 30s ease-in-out infinite alternate, heroFocusPulse 8s ease-in-out infinite;
+  animation: stairDrift 30s ease-in-out infinite alternate;
 }
 
 .hero-background img {
@@ -356,16 +341,6 @@ body.has-pointer .flashlight {
     radial-gradient(circle at 67% 44%, transparent 0 17%, rgba(0, 0, 0, 0.18) 36%, rgba(0, 0, 0, 0.54) 68%),
     linear-gradient(90deg, rgba(0, 0, 0, 0.82), rgba(0, 0, 0, 0.16) 45%, rgba(0, 0, 0, 0.7)),
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.78));
-}
-
-.hero-light {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse 62% 48% at 63% 47%, rgba(210, 233, 233, 0.22), rgba(92, 103, 103, 0.08) 38%, transparent 72%),
-    conic-gradient(from 190deg at 58% 46%, transparent 0 18deg, rgba(219, 238, 238, 0.09) 42deg, transparent 76deg);
-  animation: lampFlicker 6.8s infinite;
 }
 
 .hero-inner {
@@ -396,13 +371,6 @@ body.has-pointer .flashlight {
   text-transform: uppercase;
 }
 
-.hero-subtitle {
-  margin-bottom: 18px;
-  color: var(--scp-cold-white);
-  font-size: clamp(1.2rem, 2.6vw, 2rem);
-  font-weight: 760;
-}
-
 .hero-description,
 .large-copy,
 .section-heading p,
@@ -425,35 +393,6 @@ body.has-pointer .flashlight {
   gap: 12px;
 }
 
-.hero-readout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 30px;
-  color: rgba(223, 238, 238, 0.68);
-  font-size: 0.72rem;
-  font-weight: 850;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.hero-readout span {
-  padding: 7px 9px;
-  border: 1px solid rgba(223, 238, 238, 0.13);
-  border-radius: var(--scp-radius);
-  background: rgba(3, 4, 4, 0.48);
-  animation: readoutPulse 5.5s ease-in-out infinite;
-}
-
-.hero-readout span:nth-child(2) {
-  animation-delay: -1.8s;
-}
-
-.hero-readout span:nth-child(3) {
-  color: rgba(142, 36, 36, 0.95);
-  animation-delay: -3.1s;
-}
-
 .button {
   position: relative;
   overflow: hidden;
@@ -472,25 +411,11 @@ body.has-pointer .flashlight {
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
-.button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(223, 238, 238, 0.12), transparent);
-  transform: translateX(-120%);
-  transition: transform 420ms ease;
-}
-
 .button:hover,
 .button:focus-visible {
   transform: translateY(-2px) scale(1.015);
   border-color: rgba(223, 238, 238, 0.34);
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.54);
-}
-
-.button:hover::after,
-.button:focus-visible::after {
-  transform: translateX(120%);
 }
 
 .button-primary {
@@ -731,18 +656,6 @@ body.has-pointer .flashlight {
   pointer-events: none;
 }
 
-.case-file::after {
-  content: "SECURE. CONTAIN. PROTECT.";
-  position: absolute;
-  right: 18px;
-  bottom: 12px;
-  color: rgba(142, 36, 36, 0.12);
-  font-size: clamp(1.4rem, 3vw, 2.8rem);
-  font-weight: 950;
-  letter-spacing: 0.1em;
-  pointer-events: none;
-}
-
 .case-file:hover {
   border-color: rgba(223, 238, 238, 0.26);
   box-shadow: 0 34px 100px rgba(0, 0, 0, 0.56), inset 0 0 36px rgba(223, 238, 238, 0.03);
@@ -921,25 +834,10 @@ body.has-pointer .flashlight {
   transition: transform 220ms ease, border-color 220ms ease, filter 220ms ease;
 }
 
-.atmos-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent, rgba(223, 238, 238, 0.08), transparent);
-  opacity: 0;
-  transform: translateX(-45%);
-  transition: opacity 160ms ease, transform 420ms ease;
-}
-
 .atmos-card:hover {
   transform: translateY(-5px) skewX(-0.6deg);
   border-color: rgba(223, 238, 238, 0.28);
   filter: contrast(1.06);
-}
-
-.atmos-card:hover::before {
-  opacity: 1;
-  transform: translateX(45%);
 }
 
 .gallery-shell {
@@ -1331,46 +1229,6 @@ body.has-pointer .flashlight {
   }
 }
 
-@keyframes heroFocusPulse {
-  0%,
-  100% {
-    filter: brightness(1) contrast(1);
-  }
-
-  48% {
-    filter: brightness(1.08) contrast(1.04);
-  }
-}
-
-@keyframes lampFlicker {
-  0%,
-  8%,
-  10%,
-  46%,
-  49%,
-  100% {
-    opacity: 1;
-  }
-
-  9%,
-  47% {
-    opacity: 0.68;
-  }
-}
-
-@keyframes screenFlicker {
-  0%,
-  91%,
-  93%,
-  100% {
-    opacity: 0;
-  }
-
-  92% {
-    opacity: 0.12;
-  }
-}
-
 @keyframes grainShift {
   to {
     transform: translate(-7px, 5px);
@@ -1586,10 +1444,8 @@ body.has-pointer .flashlight {
   }
 
   .scp-grain,
-  .scp-flicker,
   .scp-dust,
   .hero-background,
-  .hero-light,
   .hero-readout span,
   .descent-cue span,
   .glitch::before,
@@ -1600,9 +1456,7 @@ body.has-pointer .flashlight {
   }
 
   .scp-grain,
-  .scp-flicker,
-  .scp-dust,
-  .flashlight {
+  .scp-dust {
     display: none;
   }
 
@@ -1651,10 +1505,6 @@ body.has-pointer .flashlight {
 }
 
 @media (max-width: 560px) {
-  h1 {
-    font-size: 3.1rem;
-  }
-
   .hero-actions,
   .button {
     width: 100%;
@@ -1682,12 +1532,6 @@ body.has-pointer .flashlight {
   }
 }
 
-@media (hover: none) {
-  .flashlight {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1710,9 +1554,7 @@ body.has-pointer .flashlight {
 
   .scp-grain,
   .scp-scanlines,
-  .scp-flicker,
   .scp-dust,
-  .flashlight,
   .depth-meter {
     display: none;
   }

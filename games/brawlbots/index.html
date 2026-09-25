@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BrawlBots is a cooperative third-person puzzle brawler where up to four defective robots fight to stop a corrupted central AI.">
+  <meta name="description" content="BrawlBots is a planned cooperative puzzle brawler for up to four players. Development is on hold, and the early prototype is far from a stable build.">
   <link rel="icon" href="../../Images/qubicodeLogo.svg" type="image/svg+xml">
   <link rel="icon" href="../../Images/qubicodeLogo.ico" sizes="any">
   <title>Brawlbots</title>
@@ -13,9 +13,9 @@
   <link rel="preload" href="images/img7.PNG" as="image">
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../store-buttons.css">
 </head>
 <body>
-  <div class="cursor-glow" aria-hidden="true"></div>
   <div class="scroll-fx" aria-hidden="true">
     <div class="scroll-orb orb-left"></div>
     <div class="scroll-orb orb-right"></div>
@@ -33,17 +33,15 @@
     <nav class="nav-links" aria-label="Main navigation">
       <a class="site-link" href="../../index.html#home">Qubicode</a>
       <a class="site-link" href="../../index.html#games">All Games</a>
-      <a href="#about">The Game</a>
+      <a href="#arenas">Facilities</a>
       <a href="#features">Features</a>
       <a href="#bots">Bots</a>
-      <a href="#arenas">Facilities</a>
-      <a class="nav-cta" href="#play">Play Now</a>
+      <a class="nav-cta" href="#play">Project Status</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-sky" aria-hidden="true"></div>
       <div class="sun-orb" aria-hidden="true"></div>
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="cloud cloud-one" aria-hidden="true"></div>
@@ -61,21 +59,15 @@
       <div class="spark spark-b" aria-hidden="true">✦</div>
       <div class="spark spark-c" aria-hidden="true">+</div>
       <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> Central AI corruption detected</div>
+        <div class="eyebrow development-status"><span class="status-dot" aria-hidden="true"></span> Development on hold</div>
         <h1><span>BRAWL</span><strong>BOTS</strong></h1>
-        <p>Team up as defective robots, solve dangerous machine-built puzzles, and brawl through a corrupted world before total system failure.</p>
+        <p>A planned co-op puzzle brawler about four defective robots fighting a corrupted central AI. <span class="prototype-note">An early prototype, still far from a stable build.</span></p>
         <div class="hero-actions">
-          <a href="#play" class="button button-primary">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
-            Play Now
-          </a>
-          <button class="button button-secondary trailer-button">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 9 5 3-5 3V9Z"/></svg>
-            Watch Trailer
-          </button>
+          <a href="#arenas" class="button button-primary">View Screenshots</a>
+          <a href="#play" class="button button-secondary">Project Status</a>
         </div>
         <div class="hero-meta">
-          <div><strong>4</strong><span>Players</span></div>
+          <div><strong>4</strong><span>Planned Players</span></div>
           <div><strong>1</strong><span>Co-op Mission</span></div>
           <div><strong>4</strong><span>Heroes</span></div>
         </div>
@@ -83,7 +75,7 @@
       <div class="hero-visual parallax-zone">
         <div class="hero-burst" aria-hidden="true"></div>
         <div class="hero-frame" data-depth="1.4">
-          <div class="frame-top"><span><i></i> Facility breach</span><b>4P</b></div>
+          <div class="frame-top"><span>Early prototype</span><b>4P</b></div>
           <img class="hero-bot" src="images/img7.PNG" width="1589" height="886" alt="Four colorful BrawlBots entering a dangerous scrapyard facility" fetchpriority="high" decoding="async">
           <div class="frame-bottom"><strong>Scrapyard Facility</strong><span>Sector 01</span></div>
         </div>
@@ -97,7 +89,7 @@
           <span>!</span><small>Puzzle found</small>
         </div>
       </div>
-      <div class="scroll-hint" aria-hidden="true"><span></span>Begin mission</div>
+      <div class="scroll-hint" aria-hidden="true"><span></span>Explore the prototype</div>
     </section>
 
     <section class="marquee-strip" aria-label="Game highlights">
@@ -107,33 +99,34 @@
       </div>
     </section>
 
-    <section class="section about" id="about">
-      <div class="section-heading reveal">
-        <span class="kicker">The machines have malfunctioned</span>
-        <h2>Defective bots.<br><em>Last hope.</em></h2>
-        <p>When the central governing AI becomes corrupted, nearly every machine turns hostile. Only four defective humanoid robots remain unaffected, and saving the world means working together.</p>
+    <section class="section arenas-section" id="arenas">
+      <div class="section-title reveal">
+        <span class="kicker">Early prototype screenshots</span>
+        <h2>Enter the <em>facilities</em></h2>
       </div>
-      <div class="about-visual reveal">
-        <div class="image-panel panel-main">
-          <img src="images/img7.PNG" width="1589" height="886" alt="Four colorful BrawlBots beginning their cooperative mission" loading="lazy" decoding="async">
-          <div class="image-tag"><b>4</b> bots unite</div>
-        </div>
-        <div class="stat-card stat-card-top">
-          <span class="stat-icon">⚡</span>
-          <strong data-count="4">0</strong>
-          <small>co-op heroes</small>
-        </div>
-        <div class="stat-card stat-card-bottom">
-          <span class="stat-icon">★</span>
-          <strong data-count="1">0</strong>
-          <small>corrupted AI</small>
-        </div>
+      <div class="arena-grid">
+        <article class="arena-card arena-wide reveal">
+          <img src="images/img7.PNG" width="1589" height="886" alt="Scrapyard facility" loading="lazy" decoding="async">
+          <div class="arena-overlay"><span>01</span><h3>Scrapyard Facility</h3><p>Coordinate through cranes, crates, and corrupted machines.</p><button aria-label="View Scrapyard Facility">↗</button></div>
+        </article>
+        <article class="arena-card reveal">
+          <img src="images/img5.PNG" width="545" height="354" alt="Industrial hazard yard" loading="lazy" decoding="async">
+          <div class="arena-overlay"><span>02</span><h3>Hazard Yard</h3><p>Use the environment before the environment uses you.</p><button aria-label="View Hazard Yard">↗</button></div>
+        </article>
+        <article class="arena-card laser-card reveal">
+          <img src="images/img8.PNG" width="1283" height="718" alt="Scrapyard control block with a green bot and interactive buttons" loading="lazy" decoding="async">
+          <div class="arena-overlay"><span>03</span><h3>Control Block</h3><p>Activate mechanisms together to unlock the way forward.</p><button aria-label="View Control Block">↗</button></div>
+        </article>
+        <article class="arena-card arena-wide reveal">
+          <img src="images/img4.PNG" width="974" height="542" alt="Four colorful bots choosing a character" loading="lazy" decoding="async">
+          <div class="arena-overlay"><span>04</span><h3>Assembly Point</h3><p>Four unaffected bots. One impossible mission.</p><button aria-label="View Assembly Point">↗</button></div>
+        </article>
       </div>
     </section>
 
     <section class="section features-section" id="features">
       <div class="section-title reveal">
-        <span class="kicker">Survive the system failure</span>
+        <span class="kicker">Planned gameplay</span>
         <h2>Think together. <em>Brawl together.</em></h2>
       </div>
       <div class="feature-grid">
@@ -206,31 +199,6 @@
       </div>
     </section>
 
-    <section class="section arenas-section" id="arenas">
-      <div class="section-title reveal">
-        <span class="kicker">The path to the central tower</span>
-        <h2>Enter the <em>facilities</em></h2>
-      </div>
-      <div class="arena-grid">
-        <article class="arena-card arena-wide reveal">
-          <img src="images/img7.PNG" width="1589" height="886" alt="Scrapyard facility" loading="lazy" decoding="async">
-          <div class="arena-overlay"><span>01</span><h3>Scrapyard Facility</h3><p>Coordinate through cranes, crates, and corrupted machines.</p><button aria-label="View Scrapyard Facility">↗</button></div>
-        </article>
-        <article class="arena-card reveal">
-          <img src="images/img5.PNG" width="545" height="354" alt="Industrial hazard yard" loading="lazy" decoding="async">
-          <div class="arena-overlay"><span>02</span><h3>Hazard Yard</h3><p>Use the environment before the environment uses you.</p><button aria-label="View Hazard Yard">↗</button></div>
-        </article>
-        <article class="arena-card laser-card reveal">
-          <img src="images/img8.PNG" width="1283" height="718" alt="Scrapyard control block with a green bot and interactive buttons" loading="lazy" decoding="async">
-          <div class="arena-overlay"><span>03</span><h3>Control Block</h3><p>Activate mechanisms together to unlock the way forward.</p><button aria-label="View Control Block">↗</button></div>
-        </article>
-        <article class="arena-card arena-wide reveal">
-          <img src="images/img4.PNG" width="974" height="542" alt="Four colorful bots choosing a character" loading="lazy" decoding="async">
-          <div class="arena-overlay"><span>04</span><h3>Assembly Point</h3><p>Four unaffected bots. One impossible mission.</p><button aria-label="View Assembly Point">↗</button></div>
-        </article>
-      </div>
-    </section>
-
     <section class="section game-loop">
       <div class="loop-card reveal">
         <span class="loop-number">01</span>
@@ -254,16 +222,13 @@
     <section class="cta-section" id="play">
       <div class="cta-noise" aria-hidden="true"></div>
       <div class="cta-content reveal">
-        <span class="kicker">The world needs its defective heroes</span>
-        <h2>Team up.<br><em>Save the system.</em></h2>
-        <p>Gather up to four players, fight through the machine uprising, and reach the central AI tower before it is too late.</p>
-        <a href="#" class="button button-dark">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z"/></svg>
-          Begin The Mission
-        </a>
+        <span class="kicker">Development status</span>
+        <h2>On hold.<br><em>Planned for later.</em></h2>
+        <p>Brawlbots is currently on hold. The screenshots show an early prototype, and the planned game is still far from a stable build. No stable build is available to play.</p>
+        <button class="button button-dark store-button" type="button" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../Images/store-icons.svg#steam"/></svg><span>Steam</span></button>
       </div>
       <img class="cta-bot" src="images/BrawlbotsIcon.png" width="676" height="676" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <div class="cta-badge" aria-hidden="true"><span>System</span><strong>FAILURE!</strong></div>
+      <div class="cta-badge" aria-hidden="true"><span>Project</span><strong>ON HOLD</strong></div>
     </section>
   </main>
 
@@ -274,21 +239,13 @@
     </a>
     <p>Four defective robots. One corrupted world. No bot left behind.</p>
     <nav aria-label="Footer navigation">
-      <a href="../../index.html#home">Qubicode</a><a href="../../index.html#games">All Games</a><a href="#features">Features</a><a href="#arenas">Facilities</a>
+      <a href="../../index.html#home">Qubicode</a><a href="../../index.html#games">All Games</a><a href="#features">Features</a><a href="#arenas">Facilities</a><a href="privacy/index.html">Privacy policy</a>
     </nav>
     <div class="socials">
       <a href="https://www.youtube.com/@Qubicode" target="_blank" rel="noopener" aria-label="YouTube">YT</a><a href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener" aria-label="Discord">DC</a><a href="https://www.instagram.com/qubicode" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
     </div>
     <small>© 2026 Qubicode Dev Team. All bots reserved.</small>
   </footer>
-
-  <div class="trailer-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="BrawlBots trailer">
-    <button class="modal-close" aria-label="Close trailer">×</button>
-    <div class="modal-frame">
-      <img src="images/img3.PNG" width="1589" height="817" alt="BrawlBots game studio scene" loading="lazy" decoding="async">
-      <div><span>Transmission incoming</span><strong>Central AI signal detected.</strong></div>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>

@@ -42,7 +42,6 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
 .sound-toggle[aria-pressed='true'] .mute-mark { display: none; }
 .motion-toggle[aria-pressed='true'] { filter: saturate(.3); }
 .game-button { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 20px; min-height: 65px; padding: 13px 32px 17px; border: 4px solid #102e43; border-radius: 12px; color: #fff5de; background: linear-gradient(#35d3ff, #0088f4 52%, #045bdd); box-shadow: inset 0 0 0 3px #66dfff, inset 0 -7px 0 #0034a1, 0 6px 0 #182634, 0 10px 16px #2a190a5e; font: 24px/1.1 var(--display); text-transform: uppercase; text-shadow: 2px 3px #033779; transition: transform .17s, filter .17s; }
-.game-button::before { content: ''; position: absolute; height: 3px; top: 7px; left: 14%; right: 14%; background: #ffffff79; border-radius: 50%; }
 .game-button:hover { transform: translateY(-4px) rotate(-1deg); filter: brightness(1.12); }
 .game-button:active { transform: translateY(3px); }
 .green-button { border-color: #264714; background: linear-gradient(#8af333, #25d300 54%, #14a000); box-shadow: inset 0 0 0 3px #a5ff6e, inset 0 -7px 0 #067100, 0 6px 0 #183309, 0 10px 18px #2a190a65; text-shadow: 2px 3px #196800; }
@@ -111,7 +110,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
 .hanging-ribbon h2 { font-size: clamp(28px, 4vw, 47px); line-height: 1.1; text-align: center; text-transform: uppercase; text-shadow: 2px 4px #063669; }
 .hanging-ribbon > span { font-size: 24px; color: #58b4f5; text-shadow: 1px 2px #003d88; }
 .section-intro { position: relative; z-index: 2; margin: 27px 20px 0; text-align: center; font-size: 14px; color: #f1cca2; }
-.armory-layout { display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 100px; margin-top: 55px; }
+.armory-layout { display: grid; grid-template-columns: 1fr; max-width: 620px; align-items: center; margin-top: 55px; }
 .weapon-display { text-align: center; }
 .name-plaque { position: relative; display: inline-flex; gap: 15px; align-items: center; padding: 12px 25px 16px; border: 4px solid #63351c; background: linear-gradient(#a84418, #7c220c); box-shadow: inset 0 0 0 2px #de8743, 0 5px #281809; transform: rotate(-2deg); }
 .name-plaque h3 { font-size: 30px; text-transform: uppercase; text-shadow: 2px 2px #602509; }
@@ -150,7 +149,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
 .boss-door { position: absolute; top: 0; bottom: 0; z-index: 2; width: 50%; border: 5px solid #ad7235; background: repeating-linear-gradient(90deg, #8a4a20 0 26px, #673312 28px 32px, #af7238 34px 37px); box-shadow: inset 0 0 0 3px #613012; backface-visibility: hidden; transition: transform .9s cubic-bezier(.22,.61,.36,1); }
 .door-left { left: 0; transform-origin: left center; }.door-right { right: 0; transform-origin: right center; }
 .boss-door i { position: absolute; left: -2px; right: -2px; top: 18%; height: 17px; border-block: 2px solid #494c44; background: linear-gradient(#b4b396, #6b6f5c); box-shadow: 0 3px #482507; }.boss-door i:nth-child(2) { top: auto; bottom: 18%; }
-.boss-door > span { position: absolute; top: 27%; width: 100%; color: #e6c387; font: 110px var(--display); text-shadow: 3px 5px #622e0d; transform: rotate(-10deg); }.door-right > span { transform: rotate(8deg); }
+/* Keep the mark over the seam while it travels with the frontmost right shutter. */
+.boss-door > span { position: absolute; left: calc(-50% - 10px); top: 27%; width: 100%; color: #e6c387; font: 110px var(--display); text-shadow: 3px 5px #622e0d; transform: rotate(-10deg); }
 .boss-sill { position: absolute; z-index: 3; bottom: -30px; left: -29px; right: -29px; height: 20px; background: linear-gradient(#f1bf73 0 5px, #a26224 6px); box-shadow: 0 6px #693619; }
 .boss-window.is-open .door-left { transform: rotateY(-130deg); }.boss-window.is-open .door-right { transform: rotateY(130deg); }.boss-window.is-open .barrel-boss { transform: translateY(0); animation: boss-breathe 2.8s 1s ease-in-out infinite; }
 .boss-toggle { margin-top: 43px; font-size: 20px; min-height: 58px; }
@@ -236,7 +236,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
 }
 
 @media (max-width: 1100px) {
-  .scene-width { width: calc(100% - 80px); }.booth-scene { width: calc(100% - 70px); }.target-window { width: 157px; height: 130px; }.pop-target { width: 107px; height: 107px; }.window-red { left: 5%; top: 280px; }.window-purple { right: 5%; top: 280px; }.window-green { width: 137px; height: 115px; left: 7%; }.target-green { width: 90px; height: 90px; }.hero-gun-wrap { width: 340px; left: calc(50% - 170px); }.teaser-crate { width: 140px; right: 5%; top: 573px; }.game-title { width: 310px; left: calc(50% - 155px); top: 177px; }.hero-tagline { top: 417px; }.armory-layout { gap: 55px; }.loadout-poster { width: 240px; }.name-plaque h3 { font-size: 26px; }.weapon-stage { height: 235px; }.boss-layout { gap: 70px; }.boss-window { height: 283px; }.how-to { gap: 22px; }.how-to > div { gap: 12px; }.photo-wall { gap: 14px; }.pinned-shot figcaption { font-size: 12px; }
+  .scene-width { width: calc(100% - 80px); }.booth-scene { width: calc(100% - 70px); }.target-window { width: 157px; height: 130px; }.pop-target { width: 107px; height: 107px; }.window-red { left: 5%; top: 280px; }.window-purple { right: 5%; top: 280px; }.window-green { width: 137px; height: 115px; left: 7%; }.target-green { width: 90px; height: 90px; }.hero-gun-wrap { width: 340px; left: calc(50% - 170px); }.teaser-crate { width: 140px; right: 5%; top: 573px; }.game-title { width: 310px; left: calc(50% - 155px); top: 177px; }.hero-tagline { top: 417px; }.loadout-poster { width: 240px; }.name-plaque h3 { font-size: 26px; }.weapon-stage { height: 235px; }.boss-layout { gap: 70px; }.boss-window { height: 283px; }.how-to { gap: 22px; }.how-to > div { gap: 12px; }.photo-wall { gap: 14px; }.pinned-shot figcaption { font-size: 12px; }
 }
 
 @media (max-width: 800px) {
@@ -279,6 +279,83 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
   .game-dock svg { width: 26px; height: 26px; }
   .game-dock img { width: 43px; }
   .game-dock > a > span { font-size: 9px; }
+}
+
+
+/* Two floating targets and the crate sit opposite the trailer phone. */
+.booth-scene--trailer { height: 780px; }
+.booth-scene--trailer .welcome-sign { top: 116px; }
+.booth-scene--trailer .game-title { top: 160px; width: 250px; left: calc(50% - 125px); }
+.booth-scene--trailer .hero-tagline { top: 352px; width: 350px; font-size: 29px; }
+.booth-scene--trailer .hero-tagline span { font-size: 34px; }
+.booth-scene--trailer .hero-gun-wrap { top: 445px; width: 320px; height: 142px; left: calc(50% - 160px); }
+.booth-scene--trailer .hand-note { right: 0; bottom: -35px; font-size: 14px; }
+.booth-scene--trailer .hero-invite { top: 635px; width: 340px; }
+.booth-scene--trailer .hero-invite p { font-size: 13px; }
+.booth-scene--trailer .hero-invite .game-button { min-height: 55px; margin-top: 12px; font-size: 21px; }
+.hero-props { position: absolute; left: 0; top: 228px; width: 26%; height: 475px; }
+.hero-props .target-window { width: 138px; height: 120px; border-width: 9px; animation: prop-float 5s ease-in-out infinite; }
+.hero-props .pop-target { width: 100px; height: 100px; animation: none; }
+.hero-props .window-red { top: 0; left: 18%; right: auto; }
+.hero-props .window-purple { top: 197px; left: 30%; right: auto; animation-delay: -2.5s; }
+.hero-props .window-label { bottom: -39px; font-size: 16px; }
+.hero-props .teaser-crate { top: 369px; left: 29%; right: auto; width: 126px; }
+.trailer-phone { position: absolute; z-index: 3; top: 211px; right: 2%; width: clamp(190px, 21vw, 260px); margin: 0; transform: rotate(4deg); }
+.trailer-phone-frame { position: relative; padding: 16px 10px; border: 5px solid #24190f; border-radius: 42px; background: linear-gradient(145deg, #505b68, #151e2c 55%, #354453); box-shadow: 8px 10px 0 #65390f80, inset 2px 2px #95a5b56b; }
+.trailer-phone-frame::after { content: ''; position: absolute; right: -10px; top: 27%; width: 5px; height: 43px; border: 2px solid #24190f; border-radius: 0 4px 4px 0; background: #354453; }
+.trailer-phone-screen { overflow: hidden; aspect-ratio: 501 / 891; border: 3px solid #10141a; border-radius: 27px; background: #183a51; }
+.trailer-phone-screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.trailer-phone-speaker { position: absolute; z-index: 1; top: 19px; left: calc(50% - 27px); width: 54px; height: 5px; border-radius: 8px; background: #0a1016; }
+.trailer-phone-camera { position: absolute; z-index: 1; top: 18px; left: calc(50% + 35px); width: 7px; height: 7px; border: 2px solid #0a1016; border-radius: 50%; background: #3782a7; }
+.trailer-phone figcaption { width: max-content; max-width: 100%; margin: 20px auto 0; padding: 7px 13px; border: 2px solid #552c13; border-radius: 5px; background: #f5d892; color: #633914; box-shadow: 2px 3px #66340c60; font: 16px var(--display); text-align: center; transform: rotate(-4deg); }
+@keyframes prop-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+.motion-offscreen, .motion-offscreen *, .motion-offscreen *::before, .motion-offscreen *::after { animation-play-state: paused !important; }
+@media (max-width: 1100px) and (min-width: 901px) {
+  .hero-props .target-window { width: 118px; height: 104px; }
+  .hero-props .pop-target { width: 86px; height: 86px; }
+  .hero-props .teaser-crate { width: 110px; }
+  .booth-scene--trailer .hero-gun-wrap { width: 290px; left: calc(50% - 145px); }
+}
+@media (min-width: 901px) and (max-height: 820px) {
+  .trailer-phone { top: 211px; width: 220px; }
+  .trailer-phone figcaption { position: absolute; bottom: calc(100% + 15px); left: 50%; margin: 0; transform: translateX(-50%) rotate(-4deg); }
+}
+@media (max-width: 900px) {
+  .booth-scene--trailer { width: calc(100% - 64px); height: 1160px; }
+  .booth-scene--trailer .game-title { top: 155px; width: 225px; left: calc(50% - 112.5px); }
+  .booth-scene--trailer .hero-tagline { top: 328px; width: 100%; font-size: 28px; }
+  .booth-scene--trailer .hero-tagline span { font-size: 32px; }
+  .hero-props { top: 430px; left: 2%; width: 43%; height: 345px; }
+  .hero-props .target-window { width: 112px; height: 99px; border-width: 8px; }
+  .hero-props .pop-target { width: 82px; height: 82px; }
+  .hero-props .window-red { left: 24%; }
+  .hero-props .window-purple { top: 152px; left: 28%; }
+  .hero-props .teaser-crate { top: 284px; left: 30%; width: 94px; }
+  .hero-props .teaser-crate > span { font-size: 13px; }
+  .hero-props .teaser-crate > b { width: 31px; height: 31px; top: -17px; font-size: 22px; }
+  .hero-props .window-label { bottom: -32px; font-size: 14px; }
+  .trailer-phone { top: 444px; right: 5%; width: clamp(155px, 27vw, 185px); }
+  .trailer-phone-frame { padding: 12px 7px; border-width: 4px; border-radius: 30px; box-shadow: 5px 7px 0 #65390f80; }
+  .trailer-phone-screen { border-width: 2px; border-radius: 18px; }
+  .trailer-phone-speaker { top: 15px; width: 36px; height: 4px; left: calc(50% - 18px); }
+  .trailer-phone-camera { top: 14px; left: calc(50% + 24px); width: 6px; height: 6px; }
+  .trailer-phone figcaption { font-size: 13px; padding: 6px 9px; }
+  .booth-scene--trailer .hero-gun-wrap { top: 833px; width: 300px; height: 134px; left: calc(50% - 150px); }
+  .booth-scene--trailer .hand-note { bottom: -16px; }
+  .booth-scene--trailer .hero-invite { top: 990px; width: 100%; }
+  .armory-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .booth-scene--trailer { width: calc(100% - 32px); }
+  .hero-props { left: 0; width: 43%; }
+  .hero-props .target-window { width: 90px; height: 83px; border-width: 7px; }
+  .hero-props .pop-target { width: 68px; height: 68px; }
+  .hero-props .window-red { left: 25%; }
+  .hero-props .window-purple { left: 26%; }
+  .hero-props .teaser-crate { left: 29%; width: 85px; }
+  .hero-props .window-shutter { width: 34%; border-width: 4px; }
+  .trailer-phone { width: 43%; max-width: 175px; right: 2%; }
+  .booth-scene--trailer .hero-gun-wrap { width: 270px; height: 120px; left: calc(50% - 135px); }
 }
 
 body.motion-paused *, body.motion-paused *::before, body.motion-paused *::after { animation: none !important; transition: none !important; }

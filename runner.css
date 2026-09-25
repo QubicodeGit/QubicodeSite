@@ -1,0 +1,62 @@
+/* A full-width street runs directly into the footer, without a game panel. */
+.runner-section {
+  position: relative;
+  padding: 0;
+  scroll-margin-top: calc(var(--header-height) + 20px);
+  background: linear-gradient(180deg, transparent, #040b14 92%);
+}
+.runner { position: relative; }
+.runner-stage { position: relative; height: clamp(300px, 23vw, 420px); }
+#runner-canvas { display: block; width: 100%; height: 100%; outline-offset: -5px; touch-action: pan-y; }
+#runner-canvas:focus-visible { outline: none; box-shadow: inset 0 -2px #39bed9; }
+.runner-hud { position: absolute; z-index: 1; inset: 12px 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; width: min(1280px, calc(100% - 80px)); margin-inline: auto; pointer-events: none; }
+.runner-hud button { pointer-events: auto; }
+.runner-info { display: flex; flex-direction: column; align-items: flex-start; gap: 9px; }
+.runner-scores { display: flex; gap: 20px; color: #7f9bad; font-size: .64rem; }
+.runner-scores > span { display: inline-flex; align-items: center; gap: 7px; }
+.runner-scores strong { color: #b4d3e3; font: 600 .78rem ui-monospace, "Cascadia Code", monospace; font-variant-numeric: tabular-nums; letter-spacing: .1em; }
+.runner[data-state="loading"] .runner-scores, .runner[data-state="ready"] .runner-scores { display: none; }
+.runner-overlay { display: flex; align-items: center; gap: 13px; }
+.runner-overlay[hidden] { display: none; }
+.runner-prompt > p:not(.sr-only) { margin: 0; color: #94b0c2; font-size: .78rem; }
+.runner-start { min-height: 36px; padding: 6px 13px; border: 1px solid #27516b; border-radius: 6px; background: #091c28b3; color: #bfefff; font-size: .75rem; font-weight: 650; cursor: pointer; }
+.runner-start:hover { border-color: #3caccc; background: #0c2a3b; }
+.runner-start:disabled { opacity: .5; cursor: wait; }
+.runner-controls { display: flex; align-items: center; gap: 12px; }
+.runner-key-hints { display: flex; align-items: center; gap: 11px; color: #6f93a8; font-size: .72rem; }
+.runner-key-hints kbd { display: grid; place-items: center; min-width: 34px; height: 36px; padding: 5px 10px; border: 1px solid #2a4e65; border-bottom-width: 2px; border-radius: 5px; background: #07142088; color: #cfdfed; font: 600 .84rem system-ui, sans-serif; }
+.runner-pause { display: grid; place-items: center; flex: 0 0 34px; width: 34px; height: 36px; padding: 0; color: #abc4d5; border: 1px solid #29495f; border-radius: 5px; background: #07142088; cursor: pointer; }
+.runner-pause svg { width: 15px; height: 15px; }
+.runner-pause:disabled { visibility: hidden; }
+.runner-touch-controls { display: none; align-items: center; gap: 8px; }
+.runner-control { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 42px; min-width: 66px; padding: 8px 10px; border: 1px solid #2a4e65; border-radius: 6px; background: #071420b3; color: #cfdfed; font-size: .73rem; font-weight: 650; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+.runner-control svg { width: 16px; height: 16px; }
+.runner-control:hover, .runner-control[aria-pressed="true"] { border-color: #4aacc7; background: #163e54; }
+.runner-control:disabled { opacity: .4; cursor: default; }
+.runner-noscript { position: absolute; top: 16px; left: 24px; color: var(--muted); font-size: .8rem; }
+/* The canvas road is the footer's top edge. No gap or second border. */
+.site-footer { border-top: 0; }
+@media (pointer: coarse) {
+  .runner-key-hints { display: none; }
+  .runner-touch-controls { display: flex; }
+}
+@media (max-width: 760px) {
+  .runner-hud { width: calc(100% - 36px); gap: 14px; }
+  .runner-stage { height: 290px; }
+  .runner-controls { gap: 8px; }
+  .runner-key-hints { display: none; }
+  .runner-touch-controls { display: flex; }
+  .runner-overlay { flex-wrap: wrap; gap: 6px 10px; }
+  .runner-prompt > p:not(.sr-only) { font-size: .7rem; }
+  .runner-scores { flex-wrap: wrap; gap: 4px 13px; font-size: .58rem; }
+  .runner-scores strong { font-size: .69rem; }
+  .runner-pause { width: 30px; flex-basis: 30px; height: 42px; }
+  .runner-start { min-height: 38px; font-size: .7rem; }
+}
+@media (max-width: 420px) {
+  .runner-stage { height: 280px; }
+  .runner-hud { flex-wrap: wrap; row-gap: 8px; }
+  .runner-info { min-height: 38px; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 5px 14px; width: 100%; }
+  .runner-scores { gap: 12px; }
+  .runner-controls { margin-left: auto; }
+}

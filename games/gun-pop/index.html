@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#a45212">
-  <meta name="description" content="Step into Gun Pop's shooting gallery. Flying guns, ridiculous combos, big barrel bosses, and a workshop full of loot. A future mobile arcade game by Qubicode.">
+  <meta name="description" content="Step into Gun Pop's shooting gallery. Flying guns, ridiculous combos, big barrel bosses, and a workshop full of loot. A mobile arcade game in development by Qubicode.">
   <title>Gun Pop — Welcome to the shooting gallery!</title>
   <link rel="icon" href="../../Images/gunpopIcon.png" type="image/png">
   <link rel="preload" href="fonts/LilitaOne-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../../store-buttons.css">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -43,17 +44,27 @@
   <main id="main">
     <section class="shooting-booth wood" id="top" aria-label="Gun Pop shooting gallery">
       <div class="booth-awning" aria-hidden="true"></div><div class="booth-post post-left" aria-hidden="true"></div><div class="booth-post post-right" aria-hidden="true"></div><div class="sunburst" aria-hidden="true"></div>
-      <div class="booth-scene">
+      <div class="booth-scene booth-scene--trailer">
         <div class="welcome-sign"><span>Step right up!</span></div>
         <h1 class="game-title"><img src="images/GunPopLogo.png" width="1448" height="1086" alt="Gun Pop" fetchpriority="high" decoding="async"></h1>
         <p class="hero-tagline">Little gun.<br><span>Big pop energy.</span></p>
-        <div class="target-window window-red"><span class="window-shutter shutter-left" aria-hidden="true"></span><span class="window-shutter shutter-right" aria-hidden="true"></span><button class="pop-target target-red" type="button" data-points="25" aria-label="Pop the red target for 25 points"><span class="target-disc" aria-hidden="true"></span></button><span class="window-label" aria-hidden="true">Go on. Pop me!</span></div>
-        <div class="target-window window-purple"><span class="window-shutter shutter-left" aria-hidden="true"></span><span class="window-shutter shutter-right" aria-hidden="true"></span><button class="pop-target target-purple" type="button" data-points="50" aria-label="Pop the purple target for 50 points"><span class="target-disc" aria-hidden="true"></span></button><span class="window-label" aria-hidden="true">Nice aim?</span></div>
-        <div class="target-window window-green"><span class="window-shutter shutter-left" aria-hidden="true"></span><span class="window-shutter shutter-right" aria-hidden="true"></span><button class="pop-target target-green" type="button" data-points="100" aria-label="Pop the green target for 100 points"><span class="target-disc" aria-hidden="true"></span></button><span class="window-label" aria-hidden="true">Make it a combo.</span></div>
+        <div class="hero-props">
+          <div class="target-window window-red"><span class="window-shutter shutter-left" aria-hidden="true"></span><span class="window-shutter shutter-right" aria-hidden="true"></span><button class="pop-target target-red" type="button" data-points="25" aria-label="Pop the red target for 25 points"><span class="target-disc" aria-hidden="true"></span></button><span class="window-label" aria-hidden="true">Go on. Pop me!</span></div>
+          <div class="target-window window-purple"><span class="window-shutter shutter-left" aria-hidden="true"></span><span class="window-shutter shutter-right" aria-hidden="true"></span><button class="pop-target target-purple" type="button" data-points="50" aria-label="Pop the purple target for 50 points"><span class="target-disc" aria-hidden="true"></span></button><span class="window-label" aria-hidden="true">Nice aim?</span></div>
+          <a class="teaser-crate" href="#workshop" aria-label="Discover the Workshop Crate"><svg viewBox="103 162 216 199" aria-hidden="true"><use href="#art-crate"/></svg><span>What's in the box?</span><b aria-hidden="true">?</b></a>
+        </div>
+        <figure class="trailer-phone" aria-label="Gun Pop trailer placeholder">
+          <div class="trailer-phone-frame">
+            <span class="trailer-phone-speaker" aria-hidden="true"></span>
+            <span class="trailer-phone-camera" aria-hidden="true"></span>
+            <div class="trailer-phone-screen">
+              <img src="images/screenshot%20(3).jpg" width="501" height="891" alt="Gun Pop gameplay preview" decoding="async">
+            </div>
+          </div>
+          <figcaption>Trailer coming soon</figcaption>
+        </figure>
         <div class="hero-gun-wrap"><span class="gun-shadow" aria-hidden="true"></span><button class="hero-gun flip-prop" type="button" aria-label="Flip the Pocket Popper"><svg viewBox="90 320 315 140" aria-hidden="true"><use href="#art-gun"/></svg></button><span class="hand-note" aria-hidden="true">Give it a flick! <b>⤴</b></span></div>
-        <a class="teaser-crate" href="#workshop" aria-label="Discover the Workshop Crate"><svg viewBox="103 162 216 199" aria-hidden="true"><use href="#art-crate"/></svg><span>What's in the box?</span><b aria-hidden="true">?</b></a>
-        <span class="scene-spark spark-a" aria-hidden="true">✦</span><span class="scene-spark spark-b" aria-hidden="true">✦</span><span class="scene-spark spark-c" aria-hidden="true">✧</span>
-        <div class="hero-invite"><p>Flip your gun. Time your shots.<br>Keep the ridiculous combos coming.</p><a class="game-button green-button" href="#screenshots">See the game <span aria-hidden="true">↓</span></a><span class="release-note">Mobile arcade · A future Qubicode game</span></div>
+        <div class="hero-invite"><p>Flip your gun. Time your shots.<br>Keep the ridiculous combos coming.</p><a class="game-button green-button" href="#play">Play the game <span aria-hidden="true">↓</span></a><span class="release-note">Mobile arcade · In Development</span></div>
       </div>
       <div class="booth-counter" aria-hidden="true"><span></span></div><div class="pop-effects" aria-hidden="true"></div><p class="sr-only" id="shot-announcement" role="status"></p>
       <noscript><p class="noscript-note">Enable JavaScript to pop the targets and open the crate.</p></noscript>
@@ -76,18 +87,28 @@
           </div>
           <p class="armory-copy">Pick a favorite, upgrade its punch, and give it a fresh coat of paint. The next perfect shot has your name on it.</p>
         </div>
-        <figure class="loadout-poster"><span class="poster-clip" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(2).jpg" data-shot="1" aria-label="Enlarge the gun selection screenshot"><img src="images/screenshot%20(2).jpg" width="501" height="891" alt="Pocket Popper and its upgrades in the actual game" loading="lazy" decoding="async"><span class="enlarge-label">Inspect loadout <b aria-hidden="true">⊕</b></span></a><figcaption>All dressed up.<br><em>Somewhere to shoot.</em></figcaption></figure>
       </div><div class="wood-shelf" aria-hidden="true"></div>
+    </section>
+
+    <section class="screenshots wood" id="screenshots" aria-labelledby="screenshots-title">
+      <div class="hanging-ribbon"><span aria-hidden="true">★</span><h2 id="screenshots-title">Caught in the action</h2><span aria-hidden="true">★</span></div><p class="section-intro">No tall tales. Straight from the game.</p><div class="photo-rope" aria-hidden="true"></div>
+      <div class="photo-wall scene-width">
+        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(1).jpg" data-shot="0" aria-label="Enlarge the Gun Pop menu screenshot"><img src="images/screenshot%20(1).jpg" width="502" height="892" alt="Gun Pop main menu" loading="lazy" decoding="async"></a><figcaption>The first flip.</figcaption></figure>
+        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(2).jpg" data-shot="1" aria-label="Enlarge the Pocket Popper screenshot"><img src="images/screenshot%20(2).jpg" width="501" height="891" alt="Gun selection and upgrades" loading="lazy" decoding="async"></a><figcaption>Your trusty sidekick.</figcaption></figure>
+        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(3).jpg" data-shot="2" aria-label="Enlarge the combo gameplay screenshot"><img src="images/screenshot%20(3).jpg" width="501" height="891" alt="A seven-times combo with colorful ricocheting shots" loading="lazy" decoding="async"></a><figcaption>Now we're talking.</figcaption></figure>
+        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(4).jpg" data-shot="3" aria-label="Enlarge the barrel boss screenshot"><img src="images/screenshot%20(4).jpg" width="501" height="891" alt="An armored barrel boss encounter" loading="lazy" decoding="async"></a><figcaption>Well, that's new.</figcaption></figure>
+        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(5).jpg" data-shot="4" aria-label="Enlarge the Workshop Crate screenshot"><img src="images/screenshot%20(5).jpg" width="447" height="795" alt="Workshop Crate with coins, a gun skin, and an upgrade token" loading="lazy" decoding="async"></a><figcaption>Finders keepers.</figcaption></figure>
+      </div><p class="gallery-hint">Tap a photo to take a closer look <span aria-hidden="true">↗</span></p>
     </section>
 
     <section class="boss-room wood" id="bosses" aria-labelledby="boss-title">
       <div class="warning-ribbon" aria-hidden="true"><span>Big shot ahead</span><span>✦</span><span>Big shot ahead</span><span>✦</span><span>Big shot ahead</span></div>
       <div class="boss-layout scene-width">
         <div class="boss-stage">
-          <div class="boss-window" id="boss-window"><div class="boss-interior"><div class="boss-glow" aria-hidden="true"></div><svg class="barrel-boss" viewBox="140 270 223 205" role="img" aria-label="Gun Pop's armored barrel boss wearing a green helmet"><use href="#art-boss"/></svg></div><div class="boss-door door-left" aria-hidden="true"><i></i><i></i><span>?</span></div><div class="boss-door door-right" aria-hidden="true"><i></i><i></i><span>!</span></div><div class="boss-sill" aria-hidden="true"></div></div>
+          <div class="boss-window" id="boss-window"><div class="boss-interior"><div class="boss-glow" aria-hidden="true"></div><svg class="barrel-boss" viewBox="140 270 223 205" role="img" aria-label="Gun Pop's armored barrel boss wearing a green cap"><use href="#art-boss"/></svg></div><div class="boss-door door-left" aria-hidden="true"><i></i><i></i></div><div class="boss-door door-right" aria-hidden="true"><i></i><i></i><span class="boss-question">?</span></div><div class="boss-sill" aria-hidden="true"></div></div>
           <button class="game-button boss-toggle" type="button" aria-expanded="false" aria-controls="boss-window">Knock, knock! <span aria-hidden="true">✊</span></button><p class="boss-reaction" role="status">Someone's hiding in there.</p>
         </div>
-        <div class="boss-copy"><span class="danger-tag">This one's got attitude</span><h2 id="boss-title">Oh,<br><span>shoot.</span></h2><p>That is a barrel.<br>That is a helmet.<br>That is definitely your problem.</p><p class="small-copy">Take on big bosses, bring your upgrades, and give your combo a proper finale.</p><a class="plank-link screenshot-link" href="images/screenshot%20(4).jpg" data-shot="3">See the showdown <span aria-hidden="true">↗</span></a></div>
+        <div class="boss-copy"><h2 id="boss-title">Oh,<br><span>shoot.</span></h2><p class="small-copy">Take on big bosses, bring your upgrades, and give your combo a proper finale.</p></div>
       </div>
     </section>
 
@@ -104,18 +125,17 @@
       <button class="game-button green-button crate-trigger" type="button" aria-controls="reward-fan">Pop the crate! <span aria-hidden="true">✦</span></button><p class="loot-caption" role="status">Go on. You know you want to.</p><p class="workshop-copy">Coins, colorful gun skins, and upgrade tokens.<br>A peek at the goodies inside a Workshop Crate.</p>
     </section>
 
-    <section class="screenshots wood" id="screenshots" aria-labelledby="screenshots-title">
-      <div class="hanging-ribbon"><span aria-hidden="true">★</span><h2 id="screenshots-title">Caught in the action</h2><span aria-hidden="true">★</span></div><p class="section-intro">No tall tales. Straight from the game.</p><div class="photo-rope" aria-hidden="true"></div>
-      <div class="photo-wall scene-width">
-        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(1).jpg" data-shot="0" aria-label="Enlarge the Gun Pop menu screenshot"><img src="images/screenshot%20(1).jpg" width="502" height="892" alt="Gun Pop main menu" loading="lazy" decoding="async"></a><figcaption>The first flip.</figcaption></figure>
-        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(2).jpg" data-shot="1" aria-label="Enlarge the Pocket Popper screenshot"><img src="images/screenshot%20(2).jpg" width="501" height="891" alt="Gun selection and upgrades" loading="lazy" decoding="async"></a><figcaption>Your trusty sidekick.</figcaption></figure>
-        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(3).jpg" data-shot="2" aria-label="Enlarge the combo gameplay screenshot"><img src="images/screenshot%20(3).jpg" width="501" height="891" alt="A seven-times combo with colorful ricocheting shots" loading="lazy" decoding="async"></a><figcaption>Now we're talking.</figcaption></figure>
-        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(4).jpg" data-shot="3" aria-label="Enlarge the barrel boss screenshot"><img src="images/screenshot%20(4).jpg" width="501" height="891" alt="An armored barrel boss encounter" loading="lazy" decoding="async"></a><figcaption>Well, that's new.</figcaption></figure>
-        <figure class="pinned-shot"><span class="clothespin" aria-hidden="true"></span><a class="screenshot-link" href="images/screenshot%20(5).jpg" data-shot="4" aria-label="Enlarge the Workshop Crate screenshot"><img src="images/screenshot%20(5).jpg" width="447" height="795" alt="Workshop Crate with coins, a gun skin, and an upgrade token" loading="lazy" decoding="async"></a><figcaption>Finders keepers.</figcaption></figure>
-      </div><p class="gallery-hint">Tap a photo to take a closer look <span aria-hidden="true">↗</span></p>
-    </section>
-
-    <footer class="closing-time wood-dark"><div class="closing-sign"><span class="sign-nail" aria-hidden="true"></span><p>More pops on the horizon</p><h2>See you at<br><span>the next round.</span></h2><a class="game-button green-button" href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener noreferrer">Hang with Qubicode <span aria-hidden="true">↗</span></a><span class="closing-status">Gun Pop is a future mobile game. Follow along for updates.</span></div><div class="footer-line"><a href="../../index.html#home">A <strong>Qubicode</strong> game.</a><span>&copy; <span id="year">2026</span> Qubicode</span><a href="#top">One more pop? ↑</a></div></footer>
+    <footer class="closing-time wood-dark" id="play">
+      <div class="closing-sign">
+        <span class="sign-nail" aria-hidden="true"></span><p>More pops on the horizon</p><h2>See you at<br><span>the next round.</span></h2>
+        <div class="store-actions" role="group" aria-label="Play Gun Pop">
+          <button class="game-button green-button store-button" type="button" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../Images/store-icons.svg#app-store"/></svg><span>App Store</span></button>
+          <button class="game-button store-button" type="button" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../Images/store-icons.svg#google-play"/></svg><span>Google Play</span></button>
+        </div>
+        <span class="closing-status">Gun Pop is a mobile game in development.</span>
+      </div>
+      <div class="footer-line"><a href="../../index.html#home">A <strong>Qubicode</strong> game.</a><span>&copy; <span id="year">2026</span> Qubicode</span><a href="privacy/index.html">Privacy policy</a><a href="#top">One more pop? ↑</a></div>
+    </footer>
   </main>
 
   <nav class="game-dock" aria-label="Explore Gun Pop">

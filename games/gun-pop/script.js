@@ -148,7 +148,7 @@ bossToggle.addEventListener("click", () => {
   const open = bossWindow.classList.toggle("is-open");
   bossToggle.setAttribute("aria-expanded", String(open));
   bossToggle.textContent = open ? "Close the shutters" : "Knock, knock! ✊";
-  document.querySelector(".boss-reaction").textContent = open ? "Yep. That's a barrel with a helmet." : "Someone's hiding in there.";
+  document.querySelector(".boss-reaction").textContent = open ? "Yep. That's a barrel with a cap." : "Someone's hiding in there.";
   playPop(open ? 260 : 200);
 });
 
@@ -235,3 +235,24 @@ lightbox.addEventListener("close", () => {
   document.body.classList.remove("modal-open");
   lightboxTrigger?.focus({ preventScroll: true });
 });
+
+// Floating props rest whenever their scene is offscreen or the tab is hidden.
+if ('IntersectionObserver' in window) {
+  const animatedScenes = [...document.querySelectorAll('main > section')];
+  const visibleScenes = new Set();
+  function syncSceneMotion() {
+    animatedScenes.forEach((scene) => {
+      scene.classList.toggle('motion-offscreen', document.hidden || !visibleScenes.has(scene));
+    });
+  }
+  const sceneObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visibleScenes.add(entry.target);
+      else visibleScenes.delete(entry.target);
+    });
+    syncSceneMotion();
+  });
+  animatedScenes.forEach((scene) => sceneObserver.observe(scene));
+  document.addEventListener('visibilitychange', syncSceneMotion);
+  syncSceneMotion();
+}

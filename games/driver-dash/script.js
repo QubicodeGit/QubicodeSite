@@ -55,24 +55,6 @@ if ('IntersectionObserver' in window) {
 }
 
 if (!reduceMotion && finePointer) {
-  const parallax = document.querySelector('[data-parallax]');
-
-  if (parallax) {
-    const amount = Number(parallax.dataset.parallax) || 0;
-    let pointerFrame = 0;
-
-    window.addEventListener('pointermove', (event) => {
-      if (pointerFrame) return;
-
-      pointerFrame = window.requestAnimationFrame(() => {
-        const x = (event.clientX - window.innerWidth / 2) * amount;
-        const y = (event.clientY - window.innerHeight / 2) * amount;
-        parallax.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-        pointerFrame = 0;
-      });
-    }, { passive: true });
-  }
-
   document.querySelectorAll('.gallery-card').forEach((card) => {
     card.addEventListener('pointermove', (event) => {
       const rect = card.getBoundingClientRect();
@@ -148,4 +130,49 @@ showRide(0);
 const year = document.querySelector('#year');
 if (year) {
   year.textContent = new Date().getFullYear();
+}
+
+// Resume a visible trailer only if the visitor had not paused it themselves.
+const trailer = document.querySelector('.hero-trailer video');
+const hero = document.querySelector('.hero');
+if (trailer && hero) {
+  const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let inView = !('IntersectionObserver' in window);
+  let wantsPlayback = !motionPreference.matches;
+  let environmentalPause = false;
+
+  function syncTrailer() {
+    const active = inView && !document.hidden;
+    hero.classList.toggle('motion-offscreen', !active);
+    if (active && wantsPlayback) {
+      trailer.play().catch(() => { /* Native controls remain available if autoplay is blocked. */ });
+    } else if (!active && !trailer.paused) {
+      environmentalPause = true;
+      trailer.pause();
+    }
+  }
+
+  trailer.addEventListener('play', () => {
+    wantsPlayback = true;
+    if (!inView || document.hidden) syncTrailer();
+  });
+  trailer.addEventListener('pause', () => {
+    if (environmentalPause) environmentalPause = false;
+    else wantsPlayback = false;
+  });
+  if ('IntersectionObserver' in window) {
+    const trailerObserver = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      syncTrailer();
+    }, { threshold: 0 });
+    trailerObserver.observe(trailer);
+  }
+  document.addEventListener('visibilitychange', syncTrailer);
+  motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches) {
+      wantsPlayback = false;
+      trailer.pause();
+    }
+  });
+  syncTrailer();
 }

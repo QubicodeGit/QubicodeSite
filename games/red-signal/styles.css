@@ -45,11 +45,6 @@ button { color: inherit; }
   background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(0,0,0,.24) 4px);
 }
 body::after { z-index: 89; box-shadow: inset 0 0 16vw 4vw #000; }
-.cursor-glow {
-  position: fixed; z-index: 0; width: 30rem; aspect-ratio: 1; border-radius: 50%;
-  background: rgba(197, 34, 20, .06); filter: blur(60px); pointer-events: none;
-  translate: -50% -50%;
-}
 
 .site-header {
   position: fixed; z-index: 100; top: 0; left: 0; width: 100%; height: 74px;
@@ -75,7 +70,6 @@ body::after { z-index: 89; box-shadow: inset 0 0 16vw 4vw #000; }
   filter: contrast(1.08) saturate(.9); scale: 1.04;
 }
 .hero::before { content: ""; position: absolute; z-index: -4; inset: 0; background: linear-gradient(90deg, rgba(3,1,1,.96) 0%, rgba(3,1,1,.6) 43%, rgba(67,13,4,.08) 70%), linear-gradient(0deg, #050303 0%, transparent 30%); }
-.hero::after { content: ""; position: absolute; z-index: -3; inset: 0; background: rgba(126, 24, 6, .13); animation: alarm 7s infinite; mix-blend-mode: screen; }
 .storm { position: absolute; inset: -50%; z-index: -2; opacity: .15; background-image: radial-gradient(circle, #ffd1a1 0 1px, transparent 1.5px); background-size: 17px 13px; transform: rotate(-12deg); animation: storm 14s linear infinite; pointer-events: none; }
 .hero-grid { position: absolute; z-index: -1; inset: 0; opacity: .13; background-image: linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px); background-size: 80px 80px; mask-image: linear-gradient(to right, #000, transparent 55%); }
 .hero-copy { position: relative; max-width: 780px; }
@@ -98,9 +92,7 @@ h1 span, h2 em { color: var(--red); font-style: normal; }
 }
 .button:hover { transform: translateY(-3px); }
 .button-primary { color: #fff; background: var(--red); border-color: var(--red); box-shadow: 0 0 25px rgba(226,38,25,.25); }
-.button-primary::before { content: ""; position: absolute; inset: 0; background: #fff; translate: -105% 0; transition: translate .35s; mix-blend-mode: soft-light; }
 .button-primary:hover { box-shadow: 0 0 36px rgba(255,52,26,.55); }
-.button-primary:hover::before { translate: 105% 0; }
 .button-ghost { background: rgba(0,0,0,.3); }
 .button-ghost:hover { color: var(--red-hot); border-color: var(--red); }
 .button-large { min-width: 245px; padding: 1.3rem 2rem; }
@@ -117,7 +109,7 @@ h1 span, h2 em { color: var(--red); font-style: normal; }
 .telemetry-head, .metric { display: flex; justify-content: space-between; }
 .telemetry-head { color: var(--cyan); padding-bottom: .7rem; margin-bottom: .8rem; border-bottom: 1px solid rgba(181,248,243,.2); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
 .telemetry-head b, .danger + * { color: var(--red-hot); }
-.metric { color: #a89d94; font-size: .55rem; text-transform: uppercase; }
+.metric { gap: .75rem; margin-bottom: .85rem; color: #a89d94; font-size: .55rem; text-transform: uppercase; }
 .metric strong { color: var(--cyan); }
 .meter { height: 4px; margin: .4rem 0 .9rem; background: rgba(181,248,243,.1); }
 .meter i { display: block; width: var(--level); height: 100%; background: var(--cyan); box-shadow: 0 0 9px var(--cyan); }
@@ -177,7 +169,6 @@ h2 { margin-bottom: 1.5rem; font-size: clamp(3.4rem, 7vw, 7rem); line-height: .9
 .signal-section { position: relative; min-height: 86svh; display: grid; place-items: center; padding: 7rem 1.2rem; overflow: hidden; isolation: isolate; }
 .signal-image { position: absolute; z-index: -3; inset: -8%; background: url("images/Snimka zaslona 2026-06-11 214745.jpg") center/cover no-repeat; filter: saturate(.5) contrast(1.35) brightness(.34); }
 .signal-section::before { content: ""; position: absolute; z-index: -2; inset: 0; background: radial-gradient(circle, rgba(130,0,0,.06) 0 15%, rgba(5,3,3,.8) 55%, #050303 100%); }
-.signal-section::after { content: ""; position: absolute; z-index: -1; inset: 0; background: var(--red); opacity: .04; animation: alarm 3.5s infinite; mix-blend-mode: screen; }
 .signal-content { width: min(1050px, 100%); text-align: center; }
 .signal-content h2 { color: #f1e8df; margin-bottom: 1rem; font-size: clamp(4rem, 10vw, 10rem); text-shadow: 0 0 35px rgba(255, 20, 10, .55); }
 .signal-message { color: var(--red-hot); font: 700 clamp(.6rem, 1.4vw, .9rem)/1.5 var(--mono); letter-spacing: .25em; }
@@ -211,7 +202,6 @@ footer nav a:hover { color: var(--red-hot); }
 
 @keyframes loadIn { to { opacity: 1; transform: none; } from { transform: translateY(18px); } }
 @keyframes storm { to { transform: rotate(-12deg) translate(-100px, 80px); } }
-@keyframes alarm { 0%, 16%, 20%, 72%, 100% { opacity: .02; } 17%, 19%, 73%, 76% { opacity: .2; } }
 @keyframes pulse { 50% { opacity: .35; scale: .72; } }
 @keyframes stretch { 50% { scale: .45 1; } }
 @keyframes flicker { 0%, 19%, 22%, 100% { opacity: 1; } 20%, 21%, 65% { opacity: .35; } }
@@ -235,7 +225,6 @@ footer nav a:hover { color: var(--red-hot); }
   .feature-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 250px; }
   .section-heading { align-items: start; flex-direction: column; }
-  .cursor-glow { display: none; }
   .hero::after,
   .storm,
   .glitch::before,

@@ -1,8 +1,6 @@
 document.documentElement.classList.add("js");
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const supportsPreciseHover = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 821px)").matches;
-const useDecorativeMotion = !prefersReducedMotion && supportsPreciseHover;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const platformIcons = {
   mobile:
@@ -27,8 +25,8 @@ const platformIcons = {
 const games = [
   {
     title: "Driver Dash",
-    status: "Inactive / Seeking Publisher",
-    statusClass: "status-inactive",
+    status: "Seeking Publisher",
+    statusClass: "status-publisher",
     platforms: ["Mobile", "iOS", "Android"],
     genre: "Endless Mobile Arcade",
     theme: "driver-dash",
@@ -37,17 +35,13 @@ const games = [
     image: "Images/driverdashHero.png",
     imageWidth: 1024,
     imageHeight: 500,
-    logo: "Images/driverdashIcon.png",
-    logoWidth: 950,
-    logoHeight: 950,
     description:
-      "A finished mobile endless driving game inspired by fast lane-based arcade runners. Dodge obstacles across three lanes, use boost powerups, unlock cars, customize colors, spin the lucky wheel, open lootboxes, expand tycoon-style map properties, and take on boss fights.",
-    tags: ["Endless Driving", "Mobile", "Arcade", "Customization", "Boss Fights"]
+      "Dodge traffic, boost past obstacles, and unlock your next ride in a fast-paced mobile arcade game."
   },
   {
     title: "SCP-087: Exploration IV",
-    status: "In Development",
-    statusClass: "status-development",
+    status: "Future",
+    statusClass: "status-future",
     platforms: ["Steam", "PC", "Singleplayer"],
     genre: "Singleplayer First-Person Horror",
     theme: "scp-087",
@@ -56,12 +50,8 @@ const games = [
     image: "games/scp-087-exploration-iv/images/scp087screenshot.jpg",
     imageWidth: 1579,
     imageHeight: 888,
-    logo: "games/scp-087-exploration-iv/images/scp087icon.png",
-    logoWidth: 1254,
-    logoHeight: 1254,
     description:
-      "A short first-person horror experience based on SCP-087. A D-Class personnel is ordered to descend into the infamous infinite staircase and document its depths.",
-    tags: ["Horror", "SCP", "First Person", "Singleplayer", "Psychological Horror"]
+      "Descend into the infamous infinite staircase. A short first-person horror experience based on SCP-087."
   },
   {
     title: "Red Signal",
@@ -75,12 +65,8 @@ const games = [
     image: "Images/RedSignalScreenshot.jpg",
     imageWidth: 1511,
     imageHeight: 850,
-    logo: "Images/RedSignalIcon.jpg",
-    logoWidth: 878,
-    logoHeight: 878,
     description:
-      "A first-person horror game set on Mars.",
-    tags: ["Horror", "Mars", "Sci-Fi", "First Person", "Singleplayer", "Survival"]
+      "A first-person horror game set on Mars."
   },
   {
     title: "Recovery Unit",
@@ -94,12 +80,8 @@ const games = [
     image: "Images/recoveryunitScreenshot.png",
     imageWidth: 1672,
     imageHeight: 941,
-    logo: "Images/recoveryunitLogo.png",
-    logoWidth: 1254,
-    logoHeight: 1254,
     description:
-      "A multiplayer first-person infection shooter where up to four players enter dangerous contaminated areas filled with weak and extremely powerful mutated creatures. Survive hostile environments together.",
-    tags: ["FPS", "Multiplayer", "Co-op", "Infection", "Survival"]
+      "Enter contaminated zones and face mutated creatures in a four-player infection shooter."
   },
   {
     title: "Brawlbots",
@@ -113,17 +95,13 @@ const games = [
     image: "Images/brawlbotsScreenshot.jpg",
     imageWidth: 1582,
     imageHeight: 890,
-    logo: "Images/BrawlbotsIcon.png",
-    logoWidth: 676,
-    logoHeight: 676,
     description:
-      "A third-person multiplayer puzzle brawler where up to four malfunctioning humanoid bots fight through a corrupted robot world.",
-    tags: ["Third Person", "Co-op", "Puzzle", "Brawler", "Robots"]
+      "Four malfunctioning bots. One corrupted world. A multiplayer puzzle brawler."
   },
   {
     title: "Gun Pop",
-    status: "Future",
-    statusClass: "status-future",
+    status: "In Development",
+    statusClass: "status-development",
     platforms: ["Mobile"],
     genre: "Mobile Flick-Shooting Arcade",
     theme: "gun-pop",
@@ -135,10 +113,17 @@ const games = [
     imageAlt: "Gun Pop logo",
     mediaMode: "contain",
     description:
-      "A mobile flick-shooting game where a gun is thrown into the air and players time shots while it flips to hit targets, gifts, and ricochet panels.",
-    tags: ["Mobile", "Arcade", "Flick Shot", "Guns", "Skins"]
+      "Flick, flip, and time your shots. Hit targets and ricochet panels in a mobile arcade shooter."
   }
 ];
+
+// Stable sorting keeps the original order of games within the same status.
+const gameStatusOrder = {
+  "Published": 0,
+  "Seeking Publisher": 1,
+  "In Development": 2,
+  "Future": 3
+};
 
 const year = document.querySelector("#year");
 const navToggle = document.querySelector(".nav-toggle");
@@ -147,25 +132,10 @@ const navItems = document.querySelectorAll(".nav-links a");
 const gameGrid = document.querySelector("#game-grid");
 const filterButtons = document.querySelectorAll(".filter-button");
 const backToTop = document.querySelector(".back-to-top");
-const parallaxItems = document.querySelectorAll("[data-depth]");
 let gameCards = [];
-let scrollProgress = null;
-const hideTimers = new WeakMap();
 
 if (year) {
   year.textContent = new Date().getFullYear();
-}
-
-function setupDynamicShell() {
-  const progress = document.createElement("div");
-  progress.className = "scroll-progress";
-  progress.setAttribute("aria-hidden", "true");
-  document.body.prepend(progress);
-  scrollProgress = progress;
-}
-
-function tagMarkup(items, className = "") {
-  return items.map((item) => `<span class="${className}">${item}</span>`).join("");
 }
 
 function platformIcon(name) {
@@ -180,51 +150,31 @@ function platformMarkup(platforms) {
 }
 
 function renderGames() {
-  gameGrid.innerHTML = games
-    .map((game, index) => {
+  if (!gameGrid) return;
+  gameGrid.innerHTML = [...games]
+    .sort((a, b) => (gameStatusOrder[a.status] ?? 4) - (gameStatusOrder[b.status] ?? 4))
+    .map((game) => {
       const mediaClass = game.mediaMode === "contain" ? "game-media image-contain" : "game-media";
-      const imageMarkup = game.image
-        ? `<img src="${game.image}" width="${game.imageWidth}" height="${game.imageHeight}" alt="${game.imageAlt || `${game.title} screenshot`}" loading="lazy" decoding="async">`
-        : `<div class="placeholder-media"><span>${game.title} visual coming soon</span></div>`;
-      const logoMarkup = game.logo
-        ? `<div class="game-logo"><img src="${game.logo}" width="${game.logoWidth}" height="${game.logoHeight}" alt="${game.title} logo" loading="lazy" decoding="async"></div>`
-        : "";
-      const boothMarkup = game.theme === "gun-pop"
-        ? `<div class="gun-pop-card-scenery" aria-hidden="true">
-            <span class="gun-pop-card-awning"></span>
-            <span class="gun-pop-card-target target-red"></span>
-            <span class="gun-pop-card-target target-purple"></span>
-            <span class="gun-pop-card-shelf"></span>
-          </div>`
-        : "";
+      const platformList = `<div class="platform-list" aria-label="${game.title} platforms">${platformMarkup(game.platforms)}</div>`;
 
       return `
-        <article class="game-card game-tab game-theme-${game.theme} reveal" data-filters=" ${game.filters.join(" ")} " style="transition-delay: ${index * 70}ms">
-          <div class="game-tab-visual">
-            <div class="${mediaClass}">
-              ${imageMarkup}
-            </div>
-            ${logoMarkup}
-            ${boothMarkup}
+        <article class="game-card game-theme-${game.theme} reveal" data-filters=" ${game.filters.join(" ")} " aria-labelledby="game-${game.theme}">
+          <div class="${mediaClass}">
+            <img src="${game.image}" width="${game.imageWidth}" height="${game.imageHeight}" alt="${game.imageAlt || `${game.title} artwork`}" loading="lazy" decoding="async">
+          </div>
+          <div class="game-meta">
+            ${platformList}
+            <span class="badge ${game.statusClass}">${game.status}</span>
           </div>
           <div class="game-content">
-            <div class="card-topline">
-              <span class="badge ${game.statusClass}">${game.status}</span>
-              <div class="platform-list" aria-label="${game.title} platforms">
-                ${platformMarkup(game.platforms)}
-              </div>
-            </div>
-            <h3>${game.title}</h3>
+            <h3 id="game-${game.theme}">${game.title}</h3>
             <p class="genre-line">${game.genre}</p>
-            <p>${game.description}</p>
-            <div class="tag-list" aria-label="${game.title} tags">
-              ${tagMarkup(game.tags)}
-            </div>
+            <p class="game-description">${game.description}</p>
             <div class="game-actions">
               ${
                 game.page
-                  ? `<a class="card-link ripple" href="${game.page}">View Game</a>`
-                  : `<span class="card-link disabled-link" aria-disabled="true">Page Coming Later</span>`
+                  ? `<a class="card-link" href="${game.page}" aria-label="View ${game.title}">View Game <span aria-hidden="true">&rarr;</span></a>`
+                  : `<span class="card-link disabled-link">Details to follow</span>`
               }
             </div>
           </div>
@@ -246,7 +196,7 @@ function closeMobileNav() {
 function setupReveal() {
   const items = document.querySelectorAll(".reveal");
 
-  if (!("IntersectionObserver" in window)) {
+  if (motionPreference.matches || !("IntersectionObserver" in window)) {
     items.forEach((item) => item.classList.add("is-visible"));
     return;
   }
@@ -267,45 +217,17 @@ function setupReveal() {
 }
 
 function filterGames(filter) {
-  for (let i = 0; i < gameCards.length; i += 1) {
-    const card = gameCards[i];
-    const matches = filter === "all" || card.dataset.filters.includes(` ${filter} `);
-    window.clearTimeout(hideTimers.get(card));
-
-    if (matches) {
-      card.style.display = "";
-    }
-
-    card.classList.toggle("is-hidden", !matches);
-
-    if (!matches) {
-      const timer = window.setTimeout(() => {
-        card.style.display = "none";
-      }, 210);
-      hideTimers.set(card, timer);
-    }
-  }
-}
-
-// Lightweight pointer tilt for cards and the hero logo panel.
-function setupTilt() {
-  if (!useDecorativeMotion) return;
-
-  document.querySelectorAll("[data-tilt]").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 7}deg) translateY(-3px)`;
-    });
-
-    card.addEventListener("pointerleave", () => {
-      card.style.transform = "";
-    });
+  gameCards.forEach((card) => {
+    card.hidden = filter !== "all" && !card.dataset.filters.includes(` ${filter} `);
   });
+  const count = gameCards.filter((card) => !card.hidden).length;
+  document.querySelector("#filter-status").textContent = filter === "all"
+    ? `Showing all ${count} games`
+    : `Showing ${count} ${filter} games`;
 }
 
 function setupActiveNav() {
+  if (!("IntersectionObserver" in window)) return;
   const sections = [...document.querySelectorAll("main section[id]")];
 
   const sectionObserver = new IntersectionObserver(
@@ -315,7 +237,12 @@ function setupActiveNav() {
         const id = entry.target.getAttribute("id");
         const hasLink = [...navItems].some((item) => item.getAttribute("href") === `#${id}`);
         if (!hasLink) return;
-        navItems.forEach((item) => item.classList.toggle("active", item.getAttribute("href") === `#${id}`));
+        navItems.forEach((item) => {
+          const active = item.getAttribute("href") === `#${id}`;
+          item.classList.toggle("active", active);
+          if (active) item.setAttribute("aria-current", "location");
+          else item.removeAttribute("aria-current");
+        });
       });
     },
     { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
@@ -324,83 +251,29 @@ function setupActiveNav() {
   sections.forEach((section) => sectionObserver.observe(section));
 }
 
-// Moves background shapes gently with the pointer.
-function setupParallax() {
-  if (!useDecorativeMotion) return;
+// Only the visible hero needs continuous motion; CSS handles every frame.
+function setupHeroMotion() {
+  const hero = document.querySelector(".hero");
+  if (!hero || !("IntersectionObserver" in window)) return;
 
-  let frame = null;
-  window.addEventListener("pointermove", (event) => {
-    if (frame) return;
-    frame = requestAnimationFrame(() => {
-      const x = event.clientX / window.innerWidth - 0.5;
-      const y = event.clientY / window.innerHeight - 0.5;
-
-      parallaxItems.forEach((item) => {
-        const depth = Number(item.dataset.depth) || 0.1;
-        item.style.translate = `${x * depth * 56}px ${y * depth * 56}px`;
-      });
-
-      frame = null;
-    });
-  });
-}
-
-function setupRipples() {
-  if (!useDecorativeMotion) return;
-
-  document.querySelectorAll(".ripple").forEach((element) => {
-    element.addEventListener("pointerdown", (event) => {
-      const rect = element.getBoundingClientRect();
-      element.style.setProperty("--ripple-x", `${event.clientX - rect.left}px`);
-      element.style.setProperty("--ripple-y", `${event.clientY - rect.top}px`);
-      element.classList.remove("is-rippling");
-      void element.offsetWidth;
-      element.classList.add("is-rippling");
-    });
-
-    element.addEventListener("animationend", () => element.classList.remove("is-rippling"));
-  });
-}
-
-function setupGameTabEffects() {
-  if (!useDecorativeMotion || !gameGrid) return;
-
-  let activeCard = null;
-  let frame = null;
-  let lastX = 0;
-  let lastY = 0;
-
-  const updateSpot = () => {
-    frame = null;
-    if (!activeCard) return;
-    const rect = activeCard.getBoundingClientRect();
-    activeCard.style.setProperty("--spot-x", `${lastX - rect.left}px`);
-    activeCard.style.setProperty("--spot-y", `${lastY - rect.top}px`);
+  let inView = false;
+  const updateMotion = () => {
+    hero.classList.toggle("is-animating", inView && !document.hidden && !motionPreference.matches);
   };
+  const observer = new IntersectionObserver(([entry]) => {
+    inView = entry.isIntersecting && entry.intersectionRatio >= 0.01;
+    updateMotion();
+  }, { threshold: 0.01 });
 
-  gameGrid.addEventListener("pointermove", (event) => {
-    const card = event.target.closest(".game-card");
-    if (!card) return;
-    activeCard = card;
-    lastX = event.clientX;
-    lastY = event.clientY;
-    if (frame) return;
-    frame = requestAnimationFrame(updateSpot);
-  });
-
-  gameGrid.addEventListener("pointerleave", () => {
-    activeCard = null;
-  });
+  observer.observe(hero);
+  document.addEventListener("visibilitychange", updateMotion);
+  motionPreference.addEventListener("change", updateMotion);
 }
 
 renderGames();
-setupDynamicShell();
 setupReveal();
-setupTilt();
 setupActiveNav();
-setupParallax();
-setupRipples();
-setupGameTabEffects();
+setupHeroMotion();
 
 navToggle?.addEventListener("click", () => {
   const isOpen = navToggle.getAttribute("aria-expanded") === "true";
@@ -409,6 +282,17 @@ navToggle?.addEventListener("click", () => {
   document.body.classList.toggle("nav-open", !isOpen);
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && navToggle?.getAttribute("aria-expanded") === "true") {
+    closeMobileNav();
+    navToggle.focus();
+  }
+});
+
+// A mobile menu must not leave the desktop page locked after resizing.
+window.matchMedia("(max-width: 620px)").addEventListener("change", (event) => {
+  if (!event.matches) closeMobileNav();
+});
 
 navItems.forEach((item) => {
   item.addEventListener("click", (event) => {
@@ -420,7 +304,7 @@ navItems.forEach((item) => {
     const target = document.querySelector(href);
     if (target) {
       event.preventDefault();
-      target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+      target.scrollIntoView({ behavior: motionPreference.matches ? "auto" : "smooth" });
     }
     closeMobileNav();
   });
@@ -431,25 +315,29 @@ document.querySelectorAll(".hero-actions a[href^='#']").forEach((link) => {
     const target = document.querySelector(link.getAttribute("href"));
     if (!target) return;
     event.preventDefault();
-    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+    target.scrollIntoView({ behavior: motionPreference.matches ? "auto" : "smooth" });
   });
 });
 
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    filterButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
+    filterButtons.forEach((item) => {
+      const active = item === button;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
     filterGames(button.dataset.filter);
   });
 });
 
 let scrollFrame = null;
+let backToTopVisible = false;
 const updateScrollState = () => {
-  const scrollY = window.scrollY;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const amount = max > 0 ? scrollY / max : 0;
-  if (scrollProgress) scrollProgress.style.transform = `scaleX(${amount})`;
-  backToTop?.classList.toggle("is-visible", scrollY > 640);
+  const isVisible = window.scrollY > 640;
+  if (isVisible !== backToTopVisible) {
+    backToTop?.classList.toggle("is-visible", isVisible);
+    backToTopVisible = isVisible;
+  }
   scrollFrame = null;
 };
 
@@ -461,13 +349,8 @@ window.addEventListener(
   },
   { passive: true }
 );
-window.addEventListener("resize", () => {
-  if (scrollFrame) return;
-  scrollFrame = requestAnimationFrame(updateScrollState);
-});
-
 updateScrollState();
 
 backToTop?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  window.scrollTo({ top: 0, behavior: motionPreference.matches ? "auto" : "smooth" });
 });

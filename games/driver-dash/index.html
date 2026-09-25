@@ -11,6 +11,7 @@
   <link rel="icon" href="../../Images/qubicodeLogo.ico" sizes="any">
   <title>Driver Dash</title>
   <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="../../store-buttons.css">
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -25,7 +26,7 @@
     <nav class="nav-links" aria-label="Main navigation">
       <a class="site-link" href="../../index.html#home">Qubicode</a>
       <a class="site-link" href="../../index.html#games">All Games</a>
-      <a href="#about">Game</a>
+      <a href="#trailer">Trailer</a>
       <a href="#features">Features</a>
       <a href="#gallery">Gallery</a>
       <a href="#rides">Rides</a>
@@ -57,56 +58,28 @@
         </div>
       </div>
 
-      <div class="hero-art reveal reveal--right" data-parallax="0.025">
-        <div class="hero-art-burst"></div>
-        <img class="hero-tank" src="images/driverdash1.png" width="950" height="950" alt="Driver Dash racer and tank" fetchpriority="high" decoding="async">
-        <div class="impact-word">VROOOM!</div>
+      <div class="hero-trailer reveal reveal--right" id="trailer">
+        <div class="phone-stage">
+          <span class="phone-shadow" aria-hidden="true"></span>
+          <div class="phone-frame">
+            <span class="phone-speaker" aria-hidden="true"></span>
+            <span class="phone-camera" aria-hidden="true"></span>
+            <span class="phone-button phone-button--top" aria-hidden="true"></span>
+            <span class="phone-button phone-button--bottom" aria-hidden="true"></span>
+            <div class="phone-screen">
+              <video muted loop playsinline controls preload="metadata" poster="images/ScreenShot7.PNG" aria-label="Driver Dash gameplay trailer">
+                <source src="PromoMaterial/driverdashtrailer.mp4" type="video/mp4">
+                Your browser does not support the Driver Dash gameplay trailer.
+              </video>
+            </div>
+          </div>
+          <span class="comic-sticker">Official trailer!</span>
+        </div>
+        <img class="floating-driver" src="images/DdPlayer.png" width="620" height="1004" alt="Driver Dash racer" decoding="async">
       </div>
-      <a class="scroll-cue" href="#about"><span>Scroll to race</span><i></i></a>
+      <a class="scroll-cue" href="#features"><span>Scroll to race</span><i></i></a>
     </section>
 
-    <section class="about section" id="about">
-      <div class="section-shell about-grid">
-        <div class="about-visual reveal">
-          <div class="phone-stage">
-            <span class="phone-shadow" aria-hidden="true"></span>
-            <div class="phone-frame">
-              <span class="phone-speaker" aria-hidden="true"></span>
-              <span class="phone-camera" aria-hidden="true"></span>
-              <span class="phone-button phone-button--top" aria-hidden="true"></span>
-              <span class="phone-button phone-button--bottom" aria-hidden="true"></span>
-              <div class="phone-screen">
-                <video autoplay muted loop playsinline controls preload="metadata" poster="images/ScreenShot7.PNG" aria-label="Driver Dash gameplay trailer">
-                  <source src="PromoMaterial/driverdashtrailer.mp4" type="video/mp4">
-                  Your browser does not support the Driver Dash gameplay trailer.
-                </video>
-              </div>
-            </div>
-            <span class="comic-sticker">Official trailer!</span>
-          </div>
-          <img class="floating-driver" src="images/DdPlayer.png" width="620" height="1004" alt="Driver Dash racer" loading="lazy" decoding="async">
-        </div>
-        <div class="about-copy reveal reveal--right">
-          <span class="kicker">Welcome, driver</span>
-          <h2>Every road is a <span>playground.</span></h2>
-          <p class="lead">Driver Dash is an action-packed arcade racer where quick reflexes, clever upgrades, and a little bit of chaos turn every run into a story.</p>
-          <div class="mini-panels">
-            <article>
-              <img src="images/steeringwheelfire.png" width="500" height="500" alt="" loading="lazy" decoding="async">
-              <div><strong>Easy to start</strong><span>Hard to stop</span></div>
-            </article>
-            <article>
-              <img src="images/trofje.png" width="500" height="500" alt="" loading="lazy" decoding="async">
-              <div><strong>Chase glory</strong><span>Top every score</span></div>
-            </article>
-            <article>
-              <img src="images/SprayCan.png" width="500" height="500" alt="" loading="lazy" decoding="async">
-              <div><strong>Make it yours</strong><span>Style every ride</span></div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="features section" id="features">
       <div class="section-shell">
@@ -214,8 +187,11 @@
         <span class="kicker">Your ride is waiting</span>
         <h2>Ready to own<br>the road?</h2>
         <p>Jump in, hit the gas, and see how far your reflexes can take you.</p>
-        <a class="game-button game-button--dark" href="#top"><span>Play Driver Dash</span><b>Go!</b></a>
-        <small>Available on mobile</small>
+        <div class="store-actions" role="group" aria-label="Play Driver Dash">
+          <button class="game-button game-button--dark store-button" type="button" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../Images/store-icons.svg#app-store"/></svg><span>App Store</span></button>
+          <button class="game-button game-button--dark store-button" type="button" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../../Images/store-icons.svg#google-play"/></svg><span>Google Play</span></button>
+        </div>
+        <small>Made for iOS and Android</small>
       </div>
     </section>
   </main>
@@ -229,6 +205,7 @@
       <a href="../../index.html#home">Qubicode</a>
       <a href="../../index.html#games">All Games</a>
       <a href="../../index.html#contact">Contact</a>
+      <a href="privacy/index.html">Privacy policy</a>
       <a href="#top">Back to top</a>
     </nav>
   </footer>

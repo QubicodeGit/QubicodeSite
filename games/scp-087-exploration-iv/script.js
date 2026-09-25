@@ -4,7 +4,6 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
 const year = document.querySelector("#year");
-const flashlight = document.querySelector(".flashlight");
 const dustLayer = document.querySelector(".scp-dust");
 const depthMeter = document.querySelector(".depth-meter");
 const revealItems = document.querySelectorAll(".reveal");
@@ -71,21 +70,6 @@ function setupDust() {
     particle.style.setProperty("--drift", `${-55 + Math.random() * 110}px`);
     dustLayer.appendChild(particle);
   }
-}
-
-function setupFlashlight() {
-  if (prefersReducedMotion || !flashlight || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
-
-  window.addEventListener("pointermove", (event) => {
-    if (event.pointerType !== "mouse") return;
-    document.body.classList.add("has-pointer");
-    document.documentElement.style.setProperty("--mx", `${event.clientX}px`);
-    document.documentElement.style.setProperty("--my", `${event.clientY}px`);
-  });
-
-  window.addEventListener("pointerleave", () => {
-    document.body.classList.remove("has-pointer");
-  });
 }
 
 function makeDots() {
@@ -244,6 +228,5 @@ window.addEventListener("scroll", () => {
 
 setupReveal();
 setupDust();
-setupFlashlight();
 setupGallery();
 updateDepthMeter();

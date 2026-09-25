@@ -40,15 +40,7 @@ if ("IntersectionObserver" in window) {
 }
 
 if (!reducedMotion && finePointer) {
-  const glow = document.querySelector(".cursor-glow");
   const parallaxItems = document.querySelectorAll(".parallax");
-
-  if (glow) {
-    window.addEventListener("pointermove", (event) => {
-      glow.style.left = `${event.clientX}px`;
-      glow.style.top = `${event.clientY}px`;
-    }, { passive: true });
-  }
 
   let ticking = false;
   window.addEventListener("scroll", () => {
