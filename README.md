@@ -7,6 +7,8 @@ A static Qubicode portfolio built with plain HTML, CSS, and JavaScript. It is Gi
 ```text
 /
 |-- index.html
+|-- 404.html
+|-- 404.css
 |-- style.css
 |-- script.js
 |-- Images/
@@ -14,7 +16,7 @@ A static Qubicode portfolio built with plain HTML, CSS, and JavaScript. It is Gi
 `-- README.md
 ```
 
-The home page uses the root `style.css` and `script.js`. Game pages keep their own local assets, styles, and scripts in their folders.
+The home page uses the root `style.css` and `script.js`. Most game pages keep their own local assets, styles, and scripts in their folders. Recovery Unit shares the root styling and navigation script, with its page layout scoped inside its HTML.
 
 ## Home Page Game Cards
 
@@ -26,13 +28,10 @@ Each game object controls:
 - `status`
 - `statusClass`
 - `platforms`
-- `genre`
 - `filters`
 - `page`
 - `image`
-- `logo`
 - `description`
-- `tags`
 
 Set `page` to an empty string while dedicated game pages are not part of the site:
 
@@ -40,12 +39,27 @@ Set `page` to an empty string while dedicated game pages are not part of the sit
 page: ""
 ```
 
-Cards without a page show a disabled "Page Coming Later" button.
+Each entire card links to its game page, with a separate shortcut icon in its upper-right corner. Cards without a page link to the themed 404 page.
+
+Status badges use these labels and classes:
+
+| Status | Class | Color |
+| --- | --- | --- |
+| Seeking publisher | `status-seeking` | Yellow |
+| Published | `status-published` | Green |
+| In Development | `status-development` | Blue |
+| Future | `status-future` | Gray |
+
+Only use Published for a game that has actually been released.
+
+## Missing Pages
+
+`404.html` shares the home page's glass styling and floating cube. GitHub Pages serves this file for missing URLs. Its early base-path setup keeps images, styles, and homepage links working for nested missing URLs, the `/QubicodeSite/` project deployment, and a root custom domain. If the repository/deployment path changes, update `projectPath` and `isGitHubProject` in `404.html`. Other static hosts should serve `404.html` with an HTTP 404 response for unknown paths.
 
 ## Adding Screenshots
 
 1. Add the image file to `Images/`.
-2. Update the matching home card image or logo in `script.js`.
+2. Update the matching home card's `image` in `script.js`.
 
 ## Social Links
 

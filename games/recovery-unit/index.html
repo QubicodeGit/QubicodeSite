@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#061225">
+  <meta name="description" content="Recovery Unit is a future multiplayer first-person infection shooter from Qubicode.">
+  <link rel="icon" href="../../Images/qubicodeLogo.svg" type="image/svg+xml">
+  <link rel="icon" href="../../Images/qubicodeLogo.ico" sizes="any">
+  <title>Recovery Unit — Qubicode</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .recovery-page {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 85% 0, rgba(65, 78, 164, .3), transparent 55%), #061225;
+    }
+    .recovery-page .nav-links { margin-left: auto; }
+    .recovery-page .nav-toggle { margin-left: auto; }
+    .recovery-main { min-height: calc(100vh - 80px); padding: 155px 0 65px; }
+    .recovery-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: center; }
+    .recovery-copy { min-width: 0; }
+    .recovery-copy .game-status { margin: 0 0 19px; max-width: 100%; }
+    .recovery-copy h1 { font-size: clamp(40px, 4.8vw, 66px); font-weight: 750; line-height: 1.06; letter-spacing: -.04em; }
+    .recovery-platforms { margin: 18px 0 0; color: #9fb8d7; font-size: 12px; letter-spacing: .06em; }
+    .recovery-description { margin-top: 23px; max-width: 50ch; color: #c7d8ef; font-size: 16px; line-height: 1.65; }
+    .recovery-notice { margin-top: 25px; width: fit-content; padding: 10px 18px; border-radius: 14px; color: #c4d3e8; font-size: 14px; }
+    .recovery-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .recovery-actions .button { min-height: 49px; padding-inline: 22px; border-radius: 16px; font-size: 13px; }
+    .recovery-image { margin: 0; padding: 7px; border-radius: 25px; overflow: hidden; }
+    .recovery-image img { width: 100%; aspect-ratio: 1672 / 941; object-fit: cover; border-radius: 19px; }
+    @media (max-width: 820px) {
+      .recovery-main { padding-top: 125px; }
+      .recovery-layout { grid-template-columns: 1fr; gap: 35px; }
+      .recovery-description { max-width: 65ch; }
+      .recovery-copy h1 { font-size: clamp(39px, 8vw, 61px); }
+      .recovery-image { max-width: 680px; }
+    }
+    @media (max-width: 600px) {
+      .recovery-main { padding: 111px 0 40px; }
+      .recovery-description { font-size: 14px; }
+      .recovery-actions .button { flex: 1 1 130px; padding-inline: 15px; }
+      .recovery-image { padding: 5px; border-radius: 20px; }
+      .recovery-image img { border-radius: 15px; }
+    }
+  </style>
+</head>
+<body class="recovery-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav glass-panel" aria-label="Primary navigation">
+      <a class="brand" href="../../index.html#home" aria-label="Qubicode home">
+        <img src="../../Images/qubicodeLogo.svg" width="574" height="574" alt="" class="brand-logo" decoding="async">
+        <span class="brand-wordmark">QUBICODE</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../../index.html#home">Home</a></li>
+        <li><a href="../../index.html#games">Games</a></li>
+        <li><a href="../../index.html#assets">Assets</a></li>
+        <li><a href="../../index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="recovery-main" id="main-content">
+    <section class="section-inner recovery-layout" aria-labelledby="recovery-title">
+      <div class="recovery-copy">
+        <span class="game-status badge status-future">Future</span>
+        <h1 id="recovery-title">Recovery Unit</h1>
+        <p class="recovery-platforms">Steam · PC · Multiplayer</p>
+        <p class="recovery-description">A multiplayer first-person infection shooter where up to four players enter dangerous contaminated areas filled with weak and extremely powerful mutated creatures. Survive hostile environments together.</p>
+        <p class="recovery-notice glass-panel">Coming soon</p>
+        <div class="recovery-actions">
+          <a class="button button-primary" href="../../index.html#games">Browse games</a>
+          <a class="button button-secondary" href="../../index.html#home">Return home</a>
+        </div>
+      </div>
+      <figure class="recovery-image glass-panel">
+        <img src="../../Images/recoveryunitScreenshot.png" width="1672" height="941" alt="Recovery Unit game screenshot" fetchpriority="high" decoding="async">
+      </figure>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="section-inner footer-inner">
+      <a class="brand footer-brand" href="../../index.html#home"><img src="../../Images/qubicodeLogo.svg" width="574" height="574" alt="" class="brand-logo" decoding="async"><span>QUBICODE</span></a>
+      <p>&copy; <span id="year">2026</span> Qubicode. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="../../script.js"></script>
+</body>
+</html>

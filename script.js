@@ -1,8 +1,6 @@
 document.documentElement.classList.add("js");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const supportsPreciseHover = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 821px)").matches;
-const useDecorativeMotion = !prefersReducedMotion && supportsPreciseHover;
 
 const platformIcons = {
   mobile:
@@ -27,8 +25,8 @@ const platformIcons = {
 const games = [
   {
     title: "Driver Dash",
-    status: "Inactive / Seeking Publisher",
-    statusClass: "status-inactive",
+    status: "Seeking publisher",
+    statusClass: "status-seeking",
     platforms: ["Mobile", "iOS", "Android"],
     genre: "Endless Mobile Arcade",
     theme: "driver-dash",
@@ -90,7 +88,7 @@ const games = [
     genre: "Multiplayer First-Person Infection Shooter",
     theme: "recovery-unit",
     filters: ["steam", "multiplayer"],
-    page: "",
+    page: "games/recovery-unit/index.html",
     image: "Images/recoveryunitScreenshot.png",
     imageWidth: 1672,
     imageHeight: 941,
@@ -147,25 +145,10 @@ const navItems = document.querySelectorAll(".nav-links a");
 const gameGrid = document.querySelector("#game-grid");
 const filterButtons = document.querySelectorAll(".filter-button");
 const backToTop = document.querySelector(".back-to-top");
-const parallaxItems = document.querySelectorAll("[data-depth]");
 let gameCards = [];
-let scrollProgress = null;
-const hideTimers = new WeakMap();
 
 if (year) {
   year.textContent = new Date().getFullYear();
-}
-
-function setupDynamicShell() {
-  const progress = document.createElement("div");
-  progress.className = "scroll-progress";
-  progress.setAttribute("aria-hidden", "true");
-  document.body.prepend(progress);
-  scrollProgress = progress;
-}
-
-function tagMarkup(items, className = "") {
-  return items.map((item) => `<span class="${className}">${item}</span>`).join("");
 }
 
 function platformIcon(name) {
@@ -175,57 +158,43 @@ function platformIcon(name) {
 
 function platformMarkup(platforms) {
   return platforms
-    .map((platform) => `<span class="platform-tag">${platformIcon(platform)}${platform}</span>`)
+    .map((platform) => `<span class="platform-tag" title="${platform}">${platformIcon(platform)}<span class="sr-only">${platform}</span></span>`)
     .join("");
 }
 
+const shortcutArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"></path></svg>';
+
 function renderGames() {
+  if (!gameGrid) return;
+
   gameGrid.innerHTML = games
-    .map((game, index) => {
+    .map((game) => {
+      const pageHref = game.page || "404.html";
+      const pageLabel = game.page ? `View ${game.title}` : `${game.title} page coming soon`;
       const mediaClass = game.mediaMode === "contain" ? "game-media image-contain" : "game-media";
       const imageMarkup = game.image
         ? `<img src="${game.image}" width="${game.imageWidth}" height="${game.imageHeight}" alt="${game.imageAlt || `${game.title} screenshot`}" loading="lazy" decoding="async">`
         : `<div class="placeholder-media"><span>${game.title} visual coming soon</span></div>`;
-      const logoMarkup = game.logo
-        ? `<div class="game-logo"><img src="${game.logo}" width="${game.logoWidth}" height="${game.logoHeight}" alt="${game.title} logo" loading="lazy" decoding="async"></div>`
-        : "";
-      const boothMarkup = game.theme === "gun-pop"
-        ? `<div class="gun-pop-card-scenery" aria-hidden="true">
-            <span class="gun-pop-card-awning"></span>
-            <span class="gun-pop-card-target target-red"></span>
-            <span class="gun-pop-card-target target-purple"></span>
-            <span class="gun-pop-card-shelf"></span>
-          </div>`
-        : "";
 
       return `
-        <article class="game-card game-tab game-theme-${game.theme} reveal" data-filters=" ${game.filters.join(" ")} " style="transition-delay: ${index * 70}ms">
+        <article class="game-card game-tab game-theme-${game.theme}" data-filters=" ${game.filters.join(" ")} ">
           <div class="game-tab-visual">
             <div class="${mediaClass}">
               ${imageMarkup}
             </div>
-            ${logoMarkup}
-            ${boothMarkup}
           </div>
+          <a class="game-card-link" href="${pageHref}" aria-label="${pageLabel}" title="${pageLabel}"></a>
+          ${game.page ? `<a class="game-shortcut" href="${game.page}" aria-label="View ${game.title}">${shortcutArrow}</a>` : ""}
           <div class="game-content">
             <div class="card-topline">
-              <span class="badge ${game.statusClass}">${game.status}</span>
+              <span class="game-status badge ${game.statusClass}">${game.status}</span>
+            </div>
+            <h3>${game.title}</h3>
+            <p class="game-description">${game.description}</p>
+            <div class="game-actions">
               <div class="platform-list" aria-label="${game.title} platforms">
                 ${platformMarkup(game.platforms)}
               </div>
-            </div>
-            <h3>${game.title}</h3>
-            <p class="genre-line">${game.genre}</p>
-            <p>${game.description}</p>
-            <div class="tag-list" aria-label="${game.title} tags">
-              ${tagMarkup(game.tags)}
-            </div>
-            <div class="game-actions">
-              ${
-                game.page
-                  ? `<a class="card-link ripple" href="${game.page}">View Game</a>`
-                  : `<span class="card-link disabled-link" aria-disabled="true">Page Coming Later</span>`
-              }
             </div>
           </div>
         </article>
@@ -242,70 +211,16 @@ function closeMobileNav() {
   document.body.classList.remove("nav-open");
 }
 
-// Reveals sections and cards as they enter the viewport.
-function setupReveal() {
-  const items = document.querySelectorAll(".reveal");
-
-  if (!("IntersectionObserver" in window)) {
-    items.forEach((item) => item.classList.add("is-visible"));
-    return;
-  }
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px" }
-  );
-
-  items.forEach((item) => revealObserver.observe(item));
-}
-
 function filterGames(filter) {
-  for (let i = 0; i < gameCards.length; i += 1) {
-    const card = gameCards[i];
+  gameCards.forEach((card) => {
     const matches = filter === "all" || card.dataset.filters.includes(` ${filter} `);
-    window.clearTimeout(hideTimers.get(card));
-
-    if (matches) {
-      card.style.display = "";
-    }
-
+    card.hidden = !matches;
     card.classList.toggle("is-hidden", !matches);
-
-    if (!matches) {
-      const timer = window.setTimeout(() => {
-        card.style.display = "none";
-      }, 210);
-      hideTimers.set(card, timer);
-    }
-  }
-}
-
-// Lightweight pointer tilt for cards and the hero logo panel.
-function setupTilt() {
-  if (!useDecorativeMotion) return;
-
-  document.querySelectorAll("[data-tilt]").forEach((card) => {
-    card.addEventListener("pointermove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(900px) rotateX(${y * -5}deg) rotateY(${x * 7}deg) translateY(-3px)`;
-    });
-
-    card.addEventListener("pointerleave", () => {
-      card.style.transform = "";
-    });
   });
 }
 
 function setupActiveNav() {
+  if (!("IntersectionObserver" in window)) return;
   const sections = [...document.querySelectorAll("main section[id]")];
 
   const sectionObserver = new IntersectionObserver(
@@ -315,7 +230,12 @@ function setupActiveNav() {
         const id = entry.target.getAttribute("id");
         const hasLink = [...navItems].some((item) => item.getAttribute("href") === `#${id}`);
         if (!hasLink) return;
-        navItems.forEach((item) => item.classList.toggle("active", item.getAttribute("href") === `#${id}`));
+        navItems.forEach((item) => {
+          const isActive = item.getAttribute("href") === `#${id}`;
+          item.classList.toggle("active", isActive);
+          if (isActive) item.setAttribute("aria-current", "location");
+          else item.removeAttribute("aria-current");
+        });
       });
     },
     { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
@@ -324,91 +244,33 @@ function setupActiveNav() {
   sections.forEach((section) => sectionObserver.observe(section));
 }
 
-// Moves background shapes gently with the pointer.
-function setupParallax() {
-  if (!useDecorativeMotion) return;
-
-  let frame = null;
-  window.addEventListener("pointermove", (event) => {
-    if (frame) return;
-    frame = requestAnimationFrame(() => {
-      const x = event.clientX / window.innerWidth - 0.5;
-      const y = event.clientY / window.innerHeight - 0.5;
-
-      parallaxItems.forEach((item) => {
-        const depth = Number(item.dataset.depth) || 0.1;
-        item.style.translate = `${x * depth * 56}px ${y * depth * 56}px`;
-      });
-
-      frame = null;
-    });
-  });
-}
-
-function setupRipples() {
-  if (!useDecorativeMotion) return;
-
-  document.querySelectorAll(".ripple").forEach((element) => {
-    element.addEventListener("pointerdown", (event) => {
-      const rect = element.getBoundingClientRect();
-      element.style.setProperty("--ripple-x", `${event.clientX - rect.left}px`);
-      element.style.setProperty("--ripple-y", `${event.clientY - rect.top}px`);
-      element.classList.remove("is-rippling");
-      void element.offsetWidth;
-      element.classList.add("is-rippling");
-    });
-
-    element.addEventListener("animationend", () => element.classList.remove("is-rippling"));
-  });
-}
-
-function setupGameTabEffects() {
-  if (!useDecorativeMotion || !gameGrid) return;
-
-  let activeCard = null;
-  let frame = null;
-  let lastX = 0;
-  let lastY = 0;
-
-  const updateSpot = () => {
-    frame = null;
-    if (!activeCard) return;
-    const rect = activeCard.getBoundingClientRect();
-    activeCard.style.setProperty("--spot-x", `${lastX - rect.left}px`);
-    activeCard.style.setProperty("--spot-y", `${lastY - rect.top}px`);
-  };
-
-  gameGrid.addEventListener("pointermove", (event) => {
-    const card = event.target.closest(".game-card");
-    if (!card) return;
-    activeCard = card;
-    lastX = event.clientX;
-    lastY = event.clientY;
-    if (frame) return;
-    frame = requestAnimationFrame(updateSpot);
-  });
-
-  gameGrid.addEventListener("pointerleave", () => {
-    activeCard = null;
-  });
-}
-
 renderGames();
-setupDynamicShell();
-setupReveal();
-setupTilt();
 setupActiveNav();
-setupParallax();
-setupRipples();
-setupGameTabEffects();
+
+document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
 
 navToggle?.addEventListener("click", () => {
+  if (!navLinks) return;
   const isOpen = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", String(!isOpen));
   navLinks?.classList.toggle("is-open", !isOpen);
   document.body.classList.toggle("nav-open", !isOpen);
 });
 
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || navToggle?.getAttribute("aria-expanded") !== "true") return;
+  closeMobileNav();
+  navToggle.focus();
+});
+
+document.addEventListener("click", (event) => {
+  if (navToggle?.getAttribute("aria-expanded") !== "true") return;
+  if (!navLinks?.contains(event.target) && !navToggle.contains(event.target)) closeMobileNav();
+});
+
+window.matchMedia("(min-width: 821px)").addEventListener("change", (event) => {
+  if (event.matches) closeMobileNav();
+});
 
 navItems.forEach((item) => {
   item.addEventListener("click", (event) => {
@@ -426,30 +288,24 @@ navItems.forEach((item) => {
   });
 });
 
-document.querySelectorAll(".hero-actions a[href^='#']").forEach((link) => {
-  link.addEventListener("click", (event) => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (!target) return;
-    event.preventDefault();
-    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+filterButtons.forEach((button) => {
+  button.setAttribute("aria-pressed", String(button.classList.contains("active")));
+  button.addEventListener("click", () => {
+    filterButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+    });
+    filterGames(button.dataset.filter || "all");
   });
 });
 
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    filterGames(button.dataset.filter);
-  });
-});
+const initialFilter = [...filterButtons].find((button) => button.classList.contains("active"));
+filterGames(initialFilter?.dataset.filter || "all");
 
 let scrollFrame = null;
 const updateScrollState = () => {
-  const scrollY = window.scrollY;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const amount = max > 0 ? scrollY / max : 0;
-  if (scrollProgress) scrollProgress.style.transform = `scaleX(${amount})`;
-  backToTop?.classList.toggle("is-visible", scrollY > 640);
+  backToTop?.classList.toggle("is-visible", window.scrollY > 640);
   scrollFrame = null;
 };
 
