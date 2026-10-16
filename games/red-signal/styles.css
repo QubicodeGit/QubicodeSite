@@ -249,11 +249,6 @@ footer nav a:hover { color: var(--red-hot); }
   .mars {
     animation: none;
   }
-  .load-in {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
   .reveal {
     transition-duration: .22s;
   }

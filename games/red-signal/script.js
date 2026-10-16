@@ -1,4 +1,4 @@
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine) and (min-width: 901px)").matches;
 
 const navToggle = document.querySelector(".nav-toggle");
@@ -24,7 +24,7 @@ document.querySelectorAll(".reveal").forEach((element, index) => {
 
 const revealItems = document.querySelectorAll(".reveal");
 
-if ("IntersectionObserver" in window) {
+if (!motionPreference.matches && "IntersectionObserver" in window) {
   const observer = new IntersectionObserver((entries, revealObserver) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -39,12 +39,13 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((element) => element.classList.add("visible"));
 }
 
-if (!reducedMotion && finePointer) {
+if (!motionPreference.matches && finePointer) {
   const glow = document.querySelector(".cursor-glow");
   const parallaxItems = document.querySelectorAll(".parallax");
 
   if (glow) {
     window.addEventListener("pointermove", (event) => {
+      if (motionPreference.matches) return;
       glow.style.left = `${event.clientX}px`;
       glow.style.top = `${event.clientY}px`;
     }, { passive: true });
@@ -52,6 +53,7 @@ if (!reducedMotion && finePointer) {
 
   let ticking = false;
   window.addEventListener("scroll", () => {
+    if (motionPreference.matches) return;
     if (!ticking) {
       window.requestAnimationFrame(() => {
         parallaxItems.forEach((element) => {

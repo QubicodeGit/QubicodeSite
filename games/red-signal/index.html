@@ -10,8 +10,11 @@
   <title>Red Signal</title>
   <link rel="preload" href="images/RedSignalScreenshot.jpg" as="image">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../game-ui.css">
+  <link rel="stylesheet" href="../viewport.css">
+  <link rel="stylesheet" href="../../motion.css">
 </head>
-<body>
+<body class="game-page game-red-signal">
   <div class="noise" aria-hidden="true"></div>
   <div class="cursor-glow" aria-hidden="true"></div>
 
@@ -20,17 +23,15 @@
       <span class="brand-mark"></span>
       <span>RED//SIGNAL</span>
     </a>
+      <a class="qubicode-home" href="../../index.html#home" aria-label="Qubicode home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10 9-5M12 12 3 7m9 5v10"/></svg><span><strong>Qubicode</strong><small>Studio home</small></span></a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <span></span><span></span>
       <span class="sr-only">Toggle navigation</span>
     </button>
     <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-      <a class="site-link" href="../../index.html#home">Qubicode</a>
-      <a class="site-link" href="../../index.html#games">All Games</a>
-      <a href="#briefing">Briefing</a>
-      <a href="#systems">Systems</a>
       <a href="#evidence">Evidence</a>
-      <a class="nav-cta" href="#transmission">Open Channel</a>
+      <a href="#systems">Systems</a>
+      <a class="nav-cta" href="#transmission">Steam</a>
     </nav>
   </header>
 
@@ -48,10 +49,7 @@
         <p class="eyebrow load-in">A short-form Mars horror experience</p>
         <h1 id="hero-title" class="glitch load-in" data-text="RED SIGNAL">RED <span>SIGNAL</span></h1>
         <p class="hero-tagline load-in">The signal came from Mars.<br>It should have stayed buried.</p>
-        <div class="hero-actions load-in">
-          <a class="button button-primary" href="#transmission"><span>Enter the signal</span></a>
-          <a class="button button-ghost" href="#evidence">View evidence</a>
-        </div>
+        <div class="store-actions" aria-label="Steam store"><button class="store-button" type="button" disabled aria-label="Steam — store page not yet available"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="16.5" cy="7.5" r="4"/><circle cx="16.5" cy="7.5" r="2"/><circle cx="7.5" cy="17" r="3.5"/><path d="m2 14 6.5 3.6m1.5-3.8 3.2-3.2m3.3.9-6 8.3"/></svg><span>Steam</span></button><button class="store-button store-button--wishlist" type="button" disabled aria-label="Wishlist on Steam — store page not yet available"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1 6.2-5.6-3-5.6 3 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg><span>Wishlist on Steam</span></button></div>
       </div>
 
       <aside class="telemetry load-in" aria-label="Mission telemetry">
@@ -72,73 +70,13 @@
       </div>
     </section>
 
-    <section id="briefing" class="section briefing">
-      <div class="section-marker reveal"><span>01</span> Mission briefing</div>
-      <div class="briefing-layout">
-        <div class="briefing-copy reveal">
-          <p class="eyebrow">A signal with no sender</p>
-          <h2>You came to investigate.<br><em>Something noticed.</em></h2>
-          <p class="lead">A buried relay wakes beneath a Martian research station. The crew is gone. The doors are opening by themselves. And across every channel, one impossible signal keeps getting closer.</p>
-          <div class="log-line">
-            <span>Last recovered log</span>
-            <p>“Do not follow the red light. It knows when you are looking.”</p>
-          </div>
-        </div>
-        <figure class="briefing-visual reveal">
-          <div class="image-frame">
-            <img src="images/Snimka zaslona 2026-06-11 214908.jpg" width="1591" height="885" alt="A missing astronaut suspended in a dark Mars station corridor" loading="lazy" decoding="async">
-            <span class="frame-id">CAM_04 // HAB-RING</span>
-            <span class="target-box" aria-hidden="true"></span>
-          </div>
-          <figcaption><i></i> Movement anomaly detected</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section id="systems" class="section features">
-      <div class="section-marker reveal"><span>02</span> Survival protocol</div>
-      <div class="section-heading reveal">
-        <div>
-          <p class="eyebrow">No rescue is coming</p>
-          <h2>Fear is a system.</h2>
-        </div>
-        <p>Every corridor is a decision. Every sound is information. Keep breathing.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card reveal">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20"/><path d="M8 32h48M32 12c8 8 8 32 0 40M32 12c-8 8-8 32 0 40"/><circle cx="43" cy="23" r="3"/></svg>
-          <span>SYS.01</span><h3>Mars Horror</h3><p>Cross a hostile world where the storm erases every trace behind you.</p>
-        </article>
-        <article class="feature-card reveal">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 48h42M32 48V25M26 25h12M19 39a18 18 0 0 1 0-25M45 39a18 18 0 0 0 0-25M25 33a10 10 0 0 1 0-14M39 33a10 10 0 0 0 0-14"/></svg>
-          <span>SYS.02</span><h3>Unknown Signal</h3><p>Track a transmission that changes whenever you listen to it.</p>
-        </article>
-        <article class="feature-card reveal">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 49V30a14 14 0 0 1 28 0v19M23 49h18M22 31h20v12H22z"/><path d="M27 36h10M14 49h36"/></svg>
-          <span>SYS.03</span><h3>Alien Isolation</h3><p>You are not the first thing to wake up inside the station.</p>
-        </article>
-        <article class="feature-card reveal">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 42l18-31 18 31z"/><path d="M32 23v9M32 37v2"/><path d="M10 51h44"/></svg>
-          <span>SYS.04</span><h3>Survival Tension</h3><p>Manage air, light, and distance. None of them last forever.</p>
-        </article>
-        <article class="feature-card reveal">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 32s9-15 23-15 23 15 23 15-9 15-23 15S9 32 9 32z"/><circle cx="32" cy="32" r="7"/><path d="M32 13V8M51 18l4-4M13 18l-4-4"/></svg>
-          <span>SYS.05</span><h3>Dark Exploration</h3><p>Search sealed rooms and forgotten tunnels beneath the red dust.</p>
-        </article>
-        <article class="feature-card reveal">
-          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 12h30v40H17zM24 20h16M24 28h16M24 36h10"/><path d="M12 18h5M47 45h5"/></svg>
-          <span>SYS.06</span><h3>Hidden Lore</h3><p>Piece together the final hours of a mission that never existed.</p>
-        </article>
-      </div>
-    </section>
-
     <section id="evidence" class="section gallery-section">
-      <div class="section-marker reveal"><span>03</span> Recovered evidence</div>
+      <div class="section-marker reveal"><span>01</span> Recovered evidence</div>
       <div class="section-heading reveal">
         <div><p class="eyebrow">Classified visual archive</p><h2>Nothing here is empty.</h2></div>
         <p>Click a file to inspect. Some frames have been partially corrupted.</p>
       </div>
-      <div class="gallery">
+      <div class="gallery" tabindex="0" role="region" aria-label="Red Signal screenshots">
         <button class="gallery-item wide reveal" data-full="images/RedSignalScreenshot.jpg" aria-label="Open evidence file: Whiteout">
           <img src="images/RedSignalScreenshot.jpg" width="1511" height="850" alt="Astronaut silhouette standing in a violent orange Martian dust storm" loading="lazy" decoding="async">
           <span><b>FILE 01</b> WHITEOUT // EXTERIOR</span>
@@ -174,6 +112,43 @@
       </div>
     </section>
 
+    <section id="systems" class="section features">
+      <div class="section-marker reveal"><span>02</span> Survival protocol</div>
+      <div class="section-heading reveal">
+        <div>
+          <p class="eyebrow">No rescue is coming</p>
+          <h2>Fear is a system.</h2>
+        </div>
+        <p>Every corridor is a decision. Every sound is information. Keep breathing.</p>
+      </div>
+      <div class="feature-grid" tabindex="0" role="region" aria-label="Red Signal game features">
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="20"/><path d="M8 32h48M32 12c8 8 8 32 0 40M32 12c-8 8-8 32 0 40"/><circle cx="43" cy="23" r="3"/></svg>
+          <span>SYS.01</span><h3>Mars Horror</h3><p>Cross a hostile world where the storm erases every trace behind you.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M11 48h42M32 48V25M26 25h12M19 39a18 18 0 0 1 0-25M45 39a18 18 0 0 0 0-25M25 33a10 10 0 0 1 0-14M39 33a10 10 0 0 0 0-14"/></svg>
+          <span>SYS.02</span><h3>Unknown Signal</h3><p>Track a transmission that changes whenever you listen to it.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M18 49V30a14 14 0 0 1 28 0v19M23 49h18M22 31h20v12H22z"/><path d="M27 36h10M14 49h36"/></svg>
+          <span>SYS.03</span><h3>Alien Isolation</h3><p>You are not the first thing to wake up inside the station.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 42l18-31 18 31z"/><path d="M32 23v9M32 37v2"/><path d="M10 51h44"/></svg>
+          <span>SYS.04</span><h3>Survival Tension</h3><p>Manage air, light, and distance. None of them last forever.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M9 32s9-15 23-15 23 15 23 15-9 15-23 15S9 32 9 32z"/><circle cx="32" cy="32" r="7"/><path d="M32 13V8M51 18l4-4M13 18l-4-4"/></svg>
+          <span>SYS.05</span><h3>Dark Exploration</h3><p>Search sealed rooms and forgotten tunnels beneath the red dust.</p>
+        </article>
+        <article class="feature-card reveal">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 12h30v40H17zM24 20h16M24 28h16M24 36h10"/><path d="M12 18h5M47 45h5"/></svg>
+          <span>SYS.06</span><h3>Hidden Lore</h3><p>Piece together the final hours of a mission that never existed.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="signal-section" aria-labelledby="signal-title">
       <div class="signal-image parallax" data-speed="0.08" aria-hidden="true"></div>
       <div class="signal-content reveal">
@@ -188,14 +163,14 @@
     </section>
 
     <section id="transmission" class="final-cta">
-      <img class="mars" src="images/RedSignalIcon.jpg" width="878" height="878" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="mars" src="images/RedSignalIcon.webp" width="878" height="878" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="final-copy reveal">
         <p class="eyebrow">The channel is still open</p>
         <h2>Will you answer?</h2>
         <p>Descend into the buried station. Find the source. Do not let it follow you home.</p>
-        <a class="button button-primary button-large" href="#top"><span>Begin transmission</span></a>
+        <div class="store-actions" aria-label="Steam store"><button class="store-button" type="button" disabled aria-label="Steam — store page not yet available"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="16.5" cy="7.5" r="4"/><circle cx="16.5" cy="7.5" r="2"/><circle cx="7.5" cy="17" r="3.5"/><path d="m2 14 6.5 3.6m1.5-3.8 3.2-3.2m3.3.9-6 8.3"/></svg><span>Steam</span></button><button class="store-button store-button--wishlist" type="button" disabled aria-label="Wishlist on Steam — store page not yet available"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1 6.2-5.6-3-5.6 3 1-6.2L3 9.6l6.2-.9L12 3Z"/></svg><span>Wishlist on Steam</span></button></div>
       </div>
-      <div class="final-meta"><span>RED SIGNAL</span><span>SHORT-FORM SCI-FI HORROR</span><span>PC // STATUS TBA</span></div>
+      <div class="final-meta"><span>RED SIGNAL</span><span>SHORT-FORM SCI-FI HORROR</span><span>PC // IN DEVELOPMENT</span></div>
     </section>
   </main>
 
@@ -204,8 +179,8 @@
     <p>Follow the signal. Survive what answers.</p>
     <nav aria-label="Footer navigation">
       <a href="../../index.html#home">Qubicode</a>
-      <a href="../../index.html#games">All Games</a>
       <a href="../../index.html#contact">Contact</a>
+      <a href="privacy/index.html">Privacy Policy</a>
     </nav>
     <span>&copy; 2026 Red Signal. A Qubicode game.</span>
   </footer>

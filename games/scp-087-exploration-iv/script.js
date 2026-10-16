@@ -1,6 +1,7 @@
 document.documentElement.classList.add("js");
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+const ambientMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 900px), (hover: none), (pointer: coarse)");
 const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelector("#nav-links");
 const year = document.querySelector("#year");
@@ -39,7 +40,7 @@ function closeNav() {
 }
 
 function setupReveal() {
-  if (!("IntersectionObserver" in window)) {
+  if (motionPreference.matches || !("IntersectionObserver" in window)) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
     return;
   }
@@ -60,7 +61,7 @@ function setupReveal() {
 }
 
 function setupDust() {
-  if (prefersReducedMotion || !dustLayer || document.hidden || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
+  if (ambientMotionPreference.matches || !dustLayer || document.hidden || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
 
   for (let index = 0; index < 38; index += 1) {
     const particle = document.createElement("span");
@@ -74,10 +75,10 @@ function setupDust() {
 }
 
 function setupFlashlight() {
-  if (prefersReducedMotion || !flashlight || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
+  if (ambientMotionPreference.matches || !flashlight || !finePointerQuery.matches || mobileGalleryQuery.matches) return;
 
   window.addEventListener("pointermove", (event) => {
-    if (event.pointerType !== "mouse") return;
+    if (ambientMotionPreference.matches || event.pointerType !== "mouse") return;
     document.body.classList.add("has-pointer");
     document.documentElement.style.setProperty("--mx", `${event.clientX}px`);
     document.documentElement.style.setProperty("--my", `${event.clientY}px`);
@@ -114,7 +115,7 @@ function markActiveDot() {
 }
 
 function triggerGlitch() {
-  if (prefersReducedMotion || !track) return;
+  if (motionPreference.matches || !track) return;
   if (mobileGalleryQuery.matches) return;
   window.clearTimeout(glitchTimer);
   track.style.setProperty("--gallery-x", `-${currentSlide * 100}%`);
@@ -129,7 +130,7 @@ function goToSlide(index) {
     track.style.transform = "";
     viewport.scrollTo({
       left: currentSlide * viewport.clientWidth,
-      behavior: prefersReducedMotion ? "auto" : "smooth"
+      behavior: motionPreference.matches ? "auto" : "smooth"
     });
   } else {
     track.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -204,7 +205,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     const target = document.querySelector(link.getAttribute("href"));
     if (!target) return;
     event.preventDefault();
-    target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+    target.scrollIntoView({ behavior: motionPreference.matches ? "auto" : "smooth" });
     closeNav();
   });
 });

@@ -1,6 +1,6 @@
 document.documentElement.classList.add("js");
 
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const platformIcons = {
   mobile:
@@ -35,7 +35,7 @@ const games = [
     image: "Images/driverdashHero.png",
     imageWidth: 1024,
     imageHeight: 500,
-    logo: "Images/driverdashIcon.png",
+    logo: "Images/driverdashIcon.webp",
     logoWidth: 950,
     logoHeight: 950,
     description:
@@ -44,8 +44,8 @@ const games = [
   },
   {
     title: "SCP-087: Exploration IV",
-    status: "In Development",
-    statusClass: "status-development",
+    status: "Future",
+    statusClass: "status-future",
     platforms: ["Steam", "PC", "Singleplayer"],
     genre: "Singleplayer First-Person Horror",
     theme: "scp-087",
@@ -54,7 +54,7 @@ const games = [
     image: "games/scp-087-exploration-iv/images/scp087screenshot.jpg",
     imageWidth: 1579,
     imageHeight: 888,
-    logo: "games/scp-087-exploration-iv/images/scp087icon.png",
+    logo: "games/scp-087-exploration-iv/images/scp087icon.webp",
     logoWidth: 1254,
     logoHeight: 1254,
     description:
@@ -73,7 +73,7 @@ const games = [
     image: "Images/RedSignalScreenshot.jpg",
     imageWidth: 1511,
     imageHeight: 850,
-    logo: "Images/RedSignalIcon.jpg",
+    logo: "Images/RedSignalIcon.webp",
     logoWidth: 878,
     logoHeight: 878,
     description:
@@ -89,10 +89,10 @@ const games = [
     theme: "recovery-unit",
     filters: ["steam", "multiplayer"],
     page: "games/recovery-unit/index.html",
-    image: "Images/recoveryunitScreenshot.png",
+    image: "Images/recoveryunitScreenshot.webp",
     imageWidth: 1672,
     imageHeight: 941,
-    logo: "Images/recoveryunitLogo.png",
+    logo: "Images/recoveryunitLogo.webp",
     logoWidth: 1254,
     logoHeight: 1254,
     description:
@@ -111,23 +111,20 @@ const games = [
     image: "Images/brawlbotsScreenshot.jpg",
     imageWidth: 1582,
     imageHeight: 890,
-    logo: "Images/BrawlbotsIcon.png",
-    logoWidth: 676,
-    logoHeight: 676,
     description:
       "A third-person multiplayer puzzle brawler where up to four malfunctioning humanoid bots fight through a corrupted robot world.",
     tags: ["Third Person", "Co-op", "Puzzle", "Brawler", "Robots"]
   },
   {
     title: "Gun Pop",
-    status: "Future",
-    statusClass: "status-future",
+    status: "In Development",
+    statusClass: "status-development",
     platforms: ["Mobile"],
     genre: "Mobile Flick-Shooting Arcade",
     theme: "gun-pop",
     filters: ["mobile"],
     page: "games/gun-pop/index.html",
-    image: "games/gun-pop/images/GunPopLogo.png",
+    image: "games/gun-pop/images/GunPopLogo.webp",
     imageWidth: 1448,
     imageHeight: 1086,
     imageAlt: "Gun Pop logo",
@@ -164,10 +161,20 @@ function platformMarkup(platforms) {
 
 const shortcutArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"></path></svg>';
 
+const gameStatusPriority = new Map(
+  ["published", "seeking publisher", "in development", "future", "inactive"]
+    .map((status, index) => [status, index])
+);
+
+function gameStatusRank(game) {
+  return gameStatusPriority.get(game.status.trim().toLowerCase()) ?? gameStatusPriority.size;
+}
+
 function renderGames() {
   if (!gameGrid) return;
 
-  gameGrid.innerHTML = games
+  gameGrid.innerHTML = [...games]
+    .sort((a, b) => gameStatusRank(a) - gameStatusRank(b))
     .map((game) => {
       const pageHref = game.page || "404.html";
       const pageLabel = game.page ? `View ${game.title}` : `${game.title} page coming soon`;
@@ -247,6 +254,39 @@ function setupActiveNav() {
 renderGames();
 setupActiveNav();
 
+// CSS handles the movement; only its visibility needs to be tracked in JavaScript.
+const cubeVisual = document.querySelector(".hero-visual:has(.floating-cube)");
+if (cubeVisual) {
+  const visibleCubeParts = new Set();
+  const cubeParts = [...cubeVisual.querySelectorAll(".floating-cube, .cube-reflection")];
+  const syncCube = () => cubeVisual.classList.toggle("cube-in-view", visibleCubeParts.size > 0 && !document.hidden);
+  if ("IntersectionObserver" in window) {
+    const cubeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleCubeParts.add(entry.target);
+        else visibleCubeParts.delete(entry.target);
+      });
+      syncCube();
+    });
+    cubeParts.forEach((part) => cubeObserver.observe(part));
+  } else {
+    const checkCube = () => {
+      cubeParts.forEach((part) => {
+        const bounds = part.getBoundingClientRect();
+        if (bounds.bottom > 0 && bounds.top < innerHeight) visibleCubeParts.add(part);
+        else visibleCubeParts.delete(part);
+      });
+      syncCube();
+    };
+    addEventListener("scroll", checkCube, { passive: true });
+    addEventListener("resize", checkCube);
+    checkCube();
+  }
+  document.addEventListener("visibilitychange", syncCube);
+  addEventListener("pagehide", () => cubeVisual.classList.remove("cube-in-view"));
+  addEventListener("pageshow", syncCube);
+}
+
 document.querySelectorAll(".reveal").forEach((item) => item.classList.add("is-visible"));
 
 navToggle?.addEventListener("click", () => {
@@ -282,7 +322,7 @@ navItems.forEach((item) => {
     const target = document.querySelector(href);
     if (target) {
       event.preventDefault();
-      target.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth" });
+      target.scrollIntoView({ behavior: motionPreference.matches ? "auto" : "smooth" });
     }
     closeMobileNav();
   });
@@ -325,5 +365,5 @@ window.addEventListener("resize", () => {
 updateScrollState();
 
 backToTop?.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  window.scrollTo({ top: 0, behavior: motionPreference.matches ? "auto" : "smooth" });
 });

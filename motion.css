@@ -1,0 +1,70 @@
+/* Stop mobile idle loops while preserving finite, visitor-triggered effects. */
+@media (max-width: 900px), (hover: none), (pointer: coarse) {
+  .cube-shadow,
+  .game-driver-dash .hero::before,
+  .game-driver-dash .live-dot,
+  .game-driver-dash .hero-art-burst,
+  .game-driver-dash .hero-tank,
+  .game-driver-dash .impact-word,
+  .game-driver-dash .hero-sprite,
+  .game-driver-dash .scroll-cue i::after,
+  .game-driver-dash .floating-driver,
+  .game-driver-dash .map-badge,
+  .game-driver-dash .warning-track,
+  .game-driver-dash .ride-glow,
+  .game-driver-dash .ride-image,
+  .game-driver-dash .cta-ray,
+  .game-driver-dash .cta-content img,
+  .game-driver-dash .cta-car,
+  .game-gun-pop .sunburst,
+  .game-gun-pop .game-title,
+  .game-gun-pop .pop-target:not(.is-hit),
+  .game-gun-pop .hero-gun:not(.is-flipping),
+  .game-gun-pop .rack-gun:not(.is-flipping),
+  .game-gun-pop .gun-shadow,
+  .game-gun-pop .teaser-crate svg,
+  .game-gun-pop .scene-spark,
+  .game-gun-pop .barrel-boss,
+  .game-gun-pop .loot-rays,
+  .game-gun-pop .crate-button,
+  .game-gun-pop .crate-spark,
+  .game-red-signal .hero::after,
+  .game-red-signal .storm,
+  .game-red-signal .glitch::before,
+  .game-red-signal .glitch::after,
+  .game-red-signal .pulse,
+  .game-red-signal .scroll-cue::before,
+  .game-red-signal .meter.danger i,
+  .game-red-signal .target-box,
+  .game-red-signal .signal-section::after,
+  .game-red-signal .waveform i,
+  .game-red-signal .mars,
+  .game-scp .scp-grain,
+  .game-scp .scp-flicker,
+  .game-scp .dust-particle,
+  .game-scp .hero-background,
+  .game-scp .hero-light,
+  .game-scp .hero-readout span,
+  .game-scp .descent-cue span,
+  .game-scp .tape-track,
+  .game-scp .glitch::before,
+  .game-scp .glitch::after,
+  .game-scp .glitch-soft::before,
+  .game-scp .glitch-soft::after {
+    animation: none !important;
+    will-change: auto !important;
+  }
+  [data-feature-toggle], .feature-progress { display: none; }
+
+  /* The studio cube keeps its float and matching reflection. */
+  .hero-visual .floating-cube { animation: cube-float 6s ease-in-out infinite !important; }
+  .hero-visual .cube-reflection img { animation: reflection-breathe 6s ease-in-out infinite !important; }
+}
+
+/* Start paused so the cube never runs before its visibility is known. */
+.hero-visual .floating-cube,
+.hero-visual .cube-reflection img,
+.hero-visual .cube-shadow { animation-play-state: paused !important; }
+.hero-visual.cube-in-view .floating-cube,
+.hero-visual.cube-in-view .cube-reflection img,
+.hero-visual.cube-in-view .cube-shadow { animation-play-state: running !important; }

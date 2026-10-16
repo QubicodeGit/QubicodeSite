@@ -3,76 +3,14 @@
 document.body.classList.add("enhanced");
 document.querySelector("#year").textContent = new Date().getFullYear();
 
-const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-const motionButton = document.querySelector(".motion-toggle");
-const soundButton = document.querySelector(".sound-toggle");
-let motionPaused = reducedMotion.matches;
-let soundEnabled = false;
-let audioContext = null;
-
-function updateMotion() {
-  document.body.classList.toggle("motion-paused", motionPaused);
-  motionButton.setAttribute("aria-pressed", String(motionPaused));
-  motionButton.setAttribute("aria-label", reducedMotion.matches ? "Reduced motion enabled by your device" : motionPaused ? "Resume animations" : "Pause animations");
-  motionButton.disabled = reducedMotion.matches;
-}
-
-motionButton.addEventListener("click", () => {
-  motionPaused = !motionPaused;
-  updateMotion();
-});
-reducedMotion.addEventListener("change", () => {
-  motionPaused = reducedMotion.matches;
-  updateMotion();
-});
+const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+const updateMotion = () => document.body.classList.toggle("motion-paused", motionPreference.matches);
+motionPreference.addEventListener("change", updateMotion);
 updateMotion();
-
-// Short toy-like notes play only after the visitor explicitly enables sound.
-function playPop(pitch = 650) {
-  if (!soundEnabled || !audioContext || audioContext.state !== "running") return;
-  const oscillator = audioContext.createOscillator();
-  const gain = audioContext.createGain();
-  const now = audioContext.currentTime;
-  oscillator.type = "triangle";
-  oscillator.frequency.setValueAtTime(pitch, now);
-  oscillator.frequency.exponentialRampToValueAtTime(pitch * .35, now + .14);
-  gain.gain.setValueAtTime(.0001, now);
-  gain.gain.exponentialRampToValueAtTime(.07, now + .01);
-  gain.gain.exponentialRampToValueAtTime(.0001, now + .16);
-  oscillator.connect(gain);
-  gain.connect(audioContext.destination);
-  oscillator.start(now);
-  oscillator.stop(now + .18);
-  oscillator.addEventListener("ended", () => { oscillator.disconnect(); gain.disconnect(); }, { once: true });
-}
-
-soundButton.addEventListener("click", async () => {
-  if (soundEnabled) {
-    soundEnabled = false;
-  } else {
-    const AudioEngine = window.AudioContext || window.webkitAudioContext;
-    if (!AudioEngine) {
-      soundButton.setAttribute("aria-label", "Sound is unavailable in this browser");
-      soundButton.disabled = true;
-      return;
-    }
-    try {
-      audioContext ||= new AudioEngine();
-      await audioContext.resume();
-      soundEnabled = true;
-      playPop(900);
-    } catch {
-      soundEnabled = false;
-    }
-  }
-  soundButton.setAttribute("aria-pressed", String(soundEnabled));
-  soundButton.setAttribute("aria-label", soundEnabled ? "Mute sound" : "Enable sound");
-});
 
 document.querySelectorAll(".flip-prop").forEach((gun) => {
   gun.addEventListener("click", () => {
-    if (gun.classList.contains("is-flipping")) return;
-    playPop(450);
+    if (motionPreference.matches || gun.classList.contains("is-flipping")) return;
     gun.classList.add("is-flipping");
     setTimeout(() => gun.classList.remove("is-flipping"), 720);
   });
@@ -106,7 +44,6 @@ document.querySelectorAll(".pop-target").forEach((target) => {
     shotAnnouncement.textContent = `${points} points! Total score: ${score}.${combo > 1 ? ` Combo times ${combo}!` : ""}`;
     target.classList.add("is-hit");
     target.setAttribute("aria-disabled", "true");
-    playPop(550 + Math.min(combo, 8) * 130);
     setTimeout(() => {
       target.classList.remove("is-hit");
       target.removeAttribute("aria-disabled");
@@ -121,7 +58,7 @@ document.querySelectorAll(".pop-target").forEach((target) => {
     word.style.top = `${y}px`;
     word.textContent = combo >= 3 ? `COMBO ×${combo}!` : combo === 2 ? "NICE SHOT!" : `POP! +${points}`;
 
-    if (motionPaused || reducedMotion.matches) return;
+    if (motionPreference.matches) return;
     for (let index = 0; index < 8; index += 1) {
       const particle = temporaryEffect("pop-bit", 850);
       const angle = index / 8 * Math.PI * 2;
@@ -148,8 +85,6 @@ bossToggle.addEventListener("click", () => {
   const open = bossWindow.classList.toggle("is-open");
   bossToggle.setAttribute("aria-expanded", String(open));
   bossToggle.textContent = open ? "Close the shutters" : "Knock, knock! ✊";
-  document.querySelector(".boss-reaction").textContent = open ? "Yep. That's a barrel with a helmet." : "Someone's hiding in there.";
-  playPop(open ? 260 : 200);
 });
 
 const lootStage = document.querySelector(".loot-stage");
@@ -164,7 +99,6 @@ function toggleCrate() {
   rewardFan.setAttribute("aria-hidden", String(!open));
   crateTrigger.textContent = open ? "Close the crate" : "Pop the crate! ✦";
   document.querySelector(".loot-caption").textContent = open ? "Coins! Skins! Upgrade tokens!" : "Go on. You know you want to.";
-  playPop(open ? 1100 : 500);
 }
 crateButton.addEventListener("click", toggleCrate);
 crateTrigger.addEventListener("click", toggleCrate);

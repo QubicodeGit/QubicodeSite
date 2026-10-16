@@ -1,0 +1,86 @@
+/* A shared studio link and store controls, tinted to each game's palette. */
+.game-page { --game-accent: 97, 171, 255; --game-label: #eef6ff; --game-surface: 8, 22, 43; }
+.game-driver-dash { --game-accent: 255, 143, 24; --game-label: #6a3108; --game-surface: 255, 200, 116; }
+.game-gun-pop { --game-accent: 255, 202, 98; --game-label: #fff1cb; --game-surface: 100, 49, 12; }
+.game-red-signal { --game-accent: 255, 72, 44; --game-label: #ffe7df; --game-surface: 58, 13, 9; }
+.game-scp { --game-accent: 193, 215, 208; --game-label: #e7f1ed; --game-surface: 34, 43, 40; }
+.game-brawlbots { --game-accent: 121, 242, 13; --game-label: #e7ffd3; --game-surface: 23, 49, 30; }
+.qubicode-home {
+  box-sizing: border-box; position: relative; isolation: isolate; display: inline-flex;
+  flex-shrink: 0; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 9px 16px; overflow: hidden;
+  border: 1px solid rgba(var(--game-accent), .55); border-radius: 18px;
+  color: var(--game-label); text-decoration: none;
+  background: radial-gradient(ellipse at 10% 0%, rgba(255, 255, 255, .2), transparent 65%), linear-gradient(135deg, rgba(var(--game-accent), .26), rgba(var(--game-surface), .5) 55%, rgba(var(--game-accent), .13));
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, .42), inset 0 -1px 3px rgba(var(--game-accent), .22), 0 5px 20px rgba(var(--game-surface), .16);
+  -webkit-backdrop-filter: blur(18px) saturate(165%); backdrop-filter: blur(18px) saturate(165%);
+  font-family: "Segoe UI", Arial, sans-serif; line-height: 1.15; letter-spacing: 0;
+  transition: transform .2s, border-color .2s, box-shadow .2s;
+}
+.qubicode-home::before {
+  content: ""; position: absolute; z-index: -1; inset: 1px 1px 48%; pointer-events: none;
+  border-radius: 16px 16px 45% 35%; background: linear-gradient(180deg, rgba(255, 255, 255, .13), transparent);
+}
+.qubicode-home:hover {
+  color: var(--game-label); transform: translateY(-2px); border-color: rgba(var(--game-accent), .9);
+  box-shadow: inset 0 1px 3px rgba(255, 255, 255, .5), 0 7px 25px rgba(var(--game-accent), .18);
+}
+.qubicode-home:focus-visible { outline: 2px solid var(--game-label); outline-offset: 4px; }
+.qubicode-home > svg { display: block; width: 22px; height: 22px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.qubicode-home > span { display: grid; gap: 3px; }
+.qubicode-home strong { font: 800 12px/1.1 "Segoe UI", Arial, sans-serif; letter-spacing: .02em; text-transform: uppercase; }
+.qubicode-home small { font: 500 9px/1.1 "Segoe UI", Arial, sans-serif; letter-spacing: .02em; text-transform: none; }
+.game-driver-dash .site-header, .game-red-signal .site-header, .game-scp .nav { gap: 20px; }
+.game-driver-dash .site-header > .qubicode-home, .game-red-signal .site-header > .qubicode-home, .game-scp .nav > .qubicode-home { margin-right: auto; }
+.game-gun-pop .hud > .qubicode-home { justify-self: start; }
+.store-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 24px; }
+.store-button {
+  box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-width: 160px; min-height: 57px; padding: 13px 21px;
+  border: 1px solid rgba(var(--game-accent), .5); border-radius: 12px;
+  color: #fff5eb; background: linear-gradient(140deg, rgba(var(--game-accent), .16), rgba(8, 9, 12, .88));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 6px 20px rgba(0, 0, 0, .15);
+  font: inherit; line-height: 1.15; text-align: left;
+}
+/* Unavailable store buttons keep their finished appearance without accepting clicks. */
+.store-button:disabled { opacity: 1; cursor: default; -webkit-text-fill-color: currentColor; }
+.store-button > svg { display: block; flex-shrink: 0; width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.store-button > span { font-size: 16px; font-weight: 750; white-space: nowrap; }
+.store-button--wishlist { background: linear-gradient(135deg, rgba(var(--game-accent), .32), rgba(var(--game-surface), .8)); }
+.game-driver-dash .store-button { border: 2px solid var(--ink); border-radius: 15px; background: linear-gradient(145deg, #35281a, #121419); box-shadow: 3px 4px 0 rgba(16, 19, 27, .75); }
+.game-driver-dash .store-button > span { font-weight: 900; }
+.game-gun-pop .store-button { border: 3px solid #442609; border-radius: 15px; background: linear-gradient(145deg, #a06722, #58320d); box-shadow: inset 0 1px 0 #ffd66b, 0 4px 0 #321a09; }
+.game-gun-pop .store-button > span { font-family: var(--display); font-size: 22px; font-weight: 400; }
+.game-scp .store-button { border-radius: 8px; }
+.game-scp .store-actions, .cta-content .store-actions, .final-copy .store-actions, .closing-sign .store-actions { justify-content: center; }
+.game-release-status { display: inline-flex; width: fit-content; margin: 0 0 18px; padding: 5px 12px; border: 1px solid rgba(var(--game-accent), .35); border-radius: 8px; color: var(--game-label); background: rgba(var(--game-accent), .08); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 1000px) {
+  .game-driver-dash .site-header { gap: 12px; }
+}
+@media (max-width: 820px) {
+  .game-scp .nav { gap: 12px; }
+}
+@media (max-width: 600px) {
+  .qubicode-home { min-height: 43px; padding: 8px 11px; gap: 8px; border-radius: 15px; }
+  .qubicode-home > svg { width: 19px; height: 19px; }
+  .qubicode-home strong { font-size: 11px; }
+  .qubicode-home small { font-size: 8px; }
+  .game-red-signal .site-header { gap: 10px; }
+  .store-actions { gap: 12px; }
+  .store-button { min-width: 145px; min-height: 54px; padding: 12px 16px; gap: 10px; }
+  .store-button > span { font-size: 15px; }
+  .game-gun-pop .store-button { min-width: 165px; }
+}
+@media (max-width: 380px) {
+  .game-scp .nav > .brand > span { display: none; }
+  .game-red-signal .site-header > .brand { gap: 7px; font-size: 9px; letter-spacing: .07em; }
+  .game-red-signal .nav-toggle { padding-inline: 8px; }
+  .game-gun-pop .qubicode-home { padding-inline: 9px; gap: 6px; }
+  .game-gun-pop .qubicode-home strong { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qubicode-home { transition: none; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .qubicode-home { background-color: rgb(var(--game-surface)); }
+}

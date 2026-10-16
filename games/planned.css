@@ -1,0 +1,86 @@
+/* A complete temporary game page, including its footer, fits one screen. */
+html:has(body.planned-page) { height: 100%; overflow: hidden; overscroll-behavior: none; }
+.planned-page {
+  height: 100svh; height: 100dvh; min-height: 0; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: radial-gradient(ellipse at 85% 0, rgba(var(--game-accent), .16), transparent 55%), #061225;
+}
+.planned-page .site-header .nav { justify-content: space-between; gap: 20px; }
+.planned-brand { color: #edf6ff; font-size: 19px; font-weight: 750; letter-spacing: -.5px; }
+.planned-main { flex: 1; min-height: 0; display: flex; align-items: center; padding: clamp(112px, 14dvh, 156px) 0 clamp(20px, 4dvh, 44px); }
+.planned-layout { container-type: size; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); grid-template-rows: minmax(0, 1fr); gap: clamp(24px, 4vw, 48px); align-items: center; height: 100%; max-height: 650px; min-height: 0; }
+.planned-copy { min-width: 0; }
+.planned-copy .game-status { margin: 0 0 16px; }
+.planned-copy h1 { font-size: clamp(40px, 4.8vw, 66px); font-weight: 750; line-height: 1.06; letter-spacing: -.04em; }
+.planned-platforms { margin-top: 16px; color: #a9bfdc; font-size: 12px; letter-spacing: .06em; }
+.planned-description { margin-top: 20px; max-width: 50ch; color: #c7d8ef; font-size: 16px; line-height: 1.6; }
+.planned-notice { margin-top: 22px; width: fit-content; padding: 10px 17px; border: 1px solid rgba(var(--game-accent), .35); border-radius: 14px; color: var(--game-label); background: rgba(var(--game-accent), .08); font-size: 14px; }
+.planned-actions { margin-top: 24px; }
+.planned-image { display: flex; align-items: center; justify-self: center; width: 100%; max-width: min(680px, calc(100cqh * 16 / 9)); max-height: 100%; aspect-ratio: 16 / 9; min-height: 0; margin: 0; padding: 7px; border-radius: 25px; overflow: hidden; border-color: rgba(var(--game-accent), .35); }
+.planned-image img { width: 100%; height: 100%; min-height: 0; object-fit: contain; border-radius: 19px; }
+.planned-page .site-footer { flex: 0 0 auto; padding: 14px 0 max(14px, env(safe-area-inset-bottom)); border-top: 1px solid rgba(var(--game-accent), .15); }
+.planned-page .footer-inner { display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center; }
+.planned-page .footer-inner > p { margin: 0; }
+.planned-page .footer-policy { justify-self: end; margin: 0; }
+
+@media (max-width: 820px) and (orientation: portrait) {
+  .planned-main { padding-block: 112px 24px; }
+  .planned-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: clamp(18px, 3dvh, 32px); max-height: 950px; }
+  .planned-copy h1 { font-size: clamp(36px, 7vw, 58px); }
+  .planned-description { max-width: 65ch; font-size: 14px; line-height: 1.5; }
+  .planned-image { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  .planned-actions { display: none; }
+}
+@media (max-width: 600px) {
+  .planned-main { padding-block: 94px 20px; }
+  .planned-page .site-header .nav { padding-inline: 16px 8px; gap: 10px; }
+  .planned-brand { font-size: 17px; }
+  .planned-copy .game-status { margin-bottom: 12px; }
+  .planned-platforms { margin-top: 12px; font-size: 11px; }
+  .planned-description { margin-top: 14px; font-size: 13px; line-height: 1.5; }
+  .planned-notice { margin-top: 14px; padding: 8px 12px; font-size: 12px; }
+  .planned-image { padding: 5px; border-radius: 20px; }
+  .planned-image img { border-radius: 15px; }
+  .planned-page .site-footer { padding-block: 10px max(10px, env(safe-area-inset-bottom)); }
+  .planned-page .footer-inner { grid-template-columns: auto 1fr; gap: 6px 12px; }
+  .planned-page .footer-brand { grid-column: 1; grid-row: 1; font-size: 12px; }
+  .planned-page .footer-brand .brand-logo { width: 23px; height: 23px; }
+  .planned-page .footer-policy { grid-column: 2; grid-row: 1; font-size: 10px; padding-block: 6px; }
+  .planned-page .footer-inner > p { grid-column: 1 / -1; grid-row: 2; text-align: center; font-size: 9px; }
+}
+@media (max-width: 600px) and (max-height: 700px) and (orientation: portrait) {
+  .planned-main { padding-block: 91px 12px; }
+  .planned-layout { gap: 14px; }
+  .planned-copy h1 { font-size: 32px; }
+  .planned-copy .game-status { margin-bottom: 9px; }
+  .planned-platforms { margin-top: 9px; }
+  .planned-description { margin-top: 10px; font-size: 12px; line-height: 1.4; }
+  .planned-notice { margin-top: 11px; padding-block: 7px; }
+}
+@media (max-height: 750px) {
+  .planned-actions { display: none; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .planned-page .site-header { top: 10px; }
+  .planned-page .site-header .nav { min-height: 54px; padding-block: 6px; }
+  .planned-page .site-header .qubicode-home { min-height: 40px; padding: 7px 10px; gap: 8px; }
+  .planned-page .site-header .qubicode-home > svg { width: 18px; height: 18px; }
+  .planned-page .site-header .qubicode-home strong { font-size: 11px; }
+  .planned-page .site-header .qubicode-home small { font-size: 8px; }
+  .planned-main { padding-block: 76px 12px; }
+  .planned-layout { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); gap: 24px; }
+  .planned-copy h1 { font-size: clamp(26px, 7dvh, 34px); }
+  .planned-copy .game-status { margin-bottom: 6px; padding: 2px 8px; font-size: 9px; line-height: 1.2; }
+  .planned-platforms { margin-top: 5px; font-size: 9px; }
+  .planned-description { margin-top: 8px; font-size: 11px; line-height: 1.4; }
+  .planned-notice { margin-top: 9px; padding: 5px 10px; font-size: 10px; }
+  .planned-page .site-footer { padding-block: 8px; }
+  .planned-page .footer-inner { grid-template-columns: auto 1fr auto; gap: 16px; }
+  .planned-page .footer-brand { grid-column: 1; grid-row: 1; font-size: 11px; }
+  .planned-page .footer-brand .brand-logo { width: 22px; height: 22px; }
+  .planned-page .footer-inner > p { grid-column: 2; grid-row: 1; font-size: 9px; text-align: left; }
+  .planned-page .footer-policy { grid-column: 3; grid-row: 1; padding-block: 5px; font-size: 10px; }
+}
+@media (max-width: 360px) {
+  .planned-brand { font-size: 15px; }
+}

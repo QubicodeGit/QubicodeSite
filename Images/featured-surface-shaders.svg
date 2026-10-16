@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="820" viewBox="0 0 1280 820">
+  <defs>
+    <radialGradient id="background" cx=".68" cy=".12" r=".88"><stop stop-color="#214c88"/><stop offset=".6" stop-color="#0b1e3d"/><stop offset="1" stop-color="#061226"/></radialGradient>
+    <radialGradient id="rock" cx=".75" cy=".22" r=".88"><stop stop-color="#b8d8ec"/><stop offset=".3" stop-color="#5b819e"/><stop offset=".65" stop-color="#213d58"/><stop offset="1" stop-color="#071324"/></radialGradient>
+    <radialGradient id="wire" cx=".3" cy=".2" r=".9"><stop stop-color="#234f74"/><stop offset="1" stop-color="#07172c"/></radialGradient>
+    <radialGradient id="halo"><stop stop-color="#2889f3" stop-opacity=".35"/><stop offset="1" stop-color="#2889f3" stop-opacity="0"/></radialGradient>
+    <linearGradient id="edge" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#2174ae" stop-opacity=".1"/><stop offset=".7" stop-color="#b7e3ff"/><stop offset="1" stop-color="#8f96ed"/></linearGradient>
+    <filter id="surface"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="4" seed="12" result="noise"/><feDiffuseLighting in="noise" lighting-color="#a7cfe7" surfaceScale="15" diffuseConstant="1.1" result="light"><feDistantLight azimuth="235" elevation="45"/></feDiffuseLighting><feBlend in="SourceGraphic" in2="light" mode="multiply"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="14"/></filter>
+    <clipPath id="wire-clip"><circle cx="375" cy="323" r="170"/></clipPath>
+    <clipPath id="rock-clip"><circle cx="835" cy="310" r="245"/></clipPath>
+    <pattern id="grid" width="70" height="70" patternUnits="userSpaceOnUse"><path d="M70 0H0V70" fill="none" stroke="#78b6f2" stroke-opacity=".12"/></pattern>
+  </defs>
+  <path fill="url(#background)" d="M0 0h1280v820H0z"/>
+  <ellipse cx="835" cy="355" rx="455" ry="370" fill="url(#halo)"/>
+  <path d="M0 520 640 388l640 132v300H0Z" fill="url(#grid)"/>
+  <g fill="none" stroke="#6aa7ec" stroke-opacity=".1"><path d="m640 388-610 432m610-432L235 820m405-432L455 820m185-432 185 432m-185-432 405 432m-405-432 610 432M0 570h1280M0 650h1280M0 760h1280"/></g>
+  <ellipse cx="835" cy="570" rx="242" ry="33" fill="#010815" opacity=".8" filter="url(#soft)"/>
+  <ellipse cx="375" cy="510" rx="172" ry="23" fill="#010815" opacity=".7" filter="url(#soft)"/>
+  <circle cx="375" cy="323" r="170" fill="url(#wire)" stroke="#68c5f2" stroke-opacity=".55" stroke-width="2"/>
+  <g clip-path="url(#wire-clip)" fill="none" stroke="#6cd9ff" stroke-opacity=".56" stroke-width="1.4">
+    <ellipse cx="375" cy="323" rx="48" ry="170"/><ellipse cx="375" cy="323" rx="100" ry="170"/><ellipse cx="375" cy="323" rx="143" ry="170"/>
+    <ellipse cx="375" cy="323" rx="170" ry="45"/><ellipse cx="375" cy="323" rx="170" ry="95"/><ellipse cx="375" cy="323" rx="170" ry="143"/>
+    <path d="M205 323h340M375 153v340M227 238l296 170M227 408l296-170M290 175l170 296M290 471l170-296"/>
+  </g>
+  <g clip-path="url(#rock-clip)"><circle cx="835" cy="310" r="245" fill="url(#rock)"/><circle cx="835" cy="310" r="245" fill="url(#rock)" filter="url(#surface)"/></g>
+  <circle cx="835" cy="310" r="245" fill="none" stroke="url(#edge)" stroke-width="2"/>
+  <path d="M184 573h240m194 44h377" stroke="#66a4e9" stroke-opacity=".25"/>
+  <g font-family="Segoe UI,Arial,sans-serif" font-size="17" letter-spacing="5" fill="#8bb6e6"><text x="208" y="616">TESSELLATION</text><text x="701" y="660">SURFACE DETAIL</text></g>
+</svg>
