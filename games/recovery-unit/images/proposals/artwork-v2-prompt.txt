@@ -1,0 +1,22 @@
+RECOVERY UNIT — ARTWORK PROPOSAL 02
+
+Status: not applied. On 2026-10-23 the user chose to keep the original homepage artwork, recovery-unit-key-art.webp.
+Created on 2026-10-23 with the built-in imagegen tool.
+Candidate: recovery-unit-key-art-v2.webp, 1280 x 720, WebP quality 93.
+Proposed homepage CSS crop: object-position: right 45%; this keeps the lead scientist's entire helmet and both title lines visible. Apply that crop when this proposal is approved; the current art retains its existing crop.
+Source: C:/Users/Leo/.codex/generated_images/01a16553-fb44-71d0-be03-ed1609784221/exec-16f558a7-5686-4b14-8dc1-1f48c4b5ce6e.png
+
+References, in order:
+1. ../recovery-unit-key-art.webp (previous promotional art)
+2. ../captured/crew-train.jpg (game design reference)
+3. ../captured/research-compound.jpg (front-facing armor reference)
+
+Prompt:
+
+Use case: ads-marketing.
+Asset type: a redesigned 16:9 landscape promotional key art for the Recovery Unit game card on the Qubicode homepage.
+Reference 1 is the previous promotional art to REDESIGN, not a composition to repeat. Reference 2 is the actual game: rugged black armored train with barred side panels and a small window, rainy conifer forest, white research suits. Reference 3 is the actual front-facing respirator helmet and white segmented scientist armor. Preserve those specific grounded game designs and the game's rendered realism.
+Create a fresh, much stronger cinematic composition: a three-quarter front view of a respirator-wearing scientist as the main character on the right, shoulders wet with rain, calm but determined posture, with the other THREE members of the four-person research crew smaller in the middle distance beside the armored train. Include the same white hooded coat on one of the distant researchers. No exposed faces. The train recedes diagonally into a misty pine forest; amber cabin light cuts through drifting fog, wet rails reflect it. Convey a cooperative expedition searching for a cure after a pandemic, with tension and a small sense of hope. No zombies, invented monsters or battle spectacle.
+Composition for the actual homepage: leave the left 40 percent dark and relatively quiet for the existing webpage heading and description. Keep the interesting character, train, and large wordmark on the RIGHT half. Frame the lead character's helmet and the other three crew members so they remain visible within y=18% to y=67%; do not place important heads against the top edge. Place the large two-line title on the right, within x=52% to x=92% and y=59% to y=83%, with clear separation from faces. This must remain readable in a wide 2.2:1 card crop. Fill the whole canvas edge to edge with the world, never a cutout, inset image or border.
+Exact title: RECOVERY UNIT, on two lines: RECOVERY above UNIT. Bright warm-white RECOVERY and saturated amber-gold UNIT. Bold condensed industrial capitals with restrained distressed metal texture, crisp edges, subtle dark separation from the artwork. Both lines large and unmistakably readable at thumbnail size. No other text.
+Palette: cold steel blue, muted pine green, charcoal, worn white suits, strong amber practical light. Premium gritty game key art with controlled fog and striking silhouettes. The result must be visibly different from the old image of four people seen only from behind. Do not add weapons, sci-fi armor, a steam locomotive, bullet train, glowing eyes, military insignia, HUD, decorative frames or watermarks. This is promotional artwork inspired by the real game screenshots.

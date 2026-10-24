@@ -1,163 +1,153 @@
 "use strict";
 
-document.body.classList.add("enhanced");
-document.querySelector("#year").textContent = new Date().getFullYear();
+const year = document.querySelector("#year");
+if (year) year.textContent = new Date().getFullYear();
 
 const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
-const updateMotion = () => document.body.classList.toggle("motion-paused", motionPreference.matches);
-motionPreference.addEventListener("change", updateMotion);
-updateMotion();
-
-document.querySelectorAll(".flip-prop").forEach((gun) => {
-  gun.addEventListener("click", () => {
-    if (motionPreference.matches || gun.classList.contains("is-flipping")) return;
-    gun.classList.add("is-flipping");
-    setTimeout(() => gun.classList.remove("is-flipping"), 720);
-  });
-});
-
-const booth = document.querySelector(".shooting-booth");
-const effects = document.querySelector(".pop-effects");
-const scoreOutput = document.querySelector("#score");
-const shotAnnouncement = document.querySelector("#shot-announcement");
-let score = 0;
-let combo = 0;
-let lastHit = -Infinity;
-
-function temporaryEffect(className, duration) {
-  const element = document.createElement("span");
-  element.className = className;
-  effects.append(element);
-  setTimeout(() => element.remove(), duration);
-  return element;
+const menuToggle = document.querySelector(".menu-toggle");
+const siteNav = document.querySelector(".site-nav");
+function closeMenu() {
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.setAttribute("aria-label", "Open navigation");
+  siteNav.classList.remove("is-open");
 }
-
-document.querySelectorAll(".pop-target").forEach((target) => {
-  target.addEventListener("click", () => {
-    if (target.getAttribute("aria-disabled") === "true") return;
-    const points = Number(target.dataset.points);
-    const now = performance.now();
-    combo = now - lastHit < 2500 ? combo + 1 : 1;
-    lastHit = now;
-    score += points;
-    scoreOutput.textContent = String(score).padStart(3, "0");
-    shotAnnouncement.textContent = `${points} points! Total score: ${score}.${combo > 1 ? ` Combo times ${combo}!` : ""}`;
-    target.classList.add("is-hit");
-    target.setAttribute("aria-disabled", "true");
-    setTimeout(() => {
-      target.classList.remove("is-hit");
-      target.removeAttribute("aria-disabled");
-    }, 860);
-
-    const stageBounds = booth.getBoundingClientRect();
-    const targetBounds = target.getBoundingClientRect();
-    const x = targetBounds.left + targetBounds.width / 2 - stageBounds.left;
-    const y = targetBounds.top + targetBounds.height / 2 - stageBounds.top;
-    const word = temporaryEffect("pop-word", 1150);
-    word.style.left = `${x}px`;
-    word.style.top = `${y}px`;
-    word.textContent = combo >= 3 ? `COMBO ×${combo}!` : combo === 2 ? "NICE SHOT!" : `POP! +${points}`;
-
-    if (motionPreference.matches) return;
-    for (let index = 0; index < 8; index += 1) {
-      const particle = temporaryEffect("pop-bit", 850);
-      const angle = index / 8 * Math.PI * 2;
-      particle.textContent = index % 2 ? "✦" : "•";
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      particle.style.setProperty("--dx", `${Math.cos(angle) * (65 + Math.random() * 50)}px`);
-      particle.style.setProperty("--dy", `${Math.sin(angle) * (65 + Math.random() * 50)}px`);
-    }
-    const gunBounds = document.querySelector(".hero-gun").getBoundingClientRect();
-    const muzzleX = gunBounds.left - stageBounds.left + gunBounds.width * .05;
-    const muzzleY = gunBounds.top - stageBounds.top + gunBounds.height * .2;
-    const line = temporaryEffect("shot-line", 200);
-    line.style.left = `${muzzleX}px`;
-    line.style.top = `${muzzleY}px`;
-    line.style.width = `${Math.hypot(x - muzzleX, y - muzzleY)}px`;
-    line.style.transform = `rotate(${Math.atan2(y - muzzleY, x - muzzleX)}rad)`;
-  });
+menuToggle.addEventListener("click", () => {
+  const open = menuToggle.getAttribute("aria-expanded") !== "true";
+  menuToggle.setAttribute("aria-expanded", String(open));
+  menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  siteNav.classList.toggle("is-open", open);
 });
-
-const bossToggle = document.querySelector(".boss-toggle");
-const bossWindow = document.querySelector(".boss-window");
-bossToggle.addEventListener("click", () => {
-  const open = bossWindow.classList.toggle("is-open");
-  bossToggle.setAttribute("aria-expanded", String(open));
-  bossToggle.textContent = open ? "Close the shutters" : "Knock, knock! ✊";
+siteNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".site-header")) closeMenu();
 });
-
-const lootStage = document.querySelector(".loot-stage");
-const crateButton = document.querySelector(".crate-button");
-const crateTrigger = document.querySelector(".crate-trigger");
-const rewardFan = document.querySelector(".reward-fan");
-function toggleCrate() {
-  const open = lootStage.classList.toggle("is-open");
-  crateButton.setAttribute("aria-expanded", String(open));
-  crateTrigger.setAttribute("aria-expanded", String(open));
-  crateButton.setAttribute("aria-label", open ? "Close the Workshop Crate" : "Open the Workshop Crate");
-  rewardFan.setAttribute("aria-hidden", String(!open));
-  crateTrigger.textContent = open ? "Close the crate" : "Pop the crate! ✦";
-  document.querySelector(".loot-caption").textContent = open ? "Coins! Skins! Upgrade tokens!" : "Go on. You know you want to.";
-}
-crateButton.addEventListener("click", toggleCrate);
-crateTrigger.addEventListener("click", toggleCrate);
-crateTrigger.setAttribute("aria-expanded", "false");
-
-// Keep the floating game menu on the scene nearest the visitor's reading position.
-const dockLinks = [...document.querySelectorAll(".game-dock a")];
-const scenes = [...document.querySelectorAll("main > section[id]")];
-let scrollFrame = 0;
-function updateDock() {
-  const readingLine = innerHeight * .4;
-  let current = scenes[0].id;
-  for (const scene of scenes) {
-    if (scene.getBoundingClientRect().top <= readingLine) current = scene.id;
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+    closeMenu();
+    menuToggle.focus();
   }
-  dockLinks.forEach((link) => {
-    if (link.hash === `#${current}`) link.setAttribute("aria-current", "location");
-    else link.removeAttribute("aria-current");
-  });
-  scrollFrame = 0;
-}
-addEventListener("scroll", () => {
-  if (!scrollFrame) scrollFrame = requestAnimationFrame(updateDock);
-}, { passive: true });
-addEventListener("resize", updateDock);
-updateDock();
+});
+matchMedia("(min-width: 661px)").addEventListener("change", closeMenu);
 
-const screenshots = [...document.querySelectorAll(".photo-wall .screenshot-link")];
+const video = document.querySelector(".gameplay-player video");
+document.querySelectorAll(".watch-gameplay").forEach((link) => {
+  link.addEventListener("click", () => {
+    video.play().catch(() => {});
+  });
+});
+// Playback is visitor controlled. Leaving the player or tab always pauses it.
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) video.pause();
+});
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) video.pause();
+  }, { threshold: 0 }).observe(video);
+}
+
+const showcase = window.gunPopShowcase;
+const gunButtons = [...document.querySelectorAll("[data-gun]")];
+const finishOptions = document.querySelector(".finish-options");
+let selectedGun = showcase.arsenal.find(gun => gun.id === "pistol_i");
+function showFinish(index) {
+  const look = selectedGun.looks[index];
+  const image = document.querySelector("#arsenal-image");
+  image.src = look.image;
+  image.alt = `${selectedGun.name} with the ${look.name} skin`;
+  document.querySelector("#skin-name").textContent = look.name;
+  document.querySelector("#skin-rarity").textContent = look.collection === "Animated" ? "Animated finish" : `${look.rarity} finish`;
+  document.querySelector("#finish-note").textContent = look.collection === "Animated" ? "This finish animates in the game. The image shows one moment." : index === 0 ? "The gun’s original finish. Make your next look your own." : "A collectible look from the current game.";
+  finishOptions.querySelectorAll("button").forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
+}
+function showGun(id) {
+  selectedGun = showcase.arsenal.find(gun => gun.id === id);
+  document.querySelector("#gun-name").textContent = selectedGun.name;
+  document.querySelector("#gun-description").textContent = selectedGun.description;
+  gunButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.gun === id)));
+  finishOptions.replaceChildren(...selectedGun.looks.map((look, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "finish-option";
+    button.setAttribute("aria-label", `${look.name}, ${look.collection === "Animated" ? "animated" : look.rarity} finish`);
+    button.title = look.name;
+    const image = document.createElement("img");
+    image.src = look.image;
+    image.alt = "";
+    image.width = 512;
+    image.height = 512;
+    button.append(image);
+    button.addEventListener("click", () => showFinish(index));
+    return button;
+  }));
+  showFinish(2);
+}
+gunButtons.forEach(button => button.addEventListener("click", () => showGun(button.dataset.gun)));
+showGun(selectedGun.id);
+const themeButtons = [...document.querySelectorAll("[data-theme]")];
+themeButtons.forEach(button => button.addEventListener("click", () => {
+  const theme = showcase.themes[Number(button.dataset.theme)];
+  themeButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+  document.querySelector("#theme-name").textContent = theme.name;
+  document.querySelector(".prop-lineup").replaceChildren(...theme.props.map((prop, index) => {
+    const figure = document.createElement("figure");
+    figure.style.setProperty("--prop-index", index);
+    const image = document.createElement("img");
+    image.src = prop.image;
+    image.alt = `${prop.name} target model`;
+    image.width = 400;
+    image.height = 400;
+    const caption = document.createElement("figcaption");
+    caption.textContent = prop.name;
+    figure.append(image, caption);
+    return figure;
+  }));
+}));
+
+const galleryTrack = document.querySelector(".gallery-track");
+document.querySelectorAll(".gallery-scroll[data-direction]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const first = galleryTrack.querySelector("figure");
+    const gap = parseFloat(getComputedStyle(galleryTrack).gap) || 0;
+    galleryTrack.scrollBy({ left: Number(button.dataset.direction) * (first.offsetWidth + gap), behavior: motionPreference.matches ? "instant" : "smooth" });
+  });
+});
+
+const galleryLinks = [...galleryTrack.querySelectorAll(".gallery-link")];
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox.querySelector(".lightbox-image");
-const lightboxCaption = lightbox.querySelector("figcaption");
-let currentScreenshot = 0;
+const lightboxCaption = document.querySelector("#lightbox-caption");
+const lightboxCounter = document.querySelector("#lightbox-counter");
+let currentImage = 0;
 let lightboxTrigger = null;
 
-function showScreenshot(index) {
-  currentScreenshot = (index + screenshots.length) % screenshots.length;
-  const link = screenshots[currentScreenshot];
+function showImage(index) {
+  currentImage = (index + galleryLinks.length) % galleryLinks.length;
+  const link = galleryLinks[currentImage];
   lightboxImage.src = link.href;
   lightboxImage.alt = link.querySelector("img").alt;
-  lightboxCaption.textContent = `${currentScreenshot + 1} / ${screenshots.length} — ${link.closest("figure").querySelector("figcaption").textContent}`;
+  lightboxCaption.textContent = link.dataset.caption;
+  lightboxCounter.textContent = `${currentImage + 1} / ${galleryLinks.length}`;
 }
-
-document.querySelectorAll(".screenshot-link").forEach((link) => {
-  link.addEventListener("click", (event) => {
+document.addEventListener("click", (event) => {
+    const link = event.target.closest(".gallery-link");
+    if (!link) return;
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof lightbox.showModal !== "function") return;
+    const galleryIndex = galleryLinks.findIndex((item) => item.href === link.href);
+    if (galleryIndex < 0) return;
     event.preventDefault();
-    lightboxTrigger = link;
-    showScreenshot(Number(link.dataset.shot));
+    lightboxTrigger = link.closest(".gallery-copy") ? galleryTrack : link;
+    showImage(galleryIndex);
     lightbox.showModal();
     document.body.classList.add("modal-open");
-  });
+    video.pause();
 });
 lightbox.querySelector(".lightbox-close").addEventListener("click", () => lightbox.close());
-lightbox.querySelector(".lightbox-prev").addEventListener("click", () => showScreenshot(currentScreenshot - 1));
-lightbox.querySelector(".lightbox-next").addEventListener("click", () => showScreenshot(currentScreenshot + 1));
+lightbox.querySelector(".lightbox-prev").addEventListener("click", () => showImage(currentImage - 1));
+lightbox.querySelector(".lightbox-next").addEventListener("click", () => showImage(currentImage + 1));
 lightbox.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
     event.preventDefault();
-    showScreenshot(currentScreenshot + (event.key === "ArrowRight" ? 1 : -1));
+    showImage(currentImage + (event.key === "ArrowRight" ? 1 : -1));
   }
 });
 lightbox.addEventListener("click", (event) => {
@@ -169,3 +159,18 @@ lightbox.addEventListener("close", () => {
   document.body.classList.remove("modal-open");
   lightboxTrigger?.focus({ preventScroll: true });
 });
+
+if ("IntersectionObserver" in window) {
+  const navLinks = [...siteNav.querySelectorAll("a")];
+  const sections = navLinks.map((link) => document.querySelector(link.hash)).filter(Boolean);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((link) => {
+        if (link.hash === `#${entry.target.id}`) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    });
+  }, { rootMargin: "-20% 0px -65% 0px", threshold: 0 });
+  sections.forEach((section) => observer.observe(section));
+}

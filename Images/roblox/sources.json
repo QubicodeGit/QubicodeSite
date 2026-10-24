@@ -1,0 +1,73 @@
+{
+  "games": [
+    {
+      "slug": "realms-rpg",
+      "name": "REALMS RPG",
+      "universeId": 668457124,
+      "placeId": 1827975522,
+      "description": "Your main character arc starts with a Copper Sword.\n\n⚔️ Bonk enemies, chain combos, parry attacks and dash out of boss slams.\n🌍 Explore 16 realms, plus the village hub.\n🛠️ Collect 54 swords and 54 armor sets through gold, boss drops and optional gamepasses.\n👑 Challenge 13 bosses and bring friends for the final showdown.\n✨ Build your Aura, equip cosmetic trails and unlock titles.\n🎁 Claim free daily gifts, complete contracts and finish your Journey.\n\nPC: hold click to attack • F to block/parry • Q to dash\nMobile: equip a weapon and use the touch controls.\n\nOptional cosmetics, equipment gamepasses and timed boosts are available in the shop.",
+      "isPublic": true,
+      "url": "https://www.roblox.com/games/1827975522",
+      "iconUrl": "https://tr.rbxcdn.com/180DAY-3b6d8b59d48d14e36f501864bc0fb8b4/512/512/Image/Png/noFilter",
+      "referenceIcon": "reference-icons/realms-rpg.png"
+    },
+    {
+      "slug": "go-up",
+      "name": "Go Up!",
+      "universeId": 10767011700,
+      "placeId": 79253465106974,
+      "description": "🎈 GO UP!\n\nThe higher you fly, the more coins you earn — but watch out! Other players can use their dart guns to POP your balloon and send you falling.\n\n🎈 Inflate & Fly — Blow up your balloon and soar as high as possible!\n💰 Earn Coins — Reach greater heights and pop other players for rewards!\n🔫 Pop Players — Upgrade your dart gun and shoot balloons out of the sky!\n⬆️ Upgrade — Get bigger, faster balloons and stronger dart guns!\n☁️ Discover New Worlds — Fly through Cloud World, Candyland, Heaven, Valhalla, and beyond!\n🛡️ Stay Protected — Get a temporary shield after your balloon gets popped!\n\nHow high can you go? 🎈☁️🏰",
+      "isPublic": true,
+      "url": "https://www.roblox.com/games/79253465106974",
+      "iconUrl": "https://tr.rbxcdn.com/180DAY-b1362f6aaf7c1726007109db5ef078c8/512/512/Image/Png/noFilter",
+      "referenceIcon": "reference-icons/go-up.png"
+    },
+    {
+      "slug": "break-everything",
+      "name": "Break Everything",
+      "universeId": 10769678928,
+      "placeId": 75791954185614,
+      "description": "BREAK EVERYTHING\n\nSmash block-built worlds, earn cash, and turn your starter hammer into a destruction machine.\n\n💥 Upgrade through 46 tools, from chainsaws and rocket launchers to black holes, Thor’s Hammer, and the Antimatter Siege Cannon.\n🌍 Explore 15 realms, from desert pyramids, Atlantis, and the Moon to giant toys, a clockwork carnival, and Dreamweaver Workshop.\n👟 Buy faster shoes to race through the realms.\n🔁 Rebirth for permanent damage, cash, and block-breaking bonuses—and unlock later realms.\n🏆 Join two-minute demolition events where everyone gets the same randomly rolled weapon. Break the most blocks, earn cash and trophies, and unlock titles.\n\nHow much can you break?",
+      "isPublic": false,
+      "url": "https://www.roblox.com/games/75791954185614",
+      "iconUrl": "https://tr.rbxcdn.com/180DAY-80f7b30d846b206b03a9ecbb66924ac0/512/512/Image/Png/noFilter",
+      "referenceIcon": "reference-icons/break-everything.png"
+    },
+    {
+      "slug": "coin-rush",
+      "name": "COIN RUSH",
+      "universeId": 10770721817,
+      "placeId": 130059195387129,
+      "description": null,
+      "isPublic": false,
+      "url": "https://www.roblox.com/games/130059195387129",
+      "iconUrl": "https://tr.rbxcdn.com/180DAY-22a866171a514c57e844cb44120c2b3a/512/512/Image/Png/noFilter",
+      "referenceIcon": "reference-icons/coin-rush.png"
+    },
+    {
+      "slug": "build-the-eiffel-tower",
+      "name": "[🎃] Build the Eiffel Tower!",
+      "universeId": 10771705084,
+      "placeId": 122848283773531,
+      "description": "🗼 Welcome to Build the Eiffel Tower!\n\nBuild Paris’s most iconic landmark together, one block at a time.\n\nHow to Play:\n🧱 Collect blocks and carry them to the tower.\n🤝 Work with the whole server to raise its voxel lattice legs, observation decks, and summit.\n⚡ Train Speed and Strength, upgrade your French hero, and unlock Paris companions.\n🏆 Complete towers, enjoy the celebration orbit, and relax in the terrace hot tubs for bonus training.\n🎃 Travel to Haunted Paris to build a spooky Eiffel Tower and earn Lanterns!\n\n🎮 Supports Desktop, Console, Mobile, and Tablet players.",
+      "isPublic": false,
+      "url": "https://www.roblox.com/games/122848283773531",
+      "iconUrl": "https://tr.rbxcdn.com/180DAY-4935dd6038b74c221aca70ac9a63a828/512/512/Image/Png/noFilter",
+      "referenceIcon": "reference-icons/build-the-eiffel-tower.png"
+    },
+    {
+      "slug": "zombie-shooter",
+      "name": "ZombieShooter",
+      "universeId": 10772135385,
+      "placeId": 112062639497548,
+      "description": null,
+      "isPublic": false,
+      "url": "https://www.roblox.com/games/112062639497548",
+      "iconUrl": "https://tr.rbxcdn.com/180DAY-95f0fb7b7b490712e1481d5d9b3455cc/512/512/Image/Png/noFilter",
+      "referenceIcon": "reference-icons/zombie-shooter.png"
+    }
+  ],
+  "groupUrl": "https://www.roblox.com/communities/280151666/Qubicode",
+  "groupId": 280151666,
+  "retrieved": "2026-10-23"
+}

@@ -1,0 +1,21 @@
+RECOVERY UNIT — ARTWORK PROPOSAL 03
+
+Status: not applied. On 2026-10-23 the user chose to keep the original homepage artwork, recovery-unit-key-art.webp.
+Created on 2026-10-23 with the built-in imagegen tool; WebP encoding with Sharp, with no additional image edits.
+Candidate: recovery-unit-key-art-v3.webp, 1672 x 941, WebP quality 93.
+Proposed homepage crop: object-position: right 40%.
+Source: C:/Users/Leo/.codex/generated_images/01a16553-fb44-71d0-be03-ed1609784221/exec-a644a428-ecbe-47be-a1d2-15cdc7f6a346.png
+Edit target: ../captured/crew-train.jpg (original gameplay screenshot).
+This is an AI-assisted promotional edit based closely on the screenshot, not an unmodified game capture.
+
+Prompt:
+
+Use case: precise-object-edit.
+Asset type: screenshot-led promotional image for the Recovery Unit homepage game card, landscape 16:9.
+Input image 1 is the EDIT TARGET: an actual screenshot of Recovery Unit, showing three teammates in white protective clothing beside the dark armored railway carriage in rain. Preserve this screenshot as faithfully as possible. The user rejected previous artwork because it looked too AI-generated, too cinematic, and substantially more detailed than the game.
+
+Make a minimal typography edit to this screenshot. Keep the exact original viewpoint, framing, three existing character models, poses, helmet and suit geometry, carriage shape, windows, rails, trees, hillside, rain, terrain texture resolution, sky, color balance, and ordinary real-time game-engine lighting. Do not add a fourth visible character (the viewpoint represents the fourth player). Do not move or redesign any character. Keep the somewhat simple, matte, practical game assets and the native screenshot's modest texture detail. No added surface greebles, droplets, armored costume detail, film lighting, bloom, orange train glow, dramatic fog, mountains, research buildings, muzzle flashes or other invented objects. Do not beautify, stylize, sharpen, turn into a painting, or upgrade the graphics. The original screenshot itself should remain the entire edge-to-edge background.
+
+Only add an immediately readable two-line game title over the dark train side in the UPPER RIGHT: exact text "RECOVERY" on the first line and "UNIT" below. Position the whole wordmark within x=54% to x=95% and y=16% to y=38%, leaving every teammate's head below it unobstructed and leaving the left 45% free of added typography for website text. RECOVERY in warm off-white, UNIT in muted amber #e9b64c. Use clean, flat, bold condensed industrial uppercase lettering that resembles the title on the game website. Narrow tracking, substantial size, a restrained dark shadow for readability. No 3D bevel, no distressed flecks, no chrome, no glow. No subtitle, no additional words, no border, no badge, no watermark. Keep a thin safe margin around all text so it survives a wide homepage-card crop.
+
+The finished image should look like the supplied IN-GAME SCREENSHOT with a clean title added, not new illustration or redesigned game art.

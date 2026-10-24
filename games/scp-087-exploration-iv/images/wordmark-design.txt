@@ -1,0 +1,34 @@
+SCP-087 — HOMEPAGE WORDMARK
+
+Final asset: scp087-wordmark.svg (800 x 240), transparent, static vector with outlined lettering.
+Created 2026-10-23. The website card keeps its original gameplay screenshot.
+Design: warm-white SCP-087 above red EXPLORATION IV, with two short red rules. Typeset from Arial Bold using Windows vector glyph outlines; no web font or bitmap is required. Placed on the right side of the homepage card, above the image's shading and clear of the normal description.
+
+Built-in imagegen was used for initial exploration. Its transparent raster versions had unwanted rough edges, so none is used by the website. The final selected asset is a native vector wordmark.
+
+INITIAL IMAGEGEN PROMPT
+
+Use case: logo-brand.
+Create a simple, flat, transparent-background title logo for the horror game "SCP-087: Exploration IV". This is a standalone wordmark to overlay on the RIGHT side of an existing dark gameplay image, at approximately 210 pixels wide on a website card.
+Reference image 1 is the game's existing square icon, provided only for its restrained white-and-red identity and industrial geometric letterforms. Do not reproduce the square icon, background, SCP emblem, staircase, face, border, or rounded rectangle.
+Exact text: "SCP-087" on the large first line; "EXPLORATION IV" on the smaller second line. The digits are zero eight seven. The subtitle uses Roman numeral IV. Include the hyphen; no colon.
+Design: bold, crisp, slightly condensed geometric sans-serif capitals, flat warm white #f2f0e8 for the main line. The subtitle is evenly spaced uppercase in muted bright red #e56561, large enough to read at thumbnail size. Center the two lines. Two restrained short horizontal red rules may flank the subtitle. Keep it minimal, clean, and ominous, like a label on a classified field recording.
+The wordmark should have a compact horizontal silhouette about 3.2:1, tightly framed with only a small transparent margin. Main line at least 70% of the height; subtitle about 22%. Perfectly legible lettering, clean edges, no texture.
+True transparent alpha background; all empty space and letter counters transparent. No black background, no backdrop, no plate, no square, no halo, no glow, no shadow, no 3D, no bevel, no distress, no extra symbols, no watermark, no additional text. Return just this one logo.
+
+REFINEMENT PROMPT (NOT SELECTED)
+
+Use case: precise-object-edit.
+Edit this transparent SCP-087 wordmark to CLEAN ITS EDGES. Keep the exact wording, composition, font shapes, and white main line / red subtitle.
+Remove ALL white splatter, speckles, grunge, distressed patches, flecks, smudges, ghosting, shadow outlines, and stray pixels around and between letters. The current image has conspicuous unwanted white debris around the large letters; delete it completely. The holes inside P, 0, 8, R, A and O must be clean fully transparent openings. The empty gaps between the letters must be perfectly transparent.
+Render the logo as very clean flat vector-like filled lettering: "SCP-087" in solid warm white, "EXPLORATION IV" below in flat muted bright red, with a simple red rule on either side of that subtitle. Main text is spelled S C P hyphen zero eight seven; subtitle E X P L O R A T I O N space I V.
+No bevels, strokes, highlights, shadows, haloes, gradients, texture, or ornaments. Smooth antialiased boundaries and transparent background. The result should look like freshly typeset solid typography, not spray paint or distressed lettering. A wide tightly framed wordmark with only a small transparent safe margin. Preserve actual alpha transparency.
+
+CLEAN GENERATION PROMPT (NOT SELECTED)
+
+Create a clean minimalist typography logo as a transparent PNG asset. Flat solid letters with perfectly clean antialiased edges. Transparent background, with no material, texture, pattern, background, splatter, flecks, or noise anywhere.
+
+The exact large text is "SCP-087", in a bold condensed sans-serif font, white.
+Immediately below it, centered, exact smaller text "EXPLORATION IV", in a simple red uppercase sans-serif font.
+A compact two-line composition. The lower line is approximately one quarter the size of the upper line. No other marks or details. No distressing. No cutouts, scratches, stains, or broken letters. No outlines, shadows or glow. Think of a clean digital title typeset directly in a desktop vector design application, not a game poster. Smooth solid white and red letter shapes only, all other pixels transparent.
+Wide horizontal canvas and a tight crop around the lettering.

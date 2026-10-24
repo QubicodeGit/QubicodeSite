@@ -1,0 +1,24 @@
+Red Signal promotional card
+Created with the built-in imagegen tool from the user's game screenshots.
+This promotional composite is used for the homepage card and social preview.
+The Red Signal page itself uses the seven original, unmodified gameplay JPGs
+from C:/Users/Leo/Desktop/RedSignal, copied into images/captured/.
+
+Use case: compositing.
+Asset type: polished 16:9 landscape promotional key art for the Red Signal game card on an indie studio website, around 1536x864. Must read well as a small thumbnail.
+Primary request: assemble the supplied REAL game imagery into an atmospheric title artwork. Preserve the game's actual rendered creature and terrain rather than redesigning or embellishing them.
+Input images in order: 1 red-lit alien creature facing the camera (main subject); 2 astronaut encounter inside the station (secondary context, not essential); 3 handheld scanner (context, not essential); 4 orange Martian canyon and utility poles (environment insert); 5 huge orange crescent of Mars against black space (backdrop).
+Composition: one cohesive, restrained screenshot collage: the recognizable red-lit creature from image 1 looms on the right third, the arc of Mars from image 5 spans the upper background, the dusty canyon from image 4 melts into the lower darkness. Leave the left half dark enough for a large clean title. Use the actual source shapes, textures and game rendering quality. Keep the monster clearly visible without turning it into a different creature. No additional characters or invented objects.
+Typography: exact text "RED SIGNAL", spelled R E D  S I G N A L. Bold very condensed uppercase Impact-style lettering, white/bone "RED" and vivid blood-red "SIGNAL". Two compact stacked lines on the left, strong cinematic scale, crisp straight edges with a tiny subtle horizontal signal disruption. Match the existing site's condensed white and red title treatment, no decorative sci-fi typeface.
+Palette: near-black, burnt orange Mars edge, deep scarlet emergency light, bone white title. Dark cinematic horror atmosphere with readable contrast at thumbnail size. Keep everything important within an 8 percent safe margin.
+Constraints: this is promotional artwork assembled from the supplied images, not a new gameplay scene. No HUD, no health bars, no interaction prompts, no extra text, no tagline, no watermark, no borders, no generic space ships, no illustration style. Do not make the creature or environment look like different game assets.
+
+Homepage logo positioning edit, 2026-10-23
+Mode: built-in imagegen, precise-object-edit.
+Edit target: red-signal-key-art.webp.
+Saved web asset: red-signal-card-background.webp (1280 x 720).
+The original key art remains the social preview. The homepage renders the white/red
+wordmark as a separate responsive HTML/CSS layer above its contrast overlay.
+
+Final prompt:
+Use case: precise-object-edit. Asset type: full-bleed background artwork for an existing Red Signal game card. Input image 1 is the edit target. Remove ONLY the existing white RED and red SIGNAL lettering, including the tiny horizontal glitch strokes around that lettering, from the left half of this image. Seamlessly restore the dark, smoky Martian sky and canyon behind the removed title. Keep the entire composition, framing, proportions, huge orange planet arc, red illuminated alien creature on the right, canyon, poles, colors, lighting, texture, and game rendering style otherwise unchanged. This is a text-removal edit, not a new composition. The website will add the same white/red title as a separate responsive layer afterward, so the output must contain no text, logos, lettering, watermark, or borders. Maintain the original landscape 16:9 aspect ratio and full edge-to-edge artwork.

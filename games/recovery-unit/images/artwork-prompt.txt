@@ -1,0 +1,15 @@
+RECOVERY UNIT — HOMEPAGE PROMOTIONAL ART
+
+Created with the built-in imagegen tool on 2026-10-23.
+Selected output: recovery-unit-key-art.webp (1280 × 720, WebP quality 91).
+The original screenshot gallery is separate and has not been generated or retouched.
+
+Reference images, in order:
+1. captured/crew-train.jpg
+   Original: C:/Users/Leo/Desktop/RecoveryUnit/Snimka zaslona 2026-10-22 232637.jpg
+2. captured/research-compound.jpg
+   Original: C:/Users/Leo/Desktop/RecoveryUnit/Snimka zaslona 2026-10-22 231106.jpg
+
+Generation prompt:
+
+Use case: compositing. Asset type: landscape 16:9 promotional splash art for the existing video game RECOVERY UNIT, to fill a studio homepage card edge to edge. Use the two supplied game screenshots as the visual source of truth: image 1 shows the actual dark armored train, rainy conifer forest, white protective suits and armored researchers; image 2 shows the real respirator helmet and white segmented armor from the front at a concrete research facility. Compose a cinematic game-marketing image of FOUR cooperative researchers beside this exact rugged dark armored train on railway tracks, a misty conifer valley, cold rain and distant warm amber practical lights. Show one hooded white-suit researcher and three white armored respirator researchers using the same suits, helmets and game rendering style as the references; no exposed faces and no new armor designs. Make the train immediately recognizable, not a steam train or a futuristic bullet train. Preserve the source game's grounded rendered appearance, with tasteful atmospheric contrast rather than redesigning its world. Layout: the left 45 percent is a darker, low-detail extension of the forest and railway for website heading and paragraph overlays. The train and the four-person crew occupy the center-right. Keep all crew heads and the most recognizable train details within the central 65 percent of image height, so the image also crops safely to a wide card. Add the EXACT title RECOVERY UNIT on two stacked lines in the LOWER RIGHT, between x=57% and x=92%, y=56% and y=80%. Typography: RECOVERY in warm off-white tall condensed industrial capitals, UNIT in larger amber-yellow capitals, strong crisp cinematic wordmark with slight worn metal texture, readable at thumbnail size. Spell RECOVERY UNIT exactly. The title must be fully inside that safe area, not at the edge and not on the left. Blend the title with a subtle dark shadow, not a rectangular badge. Palette: charcoal, desaturated forest green, steel blue rain, worn white suits and amber yellow accents. No additional words, HUD, UI, health bars, border, watermark, zombie horde, giant monster, invented weapons, or futuristic city. This is promotional artwork composed from game references, not a gameplay screenshot.

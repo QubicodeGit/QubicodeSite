@@ -8,7 +8,7 @@
   <link rel="icon" href="Images/qubicodeLogo.svg" type="image/svg+xml">
   <link rel="icon" href="Images/qubicodeLogo.ico" sizes="any">
   <title>Qubicode — Games, tools, and digital worlds</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261023-wider-game-cards">
   <link rel="stylesheet" href="motion.css">
 </head>
 <body>
@@ -35,7 +35,7 @@
       <a class="brand" href="#home" aria-label="Qubicode home"><img src="Images/qubicodeLogo.svg" width="574" height="574" alt="" class="brand-logo" decoding="async"><span class="brand-wordmark">QUBICODE</span></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#home" class="active">Home</a></li><li><a href="#games">Games</a></li><li><a href="#assets">Assets</a></li><li><a href="#contact">Contact</a></li>
+        <li><a href="#home" class="active">Home</a></li><li><a href="#games">Games</a></li><li><a href="#contact">Contact</a></li>
       </ul>
       <a class="nav-discord glass-button" href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener" aria-label="Join Qubicode on Discord"><svg class="icon" aria-hidden="true"><use href="#icon-discord"/></svg><span>Join Discord</span></a>
     </nav>
@@ -64,104 +64,43 @@
           </div>
           <div class="hero-visual" aria-hidden="true">
             <div class="cube-aura"></div><div class="cube-floor"></div><div class="cube-shadow"></div>
-            <div class="cube-reflection"><img src="Images/glass-cube.svg" width="440" height="420" alt="" decoding="async"></div>
-            <div class="floating-cube"><img src="Images/glass-cube.svg" width="440" height="420" alt="" fetchpriority="high" decoding="async"></div>
+            <div class="cube-reflection"><img src="Images/qubicodeCube.svg" width="1219" height="1290" alt="" decoding="async"></div>
+            <div class="floating-cube"><img src="Images/qubicodeCube.svg" width="1219" height="1290" alt="" fetchpriority="high" decoding="async"></div>
             <div class="cube-contact-light"></div>
           </div>
         </div>
         <div class="studio-stats" aria-label="About the studio">
-          <div class="stat-card glass-panel"><svg class="icon" aria-hidden="true"><use href="#icon-gamepad"/></svg><div><strong>6 projects</strong><span>Original games &amp; experiences</span></div></div>
+          <div class="stat-card glass-panel"><svg class="icon" aria-hidden="true"><use href="#icon-gamepad"/></svg><div><strong>12 projects</strong><span>Original games &amp; experiences</span></div></div>
           <div class="stat-card glass-panel"><svg class="icon" aria-hidden="true"><use href="#icon-monitor"/></svg><div><strong>PC &amp; Mobile</strong><span>Different worlds. More ways to play.</span></div></div>
           <div class="stat-card glass-panel"><svg class="icon" aria-hidden="true"><use href="#icon-cube"/></svg><div><strong>Independent</strong><span>Games, tools &amp; digital worlds</span></div></div>
         </div>
       </div>
     </section>
 
-    <section class="section featured-section" id="featured" aria-labelledby="featured-title" aria-roledescription="carousel" data-featured-carousel>
-      <svg class="featured-waves" viewBox="0 0 1440 230" preserveAspectRatio="none" aria-hidden="true"><path d="M-30 60C210 220 325 70 560 140s320 40 520-20 280-50 390-20v150H-30Z" fill="#0b2a55" fill-opacity=".35" stroke="#2c6db8" stroke-opacity=".2"/><path d="M-30 145c220-80 360 125 620 28s360-45 470 15 300-15 400-25v90H-30Z" fill="#0a2350" fill-opacity=".3"/></svg>
-      <div class="section-inner">
-        <div class="section-heading centered"><h2 id="featured-title"><span>Featured</span></h2><p>Highlighting games, tools, and what&rsquo;s next.</p></div>
-        <div class="featured-layout">
-          <div class="feature-stage glass-panel" data-feature-stage>
-            <button class="feature-control feature-toggle glass-button" type="button" aria-label="Pause automatic rotation" data-feature-toggle hidden><svg class="feature-pause-icon icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg><svg class="feature-play-icon icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7V5Z"/></svg></button>
-            <div class="feature-slides" aria-live="off">
-              <article class="feature-slide is-active" id="feature-gun-pop" role="tabpanel" aria-labelledby="feature-tab-gun-pop" aria-hidden="false" data-feature-slide>
-                <div class="feature-visual feature-gun-art" aria-hidden="true">
-                  <div class="feature-gun-rays"></div>
-                  <img class="feature-gun-logo" src="games/gun-pop/images/GunPopLogo.webp" width="1448" height="1086" alt="" loading="lazy" decoding="async">
-                  <img class="feature-phone feature-phone-one" src="games/gun-pop/images/screenshot%20(3).jpg" width="501" height="891" alt="" loading="lazy" decoding="async">
-                  <img class="feature-phone feature-phone-two" src="games/gun-pop/images/screenshot%20(4).jpg" width="501" height="891" alt="" loading="lazy" decoding="async">
-                </div>
-                <div class="feature-caption"><span class="feature-kicker">Our newest mobile game</span><h3>Gun Pop</h3><p>Flip your gun. Time your shots. Keep the ridiculous combos coming.</p></div>
-                <a class="feature-slide-link" href="games/gun-pop/index.html" aria-label="Explore Gun Pop, our newest mobile game"></a>
-              </article>
-              <article class="feature-slide" id="feature-surface-shaders" role="tabpanel" aria-labelledby="feature-tab-surface-shaders" aria-hidden="true" data-feature-slide inert>
-                <div class="feature-visual feature-shader-art"><img src="Images/featured-surface-shaders.svg" width="1280" height="820" alt="An illustrated material sphere beside a tessellated wireframe surface" loading="lazy" decoding="async"></div>
-                <div class="feature-caption"><span class="feature-kicker">URP &amp; HDRP · Coming soon</span><h3>POM &amp; Tessellation</h3><p>Detailed surfaces for Unity. Coming soon to the Unity Asset Store.</p></div>
-                <a class="feature-slide-link" href="#assets" aria-label="Explore the upcoming POM and Tessellation asset for URP and HDRP"></a>
-              </article>
-              <article class="feature-slide" id="feature-empty-three" role="tabpanel" aria-labelledby="feature-tab-empty-three" aria-hidden="true" data-feature-slide inert><div class="feature-visual feature-empty-art" aria-hidden="true"></div><div class="feature-caption"><h3 aria-label="Feature 3, empty">...</h3></div></article>
-              <article class="feature-slide" id="feature-empty-four" role="tabpanel" aria-labelledby="feature-tab-empty-four" aria-hidden="true" data-feature-slide inert><div class="feature-visual feature-empty-art feature-empty-art-alt" aria-hidden="true"></div><div class="feature-caption"><h3 aria-label="Feature 4, empty">...</h3></div></article>
-            </div>
-            <button class="feature-control feature-previous glass-button" type="button" aria-label="Previous feature" data-feature-previous hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button>
-            <button class="feature-control feature-next glass-button" type="button" aria-label="Next feature" data-feature-next hidden><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7"/></svg></button>
-            <div class="feature-progress" aria-hidden="true"><span data-feature-progress></span></div>
-          </div>
-          <div class="feature-selectors" role="tablist" aria-label="Choose a feature" aria-orientation="vertical" data-feature-tabs>
-            <button class="feature-selector is-active glass-panel" type="button" role="tab" id="feature-tab-gun-pop" aria-controls="feature-gun-pop" aria-selected="true" tabindex="0" data-feature-tab disabled><span class="feature-thumbnail feature-thumbnail-gun"><img src="games/gun-pop/images/GunPopLogo.webp" width="1448" height="1086" alt="" loading="lazy" decoding="async"></span><span class="feature-selector-copy"><strong>Gun Pop</strong><small>Our newest mobile game</small></span></button>
-            <button class="feature-selector glass-panel" type="button" role="tab" id="feature-tab-surface-shaders" aria-controls="feature-surface-shaders" aria-selected="false" tabindex="-1" data-feature-tab disabled><span class="feature-thumbnail"><img src="Images/featured-surface-shaders.svg" width="1280" height="820" alt="" loading="lazy" decoding="async"></span><span class="feature-selector-copy"><strong>POM &amp; Tessellation</strong><small>URP &amp; HDRP · Coming soon</small></span></button>
-            <button class="feature-selector feature-selector-empty glass-panel" type="button" role="tab" id="feature-tab-empty-three" aria-controls="feature-empty-three" aria-selected="false" aria-label="Feature 3, empty" tabindex="-1" data-feature-tab disabled><span class="feature-thumbnail feature-thumbnail-empty" aria-hidden="true"></span><span class="feature-selector-copy"><strong aria-hidden="true">...</strong></span></button>
-            <button class="feature-selector feature-selector-empty glass-panel" type="button" role="tab" id="feature-tab-empty-four" aria-controls="feature-empty-four" aria-selected="false" aria-label="Feature 4, empty" tabindex="-1" data-feature-tab disabled><span class="feature-thumbnail feature-thumbnail-empty" aria-hidden="true"></span><span class="feature-selector-copy"><strong aria-hidden="true">...</strong></span></button>
-          </div>
-        </div>
-        <p class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-feature-status></p>
-      </div>
-    </section>
-
     <section class="section games-section" id="games">
       <div class="section-inner">
-        <div class="section-heading centered"><h2>Our <span>Games</span></h2></div>
+        <div class="section-heading centered"><h2 id="games-heading">Our <span>Games</span></h2></div>
+        <label class="game-search" for="game-search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+          <span class="sr-only">Search games, genres, or platforms</span>
+          <input id="game-search" type="search" placeholder="Search games or platforms…" autocomplete="off" aria-controls="game-grid">
+        </label>
         <div class="filter-bar" role="group" aria-label="Filter games">
           <button class="filter-button active" type="button" data-filter="all" aria-pressed="true">All</button>
           <button class="filter-button" type="button" data-filter="mobile" aria-pressed="false">Mobile</button>
           <button class="filter-button" type="button" data-filter="steam" aria-pressed="false">Steam</button>
+          <button class="filter-button" type="button" data-filter="roblox" aria-pressed="false">Roblox</button>
           <button class="filter-button" type="button" data-filter="multiplayer" aria-pressed="false">Multiplayer</button>
           <button class="filter-button" type="button" data-filter="horror" aria-pressed="false">Horror</button>
           <button class="filter-button" type="button" data-filter="singleplayer" aria-pressed="false">Singleplayer</button>
         </div>
-        <div class="game-grid" id="game-grid" aria-live="polite"></div>
-        <noscript><p class="no-script-message">Explore our games: <a href="games/driver-dash/index.html">Driver Dash</a>, <a href="games/red-signal/index.html">Red Signal</a>, <a href="games/gun-pop/index.html">Gun Pop</a>, <a href="games/scp-087-exploration-iv/index.html">SCP-087: Exploration IV</a>, <a href="games/recovery-unit/index.html">Recovery Unit</a>, and <a href="games/brawlbots/index.html">Brawlbots</a>.</p></noscript>
-      </div>
-    </section>
-
-    <section class="section assets-section" id="assets">
-      <div class="section-inner">
-        <div class="section-heading"><h2>Assets &amp; <span>Tools</span></h2></div>
-        <div class="asset-grid">
-          <article class="asset-card featured-asset glass-panel">
-            <div class="asset-media shader-visual" aria-hidden="true">
-              <div class="sphere-halo"></div>
-              <svg class="material-sphere" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <radialGradient id="sphere-base" cx=".78" cy=".25" r=".8"><stop stop-color="#9fe5ff"/><stop offset=".18" stop-color="#338bd6"/><stop offset=".48" stop-color="#0c406d"/><stop offset=".8" stop-color="#05172d"/><stop offset="1" stop-color="#020912"/></radialGradient>
-                  <filter id="material-noise"><feTurbulence type="fractalNoise" baseFrequency=".085" numOctaves="4" seed="19"/><feDiffuseLighting lighting-color="#6baede" surfaceScale="7"><feDistantLight azimuth="30" elevation="45"/></feDiffuseLighting><feComposite in2="SourceGraphic" operator="in"/><feBlend in2="SourceGraphic" mode="overlay"/></filter>
-                  <radialGradient id="sphere-shade" cx=".85" cy=".3" r=".78"><stop stop-color="#0c2a42" stop-opacity="0"/><stop offset=".5" stop-color="#020a18" stop-opacity=".12"/><stop offset="1" stop-color="#010713" stop-opacity=".95"/></radialGradient>
-                  <linearGradient id="sphere-rim" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#2688db" stop-opacity="0"/><stop offset=".55" stop-color="#49b4ff" stop-opacity=".3"/><stop offset=".85" stop-color="#b4efff"/><stop offset="1" stop-color="#519cff"/></linearGradient>
-                </defs>
-                <circle cx="150" cy="150" r="137" fill="url(#sphere-base)" filter="url(#material-noise)"/><circle cx="150" cy="150" r="137" fill="url(#sphere-shade)" stroke="url(#sphere-rim)" stroke-width="2"/>
-              </svg>
-            </div>
-            <div class="asset-content"><span class="badge badge-pulse">Coming Soon</span><p class="platform-line">Unity 6 · URP &amp; HDRP</p><h3>POM &amp;<br>Tessellation</h3><p>Parallax occlusion mapping and tessellation displacement for detailed materials in URP and HDRP. Coming soon to the Unity Asset Store.</p><div class="tag-list" aria-label="POM and Tessellation tags"><span>Tessellation</span><span>POM</span><span>PBR Materials</span></div></div>
-          </article>
-          <article class="asset-card compact-asset glass-panel">
-            <div class="asset-content"><span class="badge muted-badge">Future</span><h3>Developer Tools</h3><p>Small utilities, editor helpers, and production shortcuts planned around real development needs.</p></div>
-            <div class="asset-media tool-visual" aria-hidden="true"><div class="tool-window"><div class="window-bar"><i></i><i></i><i></i></div><svg class="icon"><use href="#icon-code"/></svg><span class="code-line"></span><span class="code-line short"></span></div></div>
-          </article>
-          <article class="asset-card compact-asset glass-panel">
-            <div class="asset-content"><span class="badge muted-badge">Future</span><h3>Gameplay Systems</h3><p>Reusable systems for progression, interaction, arcade loops, and multiplayer prototypes.</p></div>
-            <div class="asset-media systems-visual" aria-hidden="true"><div class="system-ring"></div><svg class="icon"><use href="#icon-cube"/></svg><span class="system-node node-one"></span><span class="system-node node-two"></span><span class="system-node node-three"></span></div>
-          </article>
+        <p class="game-results" id="game-results" role="status" aria-live="polite" aria-atomic="true"></p>
+        <div class="game-grid" id="game-grid" aria-labelledby="games-heading"></div>
+        <div class="empty-games glass-panel" id="empty-games" hidden>
+          <p>No games found. Try another name or category.</p>
+          <button class="filter-button" id="reset-game-filters" type="button">Reset search &amp; filters</button>
         </div>
+        <noscript><p class="no-script-message">Explore our games: <a href="games/driver-dash/index.html">Driver Dash</a>, <a href="games/red-signal/index.html">Red Signal</a>, <a href="games/gun-pop/index.html">Gun Pop</a>, <a href="games/scp-087-exploration-iv/index.html">SCP-087: Exploration IV</a>, <a href="games/recovery-unit/index.html">Recovery Unit</a>, and <a href="games/brawlbots/index.html">Brawlbots</a>. On Roblox: <a href="https://www.roblox.com/games/1827975522/REALMS-RPG">REALMS RPG</a>, <a href="https://www.roblox.com/games/79253465106974/Go-Up">Go Up!</a>, <a href="https://www.roblox.com/games/75791954185614/Break-Everything">Break Everything</a>, <a href="https://www.roblox.com/games/130059195387129/COIN-RUSH">COIN RUSH</a>, <a href="https://www.roblox.com/games/122848283773531/Build-the-Eiffel-Tower">Build the Eiffel Tower!</a>, and <a href="https://www.roblox.com/games/112062639497548/ZombieShooter">ZombieShooter</a>.</p></noscript>
       </div>
     </section>
 
@@ -169,7 +108,7 @@
       <div class="section-inner contact-grid">
         <div class="section-heading"><h2>Contact</h2><p>For questions, collaborations, publishing opportunities, support, or anything else, reach out to us.</p></div>
         <div class="contact-card">
-          <a class="contact-link glass-panel" href="mailto:contact@example.com"><svg class="icon contact-icon email-icon" aria-hidden="true"><use href="#icon-mail"/></svg><span><strong>Email</strong><small>contact@example.com</small></span><svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          <a class="contact-link glass-panel" href="mailto:qubicode.team@gmail.com"><svg class="icon contact-icon email-icon" aria-hidden="true"><use href="#icon-mail"/></svg><span><strong>Email</strong><small>qubicode.team@gmail.com</small></span><svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
           <a class="contact-link glass-panel" href="https://discord.gg/2PjpjMRh5N" target="_blank" rel="noopener"><svg class="icon contact-icon discord-icon" aria-hidden="true"><use href="#icon-discord"/></svg><span><strong>Discord</strong><small>Join the community</small></span><svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
           <div class="contact-link contact-link-unavailable glass-panel"><svg class="icon contact-icon tiktok-icon" aria-hidden="true"><use href="#icon-tiktok"/></svg><span><strong>TikTok</strong><small>Coming soon</small></span></div>
           <a class="contact-link glass-panel" href="https://www.youtube.com/@Qubicode" target="_blank" rel="noopener"><svg class="icon contact-icon youtube-icon" aria-hidden="true"><use href="#icon-youtube"/></svg><span><strong>YouTube</strong><small>@Qubicode</small></span><svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
@@ -194,7 +133,6 @@
     </div>
   </footer>
   <button class="back-to-top glass-button" type="button" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
-  <script src="script.js"></script>
-  <script src="featured.js"></script>
+  <script src="script.js?v=20261024-game-statuses"></script>
 </body>
 </html>

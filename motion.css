@@ -54,7 +54,6 @@
     animation: none !important;
     will-change: auto !important;
   }
-  [data-feature-toggle], .feature-progress { display: none; }
 
   /* The studio cube keeps its float and matching reflection. */
   .hero-visual .floating-cube { animation: cube-float 6s ease-in-out infinite !important; }

@@ -3,45 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#061225">
-  <meta name="description" content="Recovery Unit is a future Qubicode game. A multiplayer first-person infection shooter where up to four players enter dangerous contaminated areas filled with weak and extremely powerful mutated creatures. Survive hostile environments together.">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Four scientists. One armored train. A search for a cure. Recovery Unit is a cooperative first-person survival game in a world devastated by disease. In development for PC.">
+  <meta property="og:title" content="Recovery Unit — Keep the journey alive.">
+  <meta property="og:description" content="Travel together. Recover what matters. Find a cure. A cooperative expedition for up to four players, in development for PC.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/recovery-unit-key-art.webp">
   <link rel="icon" href="../../Images/qubicodeLogo.svg" type="image/svg+xml">
-  <link rel="icon" href="../../Images/qubicodeLogo.ico" sizes="any">
-  <title>Recovery Unit — Qubicode</title>
-  <link rel="stylesheet" href="../../style.css">
-  <link rel="stylesheet" href="../game-ui.css">
-  <link rel="stylesheet" href="../planned.css">
-  <link rel="stylesheet" href="../viewport.css">
-  <link rel="stylesheet" href="../../motion.css">
+  <link rel="preload" href="images/captured/crew-train.jpg" as="image">
+  <title>Recovery Unit — Keep the journey alive.</title>
+  <link rel="stylesheet" href="styles.css?v=20261023-performance-3">
+  <script src="script.js?v=20261023-performance-3" defer></script>
 </head>
-<body class="game-page game-recovery-unit planned-page">
-  <a class="skip-link" href="#main-content">Skip to content</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="svg-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="icon-cube" viewBox="0 0 24 24"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10 9-5M12 12 3 7m9 5v10"/></symbol>
+    <symbol id="icon-cross" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </svg>
   <header class="site-header">
-    <nav class="nav glass-panel" aria-label="Primary navigation">
-      <span class="planned-brand">Recovery Unit</span>
-      <a class="qubicode-home" href="../../index.html#home" aria-label="Qubicode home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10 9-5M12 12 3 7m9 5v10"/></svg><span><strong>Qubicode</strong><small>Studio home</small></span></a>
+    <a class="brand" href="#top" aria-label="Recovery Unit home"><span class="unit-mark" aria-hidden="true">R<span>U</span></span><span>RECOVERY<br>UNIT</span></a>
+    <a class="studio-link" href="../../index.html#games"><svg aria-hidden="true"><use href="#icon-cube"/></svg><span>Qubicode<small>All our games</small></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+      <a href="#mission">The mission</a><a href="#train">The train</a><a href="#field-records">Screenshots</a><a class="nav-contact" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+      <button class="motion-toggle" type="button" aria-label="Animate atmosphere" aria-pressed="true" title="Pause atmosphere" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path class="pause-icon" d="M7 4v12M13 4v12"/><path class="play-icon" d="m6 3 10 7-10 7Z"/></svg><span>Motion on</span></button>
     </nav>
   </header>
-  <main class="planned-main" id="main-content">
-    <section class="section-inner planned-layout" aria-labelledby="game-title">
-      <div class="planned-copy">
-        <span class="game-status badge status-future">Future</span>
-        <h1 id="game-title">Recovery Unit</h1>
-        <p class="planned-platforms">Steam · PC · Multiplayer</p>
-        <p class="planned-description">A multiplayer first-person infection shooter where up to four players enter dangerous contaminated areas filled with weak and extremely powerful mutated creatures. Survive hostile environments together.</p>
-        <p class="planned-notice">Planned for the Future</p>
-        <div class="planned-actions"><a class="qubicode-home" href="../../index.html#home" aria-label="Qubicode home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7l9-5Zm0 10 9-5M12 12 3 7m9 5v10"/></svg><span><strong>Qubicode</strong><small>Studio home</small></span></a></div>
+  <main id="main">
+    <section class="hero atmospheric" id="top" aria-labelledby="game-title" data-fog>
+      <img class="hero-image" src="images/captured/crew-train.jpg" width="1516" height="853" alt="Three members of the Recovery Unit crew beside their armored train in a rainy forest" fetchpriority="high">
+      <div class="hero-shade" aria-hidden="true"></div><div class="rain" aria-hidden="true"></div>
+      <div class="hero-content shell">
+        <p class="eyebrow"><i class="status-light" aria-hidden="true"></i> A cooperative expedition by Qubicode</p>
+        <h1 id="game-title" class="wordmark">RECOVERY<span>UNIT</span></h1>
+        <p class="hero-tagline">Four scientists. One train.<br>A world still worth saving.</p>
+        <p class="hero-description">Travel through a world devastated by disease.<br>Bring your crew. Find the cure.</p>
+        <div class="hero-actions"><a class="button button-amber" href="#mission">Discover the mission <svg aria-hidden="true"><use href="#icon-arrow"/></svg></a><a class="text-link" href="#field-records">View screenshots <span aria-hidden="true">↗</span></a></div>
       </div>
-      <figure class="planned-image glass-panel"><img src="../../Images/recoveryunitScreenshot.webp" width="1672" height="941" alt="Recovery Unit game screenshot" fetchpriority="high" decoding="async"></figure>
+      <div class="hero-footer shell"><span><b>01—04</b> Players / online co-op</span><span><b>PC</b> First-person survival</span><span class="development"><i class="status-light" aria-hidden="true"></i> In development</span><a class="scroll-cue" href="#mission" aria-label="Scroll to the mission">Scroll to explore <span aria-hidden="true">↓</span></a></div>
+      <span class="frame-label" aria-hidden="true">FIELD RECORDING / CREW ASSEMBLY</span>
+    </section>
+    <section class="briefing section shell" id="mission" aria-labelledby="mission-title">
+      <div class="section-marker"><span>01 / THE MISSION</span><span class="marker-line"></span><span>RECOVER. RETURN. REPEAT.</span></div>
+      <div class="briefing-layout reveal">
+        <div><p class="eyebrow">Humanity needs more than survivors.</p><h2 id="mission-title">It needs a<br><em>recovery unit.</em></h2></div>
+        <div class="briefing-copy"><p class="lead">A disease has brought the world to its knees. You and three other scientists set out by train with one purpose: find a cure.</p><p>Beyond the carriage, the world is hostile. Head into abandoned facilities, recover vital resources and biological samples, and make it back together. Every expedition is another step in a journey that depends on the whole crew.</p><div class="briefing-signoff"><span class="crosshair" aria-hidden="true"></span><span>YOUR OBJECTIVE<br><strong>Give humanity another chance.</strong></span></div></div>
+      </div>
+      <figure class="compound-frame reveal"><a class="open-shot" href="images/captured/research-compound.jpg" data-shot="0" aria-label="Enlarge the research compound screenshot"><img src="images/captured/research-compound.jpg" width="1584" height="891" alt="An armored scientist outside the A1 research compound" loading="lazy" decoding="async" ><span class="image-expand"><svg aria-hidden="true"><use href="#icon-expand"/></svg></span></a><figcaption><span>FIELD NOTE 01</span> What remains may be exactly what you need.<span class="caption-right">IN-GAME CAPTURE</span></figcaption></figure>
+    </section>
+    <section class="train-section section atmospheric" id="train" aria-labelledby="train-title" data-fog>
+      <div class="shell">
+        <div class="section-marker"><span>02 / YOUR MOBILE BASE</span><span class="marker-line"></span><span>ALL CREW ABOARD</span></div>
+        <div class="section-heading reveal"><div><p class="eyebrow">The train is the heart of the journey.</p><h2 id="train-title">Your way through.<br><em>Your way back.</em></h2></div><p>Plan your next expedition, prepare your equipment, and turn what you recover into knowledge. Then head out again.</p></div>
+        <div class="journey-console reveal">
+          <div class="journey-controls"><p class="console-label"><i class="status-light" aria-hidden="true"></i> EXPEDITION SEQUENCE</p><div class="journey-tabs" role="tablist" aria-label="Explore the expedition loop" aria-orientation="vertical">
+            <button id="tab-prepare" class="journey-tab active" role="tab" type="button" aria-controls="panel-prepare" aria-selected="true" data-phase="0"><span>01</span><span><strong>Prepare</strong><small>Set a course</small></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+            <button id="tab-deploy" class="journey-tab" role="tab" type="button" aria-controls="panel-deploy" aria-selected="false" tabindex="-1" data-phase="1"><span>02</span><span><strong>Deploy</strong><small>Leave the train</small></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+            <button id="tab-recover" class="journey-tab" role="tab" type="button" aria-controls="panel-recover" aria-selected="false" tabindex="-1" data-phase="2"><span>03</span><span><strong>Recover</strong><small>Make the trip count</small></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+            <button id="tab-return" class="journey-tab" role="tab" type="button" aria-controls="panel-return" aria-selected="false" tabindex="-1" data-phase="3"><span>04</span><span><strong>Return</strong><small>Bring everyone home</small></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+          </div><p class="console-footnote">A shared journey.<br>Every decision belongs to the crew.</p></div>
+          <div class="journey-panels">
+            <article class="journey-panel active" id="panel-prepare" role="tabpanel" aria-labelledby="tab-prepare" tabindex="0"><img src="images/captured/crew-train.jpg" width="1516" height="853" alt="Three teammates beside the armored train in the rain" loading="lazy" decoding="async" ><div class="journey-copy"><span class="eyebrow">01 / Prepare</span><h3>Start with a plan.</h3><p>Choose the next mission at the Map Computer. Equip your team, coordinate shared supplies, and set a course together.</p></div></article>
+            <article class="journey-panel" id="panel-deploy" role="tabpanel" aria-labelledby="tab-deploy" tabindex="0" hidden><img src="images/captured/ash-forest.jpg" width="1580" height="889" alt="A first-person view of a foggy conifer forest" loading="lazy" decoding="async" ><div class="journey-copy"><span class="eyebrow">02 / Deploy</span><h3>Step into the unknown.</h3><p>Leave the armored carriage and explore on foot. Stay close, search for supplies, and work your way toward the objective.</p></div></article>
+            <article class="journey-panel" id="panel-recover" role="tabpanel" aria-labelledby="tab-recover" tabindex="0" hidden><img src="images/captured/relay-console.jpg" width="1584" height="891" alt="A green WRC radio relay terminal requesting a keycard scan" loading="lazy" decoding="async" ><div class="journey-copy"><span class="eyebrow">03 / Recover</span><h3>Bring back what matters.</h3><p>Restore a signal relay, secure fuel, or recover a biological sample. Surviving the trip is only part of the mission.</p></div></article>
+            <article class="journey-panel" id="panel-return" role="tabpanel" aria-labelledby="tab-return" tabindex="0" hidden><img src="images/captured/research-compound.jpg" width="1584" height="891" alt="An armored scientist outside the A1 research compound" loading="lazy" decoding="async" ><div class="journey-copy"><span class="eyebrow">04 / Return</span><h3>No one left outside.</h3><p>Get the surviving crew aboard and close the train door. Analyze recovered samples at the Research Station and prepare for the next expedition.</p></div></article>
+          </div>
+        </div>
+        <noscript><p class="no-script-note">Each expedition takes the crew from preparation aboard the train to deployment, recovery, and a return to the Research Station.</p></noscript>
+      </div>
+    </section>
+    <section class="world-section section shell atmospheric" aria-labelledby="world-title" data-fog>
+      <div class="section-marker"><span>03 / BEYOND THE TRACKS</span><span class="marker-line"></span><span>VISIBILITY: UNCERTAIN</span></div>
+      <div class="section-heading reveal"><div><p class="eyebrow">A familiar world. An unfamiliar silence.</p><h2 id="world-title">Every stop.<br><em>Another unknown.</em></h2></div><p>Rain against the carriage. Fog between the trees. A horizon disappearing into dust. The world sets the mood before you fire a shot.</p></div>
+      <div class="environment-grid">
+        <a class="environment environment-forest open-shot reveal" href="images/captured/ash-forest.jpg" data-shot="1" aria-label="Enlarge the forest screenshot"><img src="images/captured/ash-forest.jpg" width="1580" height="889" alt="A first-person view of a foggy conifer forest" loading="lazy" decoding="async" ><div><span class="eyebrow">01 / Into the treeline</span><h3>Watch the fog.</h3><p>Keep your bearings. Keep your crew close.</p></div><span class="image-expand"><svg aria-hidden="true"><use href="#icon-expand"/></svg></span></a>
+        <a class="environment environment-desert open-shot reveal" href="images/captured/buried-city.jpg" data-shot="4" aria-label="Enlarge the buried city screenshot"><img src="images/captured/buried-city.jpg" width="1582" height="890" alt="A ruined settlement disappearing into desert dust" loading="lazy" decoding="async" ><div><span class="eyebrow">02 / Beyond the horizon</span><h3>Follow the tracks.</h3><p>Some places have almost disappeared.</p></div><span class="image-expand"><svg aria-hidden="true"><use href="#icon-expand"/></svg></span></a>
+      </div>
+    </section>
+    <section class="recovery-section section" aria-labelledby="recovery-title">
+      <div class="shell">
+        <div class="section-marker"><span>04 / EXPEDITION OBJECTIVES</span><span class="marker-line"></span><span>RECOVERY IS THE REASON</span></div>
+        <div class="recovery-layout">
+          <div class="terminal-visual reveal"><div class="terminal-top"><span><i class="status-light" aria-hidden="true"></i> WRC / FIELD TERMINAL</span><span>ACCESS REQUIRED</span></div><a class="open-shot" href="images/captured/relay-console.jpg" data-shot="2" aria-label="Enlarge the relay console screenshot"><img src="images/captured/relay-console.jpg" width="1584" height="891" alt="A green WRC radio relay terminal requesting a keycard scan" loading="lazy" decoding="async" ><span class="image-expand"><svg aria-hidden="true"><use href="#icon-expand"/></svg></span></a><div class="terminal-bottom"><span class="terminal-cursor" aria-hidden="true">▍</span> Make contact. Keep the signal alive.</div></div>
+          <div class="recovery-copy reveal"><p class="eyebrow">Survival is a team effort.</p><h2 id="recovery-title">Bring back<br><em>more than ammo.</em></h2><div class="objective-list">
+            <article><span>01</span><div><h3>Restore the signal.</h3><p>Authenticate at the relay and defend its reboot. Keep the team nearby while the machinery draws attention.</p></div></article>
+            <article><span>02</span><div><h3>Recover the evidence.</h3><p>Collect biological samples with the Sample Extractor. Back aboard, analyze them to build the crew’s understanding of the infected.</p></div></article>
+            <article><span>03</span><div><h3>Keep the journey alive.</h3><p>Connect the fuel depot’s systems, restore power, and protect the transfer. The next expedition needs more than courage.</p></div></article>
+          </div></div>
+        </div>
+      </div>
+    </section>
+    <section class="rail-interlude atmospheric" aria-label="The search continues" data-fog>
+      <img src="images/captured/desert-railway.jpg" width="1520" height="855" alt="A railway curving toward a distant tower in a sand-covered landscape" loading="lazy" decoding="async" ><div class="interlude-shade" aria-hidden="true"></div><div class="dust" aria-hidden="true"></div><div class="shell"><span class="eyebrow">Beyond the next station</span><p>As long as there’s a way forward,<br><em>there’s a reason to go.</em></p><span class="rail-line" aria-hidden="true"></span></div>
+    </section>
+    <section class="gallery-section section shell" id="field-records" aria-labelledby="gallery-title">
+      <div class="section-marker"><span>05 / FIELD RECORDS</span><span class="marker-line"></span><span>ACTUAL GAMEPLAY CAPTURES</span></div>
+      <div class="section-heading reveal"><div><p class="eyebrow">See the world for yourself.</p><h2 id="gallery-title">From the <em>field.</em></h2></div><p>Seven moments from the game in development.<br>Select a frame to take a closer look.</p></div>
+      <div class="gallery-viewer reveal" aria-label="Recovery Unit screenshot gallery">
+        <a class="gallery-open" href="images/captured/crew-train.jpg" aria-label="Enlarge screenshot: All crew aboard"><img src="images/captured/crew-train.jpg" width="1516" height="853" alt="Three teammates beside the armored train in the rain" loading="lazy" decoding="async" id="gallery-image"><span class="gallery-expand">View full frame <svg aria-hidden="true"><use href="#icon-expand"/></svg></span></a>
+        <div class="gallery-bar"><div><span id="gallery-count">07 / 07</span><p id="gallery-caption" role="status" aria-live="polite">All crew aboard</p></div><div class="gallery-controls"><button type="button" class="gallery-step previous" data-direction="-1" aria-label="Previous screenshot"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></button><button type="button" class="gallery-step" data-direction="1" aria-label="Next screenshot"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></button></div></div>
+        <div class="gallery-thumbs" aria-label="Choose a screenshot">
+          <a href="images/captured/research-compound.jpg" class="gallery-thumb" data-shot="0" aria-label="Show screenshot: The research compound"><img src="images/captured/research-compound.jpg" width="1584" height="891" alt="" loading="lazy"><span>01</span></a>
+          <a href="images/captured/ash-forest.jpg" class="gallery-thumb" data-shot="1" aria-label="Show screenshot: Into the treeline"><img src="images/captured/ash-forest.jpg" width="1580" height="889" alt="" loading="lazy"><span>02</span></a>
+          <a href="images/captured/relay-console.jpg" class="gallery-thumb" data-shot="2" aria-label="Show screenshot: Make contact"><img src="images/captured/relay-console.jpg" width="1584" height="891" alt="" loading="lazy"><span>03</span></a>
+          <a href="images/captured/storm-approach.jpg" class="gallery-thumb" data-shot="3" aria-label="Show screenshot: Through the storm"><img src="images/captured/storm-approach.jpg" width="1586" height="892" alt="" loading="lazy"><span>04</span></a>
+          <a href="images/captured/buried-city.jpg" class="gallery-thumb" data-shot="4" aria-label="Show screenshot: A world buried"><img src="images/captured/buried-city.jpg" width="1582" height="890" alt="" loading="lazy"><span>05</span></a>
+          <a href="images/captured/desert-railway.jpg" class="gallery-thumb" data-shot="5" aria-label="Show screenshot: Follow the tracks"><img src="images/captured/desert-railway.jpg" width="1520" height="855" alt="" loading="lazy"><span>06</span></a>
+          <a href="images/captured/crew-train.jpg" class="gallery-thumb selected" data-shot="6" aria-label="Show screenshot: All crew aboard" aria-current="true"><img src="images/captured/crew-train.jpg" width="1516" height="853" alt="" loading="lazy"><span>07</span></a>
+        </div>
+      </div>
+    </section>
+    <section class="contact-section section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-layout reveal"><div><p class="eyebrow"><i class="status-light" aria-hidden="true"></i> The journey is in development.</p><h2 id="contact-title">The cure is<br>still <em>out there.</em></h2><p class="contact-intro">We’re building Recovery Unit for PC. For publishing, press, and collaboration, talk to the team behind the train.</p><a class="button button-amber contact-button" href="mailto:qubicode.team@gmail.com?subject=Recovery%20Unit%20enquiry">Contact Qubicode <svg aria-hidden="true"><use href="#icon-arrow"/></svg></a><a class="email-link" href="mailto:qubicode.team@gmail.com">qubicode.team@gmail.com</a></div><aside class="mission-dossier" aria-label="Recovery Unit game details"><div class="dossier-top"><span>PROJECT DOSSIER</span><span>RU / 001</span></div><h3>Recovery Unit</h3><dl><div><dt>Developer</dt><dd>Qubicode</dd></div><div><dt>Genre</dt><dd>Co-op survival / FPS</dd></div><div><dt>Crew</dt><dd>Up to 4 players online</dd></div><div><dt>Platform</dt><dd>PC</dd></div><div><dt>Status</dt><dd><i class="status-light" aria-hidden="true"></i> In development</dd></div><div><dt>Release</dt><dd>To be announced</dd></div></dl><a href="images/recovery-unit-key-art.webp" class="dossier-art" download>Download promotional art <span aria-hidden="true">↓</span></a></aside></div>
     </section>
   </main>
-  <footer class="site-footer">
-    <div class="section-inner footer-inner">
-      <a class="brand footer-brand" href="../../index.html#home"><img src="../../Images/qubicodeLogo.svg" width="574" height="574" alt="" class="brand-logo" decoding="async"><span>QUBICODE</span></a>
-      <p>&copy; <span id="year">2026</span> Qubicode. All rights reserved.</p>
-      <a class="footer-policy" href="privacy/index.html">Privacy Policy</a>
-    </div>
-  </footer>
-  <script src="../../script.js"></script>
+  <footer class="site-footer shell"><a href="../../index.html#games" class="footer-studio"><svg aria-hidden="true"><use href="#icon-cube"/></svg> QUBICODE</a><p>© <span id="year">2026</span> Qubicode. All rights reserved.</p><a href="privacy/index.html">Privacy policy</a><a href="#top">Back to top ↑</a></footer>
+  <dialog class="lightbox" aria-labelledby="lightbox-caption"><div class="lightbox-toolbar"><span id="lightbox-count">1 / 7</span><div><a class="lightbox-download" href="images/captured/research-compound.jpg" download>Original image ↓</a><button type="button" class="lightbox-close" aria-label="Close screenshot"><svg aria-hidden="true"><use href="#icon-cross"/></svg></button></div></div><div class="lightbox-stage"><button type="button" class="lightbox-prev previous" aria-label="Previous enlarged screenshot"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></button><img class="lightbox-image" src="images/captured/research-compound.jpg" width="1584" height="891" alt="Research compound"><button type="button" class="lightbox-next" aria-label="Next enlarged screenshot"><svg aria-hidden="true"><use href="#icon-arrow"/></svg></button></div><p id="lightbox-caption">The research compound</p></dialog>
 </body>
 </html>
