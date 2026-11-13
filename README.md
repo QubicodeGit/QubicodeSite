@@ -27,7 +27,7 @@ The home page uses the root `style.css` and `script.js`. Game pages keep their o
 
 Most pages load `motion.css`. On narrow screens or touch devices, it stops perpetual decorative animations while preserving finite effects triggered by taps, scrolling, and navigation. The Driver Dash trailer waits for the visitor to press play. The home-page cube and its reflection keep animating on mobile, but only while either is in view and the browser tab is visible. Gun Pop and Red Signal apply their own responsive and reduced-motion rules for their added effects. Reduced-motion device preferences suppress decorative and interaction effects.
 
-Brawlbots' complete promotional page was restored from Git commit `42da210`, including its seven original images, responsive layout, features, bot selector, and facilities. Its local `styles.css` and `script.js` pause decorative animations outside the viewport and in hidden tabs. Facility images open in a keyboard-accessible preview. The page shows the In Development release status, contact link, and current privacy page.
+Brawlbots' complete promotional page was restored from Git commit `42da210`, including its seven original images, responsive layout, features, bot selector, and facilities. Its local `styles.css` and `script.js` pause decorative animations outside the viewport and in hidden tabs. Facility images open in a keyboard-accessible preview. The page shows the Planned release status, contact link, and current privacy page.
 
 `games/game-ui.css` provides shared Qubicode home buttons and store controls. Game theme classes give those controls the appropriate colors. Store buttons are currently disabled native buttons; replace them with links when the store URLs are ready. Google Play and App Store controls appear on Driver Dash. Steam and Wishlist on Steam controls appear on Red Signal and SCP-087. Gun Pop uses its own navigation and release notice.
 
@@ -51,19 +51,15 @@ Red Signal keeps its condensed white/red title and dark transmission styling. It
 
 The seven JPGs in `games/red-signal/images/captured/` are unchanged copies of the screenshots supplied in `C:/Users/Leo/Desktop/RedSignal`. The screenshot archive supports thumbnails, previous/next controls, arrow keys, and an enlarged dialog with Escape and focus restoration. The full-size viewer shows each original frame without cropping or color filters.
 
-`games/red-signal/images/red-signal-key-art.webp` is a promotional composite created with built-in imagegen from the supplied game imagery, using the white RED / red SIGNAL title. It is referenced by the page's social metadata. The homepage uses `red-signal-card-background.webp`, a title-free edit of that artwork, with a bright white/red decorative wordmark on the right, slightly below the normal card heading. The heading and expanded description remain on the left; the full description wraps without truncation. Both prompts are recorded in `images/artwork-prompt.txt`; gameplay screenshots are kept separate. Red Signal is in development for PC, with store buttons disabled until a Steam URL is available. Press and publishing enquiries use `qubicode.team@gmail.com`.
+`games/red-signal/images/red-signal-key-art.webp` is a promotional composite created with built-in imagegen from the supplied game imagery, using the white RED / red SIGNAL title. It is referenced by the page's social metadata. The homepage uses the original monster screenshot at `images/captured/creature-front.jpg`, with a bright white/red decorative wordmark on the right, slightly below the normal card heading. The heading and expanded description remain on the left; the full description wraps without truncation. Both prompts are recorded in `images/artwork-prompt.txt`; gameplay screenshots are kept separate. Red Signal is in development for PC, with store buttons disabled until a Steam URL is available. Press and publishing enquiries use `qubicode.team@gmail.com`.
 
 ## Home Page Game Cards
 
 Home page game cards are generated from the `games` array in `script.js`.
 
-The twelve games form three columns and four rows in a 1240px-wide section on desktop, with two columns at widths up to 1100px and one column at widths up to 600px. The six non-Roblox games appear first, followed by the six Roblox games; release-status ordering applies within each group. Search matches titles, descriptions, genres, platforms, and tags; it combines with the category buttons, including Roblox. A result count and resettable empty state support keyboard and screen-reader use.
+The nine games use three columns on desktop, two at widths up to 1100px, and one at widths up to 600px. The six non-Roblox games appear first, followed by three Roblox games. Release-status ordering applies within each group, with Published Build the Eiffel Tower! first among Roblox games, followed by Go Up! and Break Everything. Search combines with the category filters.
 
-The six Roblox cards belong to the Qubicode community (`280151666`): REALMS RPG, Go Up!, Break Everything, COIN RUSH, Build the Eiffel Tower!, and ZombieShooter. They link directly to their Roblox experience pages. Roblox's public catalog listed REALMS RPG and Go Up! on 2026-10-23; the remaining four are shown as In Development. Do not infer release status from an uploaded icon alone.
-
-`Images/roblox/sources.json` records the official titles, descriptions, universe/place IDs, URLs, icon sources, and public status. Original icons are retained under `reference-icons/`. Built-in imagegen adapted each icon into full-bleed landscape card artwork, preserving its characters and visual identity; these are promotional images, not gameplay captures. The six `*-card.webp` files are 960 × 640 and together download in approximately 685 KiB. All images load locally and lazily, with no Roblox API calls during page visits. Exact prompts are in `artwork-prompts.json`, and output details are in `artwork-manifest.json`.
-
-COIN RUSH and ZombieShooter currently have no official descriptions. Their short introductions describe only the theme visible in the official icons and avoid unverified progression or feature claims. The seasonal prefix on Build the Eiffel Tower! is omitted from the evergreen card title.
+Coin Rush and REALMS RPG are no longer listed. Historical artwork and source records remain in Images/roblox/. Break Everything uses the supplied 1672 × 941 PNG, unchanged, at Images/roblox/break-everything-card.png. The other Roblox cards retain their existing artwork. Build the Eiffel Tower!'s Published status was updated at the user's request on 2026-11-07.
 
 Each game object controls:
 
@@ -82,7 +78,7 @@ Set `page` to an empty string while dedicated game pages are not part of the sit
 page: ""
 ```
 
-Each entire card links to its game page, with a separate shortcut icon in its upper-right corner. `page` can also be a verified external Roblox experience URL. Cards without a page link to the themed 404 page.
+Each entire card links to its game page, with a separate shortcut icon in its upper-right corner. Platform icons stay at the bottom left of every card. `page` can also be a verified external Roblox experience URL. Cards without a page link to the themed 404 page.
 
 Status badges use these labels and classes:
 
@@ -91,11 +87,11 @@ Status badges use these labels and classes:
 | Seeking publisher | `status-seeking` | Yellow |
 | Published | `status-published` | Green |
 | In Development | `status-development` | Blue |
-| Future | `status-future` | Gray |
+| Planned | `status-future` | Gray |
 
 Only use Published for a game that has actually been released.
 
-SCP-087 and Brawlbots are In Development, and Gun Pop is Seeking publisher. Keep page copy and home page badges consistent when changing a game's status.
+SCP-087 is In Development, Brawlbots is Planned, and Gun Pop is Seeking publisher. Keep page copy and home page badges consistent when changing a game's status.
 
 ## Missing Pages
 
@@ -115,13 +111,9 @@ The website policy describes the current static site, GitHub Pages hosting, exte
 
 ### Recovery Unit
 
-`games/recovery-unit/index.html` is the Recovery Unit landing page. Its standalone `styles.css` and `script.js` provide responsive navigation, an accessible four-stage expedition selector, a seven-image gallery with a native dialog viewer, and optional rain, drifting fog, dust, and train-window lighting. Fog uses one soft gradient per scene without live blur or masks; only the hero and railway fog drift. Rain is limited to twelve streaks on desktop and six on phones. Small cabin-light overlays follow the source screenshot's cover crop through a ResizeObserver and animate as a single opacity layer. Decorative layers are hidden offscreen and in background tabs; motion also pauses in the image viewer, respects the system preference, and can be paused from the navigation. Screenshots remain available through ordinary links without JavaScript.
+Recovery Unit is presented as an early development showcase, with a short overview, separate descriptions of what the screenshots show and the planned gameplay, and seven original development captures. It explicitly states that the game is a long way from complete and has no release date.
 
-`games/recovery-unit/artwork-preview.html` retains the comparison with proposal 03 for reference. The user chose to keep the current homepage artwork on 2026-10-23. Proposals 02 and 03 and their exact imagegen prompts remain in `images/proposals/`; neither proposal is referenced by the homepage or the game's art download.
-
-The original JPGs in `games/recovery-unit/images/captured/` are unedited game captures supplied by the developer. `recovery-unit-key-art.webp` is generated promotional artwork for the homepage card and the downloadable project art; its references and exact prompt are in `images/artwork-prompt.txt`. Do not label that artwork as a gameplay capture. The subpage uses the original screenshots.
-
-Copy describes the four-player train expedition and search for a cure supplied by the developer, plus mission, equipment, extraction, and research mechanics checked against the local Unity project's `Documentation/RecoveryProgression.md`, `Documentation/TrainCorrection.md`, and mission assets. The project is in development for PC; no release date or public store page is announced here. Publisher and press enquiries go to `qubicode.team@gmail.com`.
+Its local styles and script provide responsive navigation and a screenshot gallery with keyboard controls and a native enlarged-image dialog. The page has no decorative atmosphere effects or promotional art download. The screenshots in images/captured/ remain unchanged; The homepage uses the original desert apocalypse screenshot at `images/captured/buried-city.jpg`; historical proposals are retained separately.
 
 ### General image updates
 
@@ -138,6 +130,7 @@ Large images generally use lossless WebP exports with their original dimensions 
 
 The site currently links to:
 
+- itch.io: `https://qubicode.itch.io`
 - YouTube: `https://www.youtube.com/@Qubicode`
 - Instagram: `https://www.instagram.com/qubicode`
 - GitHub: `https://github.com/QubicodeGit`
@@ -166,3 +159,9 @@ No build step is required.
 ## Final Check
 
 Before uploading, make sure file names and folder names match the references in the HTML exactly. GitHub Pages is case-sensitive, so `Images/` and `games/` need to stay spelled the same way everywhere.
+
+## SIX featured project
+
+The homepage features SIX above the game grid, with the supplied cover at Images/six-cover.png and logo at Images/six-logo.png. The cover fills the card on desktop and mobile, and the logo replaces the text wordmark while retaining an accessible SIX heading. The compact SIX card describes the game concept as in development and links to its game page at https://qubicode.itch.io/six. A companion blue card links to the official 2026 Unity Game Jam and shows its Lucky Number theme and November 5–14 dates. The cards sit side by side on desktop and stack on mobile; borders, glows, and decorations use CSS, with no new generated imagery. It does not imply a playable release. Ten projects are represented: this feature and nine grid entries.
+
+Recovery Unit now has a crew-and-train screenshot immediately after the introduction. It opens the existing screenshot viewer and retains the original image and work-in-progress caption.

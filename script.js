@@ -75,10 +75,10 @@ const games = [
     theme: "red-signal",
     filters: ["steam", "horror", "singleplayer"],
     page: "games/red-signal/index.html",
-    image: "games/red-signal/images/red-signal-card-background.webp",
-    imageWidth: 1280,
-    imageHeight: 720,
-    imageAlt: "Red-lit alien creature beneath a glowing planet above a Martian canyon",
+    image: "games/red-signal/images/captured/creature-front.jpg",
+    imageWidth: 1590,
+    imageHeight: 889,
+    imageAlt: "The red-lit monster confronting the player in Red Signal",
     cardWordmark: ["RED", "SIGNAL"],
     logo: "Images/RedSignalIcon.webp",
     logoWidth: 878,
@@ -89,8 +89,8 @@ const games = [
   },
   {
     title: "Brawlbots",
-    status: "In Development",
-    statusClass: "status-development",
+    status: "Planned",
+    statusClass: "status-future",
     platforms: ["Steam", "PC", "Multiplayer"],
     genre: "Third-Person Multiplayer Puzzle Brawler",
     theme: "brawlbots",
@@ -133,29 +133,29 @@ const games = [
     theme: "recovery-unit",
     filters: ["steam", "multiplayer"],
     page: "games/recovery-unit/index.html",
-    image: "games/recovery-unit/images/recovery-unit-key-art.webp",
-    imageWidth: 1280,
-    imageHeight: 720,
-    imageAlt: "Recovery Unit title with four researchers and their armored train in a rain-soaked forest",
+    image: "games/recovery-unit/images/captured/buried-city.jpg",
+    imageWidth: 1582,
+    imageHeight: 890,
+    imageAlt: "Desert dunes and ruined buildings in Recovery Unit’s apocalyptic world",
     description:
-      "Four scientists. One armored train. Explore a world devastated by disease, recover vital samples, and search for a cure together.",
+      "An early co-op survival project for PC. Planned around a crew of scientists, an armored train, and the search for a cure.",
     tags: ["FPS", "Co-op", "Train", "Research", "Survival"]
   },
   {
-    title: "REALMS RPG",
+    title: "Build the Eiffel Tower!",
     status: "Published",
     statusClass: "status-published",
     platforms: ["Roblox", "Multiplayer"],
-    genre: "Fantasy Action RPG",
-    theme: "realms-rpg",
+    genre: "Cooperative Building Simulator",
+    theme: "build-the-eiffel-tower",
     filters: ["roblox", "multiplayer", "mobile"],
-    page: "https://www.roblox.com/games/1827975522/REALMS-RPG",
-    image: "Images/roblox/realms-rpg-card.webp",
+    page: "https://www.roblox.com/games/122848283773531/Build-the-Eiffel-Tower",
+    image: "Images/roblox/build-the-eiffel-tower-card.webp",
     imageWidth: 960,
     imageHeight: 640,
-    imageAlt: "REALMS RPG artwork with the red-and-gold knight, glowing sword, and sunlit stone ruins",
-    description: "Explore 16 realms, collect swords and armor, and challenge 13 bosses with friends.",
-    tags: ["Roblox", "RPG", "Fantasy", "Swords", "Bosses", "Adventure"]
+    imageAlt: "Build the Eiffel Tower! artwork with a French builder carrying a block beside the golden voxel tower",
+    description: "Team up to build Paris, one block at a time. Train, upgrade, and reach the summit.",
+    tags: ["Roblox", "Co-op", "Building", "Simulator", "Paris", "Eiffel Tower"]
   },
   {
     title: "Go Up!",
@@ -182,60 +182,12 @@ const games = [
     theme: "break-everything",
     filters: ["roblox", "multiplayer"],
     page: "https://www.roblox.com/games/75791954185614/Break-Everything",
-    image: "Images/roblox/break-everything-card.webp",
-    imageWidth: 960,
-    imageHeight: 640,
-    imageAlt: "Break Everything artwork with the hammer-wielding avatar smashing a red block wall",
+    image: "Images/roblox/break-everything-card.png",
+    imageWidth: 1672,
+    imageHeight: 941,
+    imageAlt: "A blue and gold hammer against an orange sunburst",
     description: "Smash 15 realms, unlock 46 tools, and compete in chaotic demolition events.",
     tags: ["Roblox", "Destruction", "Simulator", "Tools", "Rebirth", "Demolition"]
-  },
-  {
-    title: "COIN RUSH",
-    status: "In Development",
-    statusClass: "status-development",
-    platforms: ["Roblox", "Multiplayer"],
-    genre: "Roblox Experience",
-    theme: "coin-rush",
-    filters: ["roblox", "multiplayer"],
-    page: "https://www.roblox.com/games/130059195387129/COIN-RUSH",
-    image: "Images/roblox/coin-rush-card.webp",
-    imageWidth: 960,
-    imageHeight: 640,
-    imageAlt: "COIN RUSH artwork with a smiling yellow avatar, hammer, gold coins, and green banknotes",
-    description: "A colorful, coin-filled Roblox world. A new Qubicode experience in the making.",
-    tags: ["Roblox", "Coins", "Currency"]
-  },
-  {
-    title: "Build the Eiffel Tower!",
-    status: "In Development",
-    statusClass: "status-development",
-    platforms: ["Roblox", "Multiplayer"],
-    genre: "Cooperative Building Simulator",
-    theme: "build-the-eiffel-tower",
-    filters: ["roblox", "multiplayer", "mobile"],
-    page: "https://www.roblox.com/games/122848283773531/Build-the-Eiffel-Tower",
-    image: "Images/roblox/build-the-eiffel-tower-card.webp",
-    imageWidth: 960,
-    imageHeight: 640,
-    imageAlt: "Build the Eiffel Tower! artwork with a French builder carrying a block beside the golden voxel tower",
-    description: "Team up to build Paris, one block at a time. Train, upgrade, and reach the summit.",
-    tags: ["Roblox", "Co-op", "Building", "Simulator", "Paris", "Eiffel Tower"]
-  },
-  {
-    title: "ZombieShooter",
-    status: "In Development",
-    statusClass: "status-development",
-    platforms: ["Roblox", "Multiplayer"],
-    genre: "Zombie Shooter",
-    theme: "zombie-shooter",
-    filters: ["roblox", "multiplayer"],
-    page: "https://www.roblox.com/games/112062639497548/ZombieShooter",
-    image: "Images/roblox/zombie-shooter-card.webp",
-    imageWidth: 960,
-    imageHeight: 640,
-    imageAlt: "ZombieShooter artwork with a blocky green zombie, a first-person rifle, and a crumbling stone wall",
-    description: "Take aim at the undead in a blocky Roblox shooter. Currently in development.",
-    tags: ["Roblox", "Zombies", "Shooter", "FPS"]
   }
 ];
 
@@ -275,7 +227,7 @@ function escapeAttribute(value) {
 const shortcutArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M10 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"></path></svg>';
 
 const gameStatusPriority = new Map(
-  ["published", "seeking publisher", "in development", "future", "inactive"]
+  ["published", "seeking publisher", "in development", "planned", "future", "inactive"]
     .map((status, index) => [status, index])
 );
 
