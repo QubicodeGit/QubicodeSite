@@ -137,6 +137,9 @@ const games = [
     imageWidth: 1582,
     imageHeight: 890,
     imageAlt: "Desert dunes and ruined buildings in Recovery Unit’s apocalyptic world",
+    cardLogo: "games/recovery-unit/images/recovery-unit-wordmark.webp",
+    cardLogoWidth: 768,
+    cardLogoHeight: 256,
     description:
       "An early co-op survival project for PC. Planned around a crew of scientists, an armored train, and the search for a cure.",
     tags: ["FPS", "Co-op", "Train", "Research", "Survival"]
@@ -186,6 +189,9 @@ const games = [
     imageWidth: 1672,
     imageHeight: 941,
     imageAlt: "A blue and gold hammer against an orange sunburst",
+    cardLogo: "Images/roblox/break-everything-wordmark.webp",
+    cardLogoWidth: 768,
+    cardLogoHeight: 307,
     description: "Smash 15 realms, unlock 46 tools, and compete in chaotic demolition events.",
     tags: ["Roblox", "Destruction", "Simulator", "Tools", "Rebirth", "Demolition"]
   }

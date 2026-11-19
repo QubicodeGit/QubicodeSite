@@ -306,6 +306,12 @@ h1, h2, h3, p { margin: 0; }
 }
 .game-theme-recovery-unit .game-description { max-width: 52%; }
 .game-theme-recovery-unit .game-actions { justify-content: flex-start; }
+.game-theme-recovery-unit .game-card-art-logo,
+.game-theme-break-everything .game-card-art-logo {
+  position: absolute; right: 3%; width: 43%; height: auto; pointer-events: none;
+}
+.game-theme-recovery-unit .game-card-art-logo { top: 57%; transform: translateY(-50%); }
+.game-theme-break-everything .game-card-art-logo { bottom: 19%; }
 
 /* Social tiles and a compact footer. */
 .contact-section { padding: 22px 0 18px; border-top: 1px solid rgba(76, 137, 213, .32); background: linear-gradient(115deg, #081a2e, #061326); }
